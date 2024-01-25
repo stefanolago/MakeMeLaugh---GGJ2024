@@ -5,7 +5,6 @@ class_name Boss
 signal boss_status_changed(status: BossStatus)
 signal boss_blocked_damage()
 
-
 enum BossStatus {
 	EARS_COVERED,
 	EYES_COVERED,
@@ -63,6 +62,7 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 				boss_status_changed.emit("ATTACK")
 				animation_player.play("attacking")
 				attack_pb.visible = false
+				($wolf_attack as AudioStreamPlayer).play()
 			BossStatus.DIALOGUE:
 				$boss_UI/BossFace/Label.text = "DIALOGUE"
 				boss_status_changed.emit("DIALOGUE")
@@ -73,6 +73,7 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 				attack_pb.visible = false
 				attack_timer.stop()
 				animation_player.play("damage")
+				($wolf_hit as AudioStreamPlayer).play()
 
 
 func _ready() -> void:
@@ -157,5 +158,9 @@ func _on_attack_timer_timeout() -> void:
 	boss_status = BossStatus.ATTACK
 
 
-func _on_begin_battle_timer_timeout():
+func _on_begin_battle_timer_timeout() -> void:
 	new_defence_mode()
+
+
+func _on_debug_attack_pressed():
+	boss_status = BossStatus.ATTACK

@@ -19,7 +19,7 @@ signal finished_tickling()
 
 
 var shake_zone: Control:
-	set(value):	
+	set(value):
 		shake_zone = value
 		shake_zone.connect("mouse_entered", _on_mouse_entered_in_shake_zone)
 		shake_zone.connect("mouse_exited", _on_mouse_exited_shake_zone)
@@ -54,10 +54,12 @@ var total_shake_meter_to_reach: int = 400
 
 
 func _on_mouse_entered_in_shake_zone() -> void:
+	print ("shakezone in ")
 	set_tickling(true)
 
 
 func _on_mouse_exited_shake_zone() -> void:
+	print ("shakezone out ")
 	set_tickling(false)
 
 
