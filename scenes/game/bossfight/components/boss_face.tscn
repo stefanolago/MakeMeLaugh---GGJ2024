@@ -127,44 +127,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_msnto")
 
-[node name="boss_UI" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1152.0
-offset_bottom = 648.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="boss" type="Node2D" parent="."]
 
-[node name="Background" type="ColorRect" parent="boss_UI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.72549, 0.34902, 0.423529, 1)
-
-[node name="BossFace" type="TextureRect" parent="boss_UI"]
-layout_mode = 1
+[node name="BossFace" type="TextureRect" parent="boss"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0006
-offset_bottom = 64.0
+offset_left = 512.0
+offset_top = 260.0
+offset_right = 640.001
+offset_bottom = 388.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("1_05mpu")
 
-[node name="Label" type="Label" parent="boss_UI/BossFace"]
+[node name="Label" type="Label" parent="boss/BossFace"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -183,24 +163,32 @@ text = "DIALOGUE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="attack_pb" type="ProgressBar" parent="."]
+[node name="attack_pb" type="ProgressBar" parent="boss"]
 modulate = Color(1, 0, 0, 1)
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -234.0
-offset_top = 78.0
-offset_right = 234.0
-offset_bottom = 84.0
+offset_left = 342.0
+offset_top = 402.0
+offset_right = 810.0
+offset_bottom = 408.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 max_value = 4.0
 step = 0.05
 show_percentage = false
+
+[node name="boss_UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="defence_mode_timer" type="Timer" parent="."]
 wait_time = 5.0
