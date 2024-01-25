@@ -20,7 +20,7 @@ enum BossStatus {
 enum AttackType {
 	JOKE,
 	HALF_GRIMACE,
-	GRIMACE,
+	FULL_GRIMACE,
 	TICKLE,
 	TICKLE_LIGHT
 }
@@ -93,7 +93,7 @@ func boss_attacked(type: AttackType) -> void:
 				take_damage()
 			else:
 				block_damage()
-		AttackType.HALF_GRIMACE:
+		AttackType.FULL_GRIMACE:
 			if boss_status == BossStatus.EARS_COVERED:
 				take_damage()
 			else:
