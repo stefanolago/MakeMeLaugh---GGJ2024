@@ -43,17 +43,15 @@ func check_input() -> void:
 	var is_good: bool = player_input.text.strip_edges() == current_joke
 	if is_good:
 		$AnimationPlayer.play("right_joke")
-		print ("correct joke")
 	else:
 		$AnimationPlayer.play("wrong_joke")
-		print ("wrong joke")
 
 
 func wrong_joke_anim_played() -> void:
-	inserted_right_word.emit()
+	inserted_wrong_word.emit()
 	write_joke()
 
 
 func right_joke_anim_played() -> void:
-	inserted_wrong_word.emit()
+	inserted_right_word.emit("JOKE")
 	write_joke()

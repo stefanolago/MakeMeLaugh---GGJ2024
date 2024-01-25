@@ -60,4 +60,5 @@ anchor_right = 0.94184
 anchor_bottom = 0.930555
 metadata/_edit_use_anchors_ = true
 
+[connection signal="inserted_right_word" from="JokeTyping" to="." method="_on_joke_typing_inserted_right_word"]
 [connection signal="face_status_changed" from="FaceClicker" to="." method="_on_face_clicker_face_status_changed"]
