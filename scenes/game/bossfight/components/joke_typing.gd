@@ -20,7 +20,6 @@ var jokes: Array[String] = [
 	]
 var current_joke : String = ""
 
-
 func _ready() -> void:
 	write_joke()
 
