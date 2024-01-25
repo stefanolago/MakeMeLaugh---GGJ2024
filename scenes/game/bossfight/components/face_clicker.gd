@@ -1,5 +1,6 @@
 extends Control
 
+class_name FaceClicker
 
 enum FaceStatus {
 	NORMAL,
@@ -13,12 +14,11 @@ var face_status: FaceStatus = FaceStatus.NORMAL:
 	set(value):
 		if value != face_status:
 			face_status_changed.emit(value)
-		face_status = value
 
 
 var face_clicks: int = 0:
 	set(value):
-		face_clicks = value if value > 0 else 0
+		face_clicks = clamp(value, 0, 15)
 		if face_clicks >= 10:
 			face_status = FaceStatus.FULL_GRIMACE
 		elif face_clicks >= 5:
