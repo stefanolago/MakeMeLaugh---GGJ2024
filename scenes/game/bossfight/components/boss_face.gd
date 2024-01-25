@@ -13,6 +13,8 @@ signal boss_status_changed(status: BossStatus)
 signal boss_take_damage()
 signal boss_blocked_damage()
 
+var previous_defence_mode: BossStatus
+
 var boss_status: BossStatus = BossStatus.DIALOGUE:
 	set(value):
 		boss_status = value
@@ -60,6 +62,7 @@ func boss_attacked(type):
 			boss_blocked_damage.emit()
 			boss_status = BossStatus.ATTACK
 
+
 func new_defence_mode() -> void:
 	roll_new_defence_mode()
 
@@ -68,11 +71,14 @@ func roll_new_defence_mode():
 	var new_mode = BossStatus.keys()[randi() % BossStatus.size()]
 	check_new_defence_mode(new_mode)
 
+
 func check_new_defence_mode(new_mode):
-	pass
-	#if new_mode == previous_defence_mode:
-	#	roll_new_defence_mode()
-	#	pass
+	if new_mode == previous_defence_mode:
+		roll_new_defence_mode()
+		pass
+	else:
+		boss_status = new_mode
+		previous_defence_mode = new_mode
 
 
 func _on_defence_mode_timer_timeout():
