@@ -27,7 +27,7 @@ var defence_modes: Array[BossStatus] = [BossStatus.EARS_COVERED,BossStatus.EYES_
 var previous_defence_mode: BossStatus = BossStatus.DIALOGUE
 
 @onready var attack_timer: Timer = $attack_timer
-@onready var attack_pb: ProgressBar = $attack_pb
+@onready var attack_pb: ProgressBar = $boss/attack_pb
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var defence_mode_timer: Timer = $defence_mode_timer
 
@@ -37,38 +37,38 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 		boss_status = value
 		match boss_status:
 			BossStatus.EARS_COVERED:
-				$boss_UI/BossFace/Label.text = "EARS_COVERED"
+				$boss/BossFace/Label.text = "EARS_COVERED"
 				boss_status_changed.emit("EARS_COVERED")
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
 				print ("EARS_COVERED")
 			BossStatus.EYES_COVERED:
-				$boss_UI/BossFace/Label.text = "EYES_COVERED"
+				$boss/BossFace/Label.text = "EYES_COVERED"
 				boss_status_changed.emit("EYES_COVERED")
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
 				print ("EYES_COVERED")
 			BossStatus.ARMS_UP:
-				$boss_UI/BossFace/Label.text = "ARMS_UP"
+				$boss/BossFace/Label.text = "ARMS_UP"
 				boss_status_changed.emit("ARMS_UP")
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
 				print ("ARMS_UP")
 			BossStatus.ATTACK:
-				$boss_UI/BossFace/Label.text = "ATTACK"
+				$boss/BossFace/Label.text = "ATTACK"
 				boss_status_changed.emit("ATTACK")
 				animation_player.play("attacking")
 				attack_pb.visible = false
 				($wolf_attack as AudioStreamPlayer).play()
 			BossStatus.DIALOGUE:
-				$boss_UI/BossFace/Label.text = "DIALOGUE"
+				$boss/BossFace/Label.text = "DIALOGUE"
 				boss_status_changed.emit("DIALOGUE")
 			BossStatus.DAMAGE:
 				print ("BOSS TAKES DAMAGE")
-				$boss_UI/BossFace/Label.text = "DAMAGE"
+				$boss/BossFace/Label.text = "DAMAGE"
 				boss_status_changed.emit("DAMAGE")
 				attack_pb.visible = false
 				attack_timer.stop()
