@@ -1,1 +1,6 @@
 extends Control
+
+
+func _on_face_clicker_face_status_changed(status:int) -> void:
+	print("STATUS: ")
+	print(status)
