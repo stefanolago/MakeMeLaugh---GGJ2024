@@ -1,5 +1,7 @@
 extends Control
 
+class_name FeatherScene
+
 enum FeatherState {
 	NORMAL,
 	IN_HAND,
@@ -18,7 +20,7 @@ signal finished_tickling()
 
 var shake_zone: Control:
 	set(value):	
-		print("SET SHAKE ZONE")
+		shake_zone = value
 		shake_zone.connect("mouse_entered", _on_mouse_entered_in_shake_zone)
 		shake_zone.connect("mouse_exited", _on_mouse_exited_shake_zone)
 
@@ -35,25 +37,28 @@ var shake_meter: int = 0:
 var feather_state: FeatherState = FeatherState.NORMAL:
 	set(value):
 		feather_state = value
-		if feather_state == FeatherState.IN_HAND:
-			feather_button.modulate = Color.BLACK
-			feather_texture.visible = true
-		else:
-			feather_button.modulate = base_modulate
-			feather_texture.visible = false
+		match feather_state:
+			FeatherState.IN_HAND:
+				feather_button.modulate = Color.BLACK
+				feather_texture.visible = true
+			FeatherState.IN_HAND_AND_TICKLING:
+				feather_button.modulate = Color.BLACK
+				feather_texture.visible = true
+			FeatherState.NORMAL:
+				feather_button.modulate = base_modulate
+				feather_texture.visible = false
 
 
-
-var minimum_frames_to_register_shake: float = 300.0
+var minimum_frames_to_register_shake: float = 200.0
 var total_shake_meter_to_reach: int = 400
 
 
 func _on_mouse_entered_in_shake_zone() -> void:
-	print("ON MOUSE ENTERED SHAKE")
+	set_tickling(true)
 
 
 func _on_mouse_exited_shake_zone() -> void:
-	print("ON MOUSE EXITED SHAKE ZONE")
+	set_tickling(false)
 
 
 func _on_clickable_area_pressed() -> void:
@@ -70,7 +75,9 @@ func set_tickling(tickling: bool) -> void:
 func _input(event: InputEvent) -> void:
 	if (feather_state == FeatherState.IN_HAND_AND_TICKLING or feather_state == FeatherState.IN_HAND) and event is InputEventMouseMotion:
 		feather_texture.global_position = get_global_mouse_position() - feather_texture.size / 2
+		
 		if feather_state == FeatherState.IN_HAND_AND_TICKLING and (event as InputEventMouseMotion).relative.length_squared() > minimum_frames_to_register_shake:
+			
 			shake_meter += 1
 			
 		#if (event as InputEventMouseMotion).relative.length_squared()

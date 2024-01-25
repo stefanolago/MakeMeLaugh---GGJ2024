@@ -60,6 +60,7 @@ anchor_right = 0.9
 anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("1_pk7aw")
 stretch_mode = 5
 
