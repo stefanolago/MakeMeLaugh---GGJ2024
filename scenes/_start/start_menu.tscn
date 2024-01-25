@@ -71,7 +71,6 @@ layout_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("3_mxssh")
-volume_db = -40.3
 autoplay = true
 bus = &"Music"
 
