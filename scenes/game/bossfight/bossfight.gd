@@ -19,3 +19,11 @@ func _on_feather_tickled() -> void:
 
 func _on_feather_finished_tickling() -> void:
 	print("BOSSFIGHT FINISHED TICKLING")
+
+
+func player_attack(attack_type):
+	$BossFace.boss_attacked(attack_type)
+
+
+func _on_joke_typing_inserted_right_word(attack_type):
+	player_attack(attack_type)
