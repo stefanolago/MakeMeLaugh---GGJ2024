@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://qv7886gfd6lc"]
+[gd_scene load_steps=3 format=3 uid="uid://qv7886gfd6lc"]
 
+[ext_resource type="Script" path="res://scenes/game/bossfight/components/face_clicker.gd" id="1_jjwal"]
 [ext_resource type="Texture2D" uid="uid://b2wh8kyf3m41s" path="res://icon.svg" id="1_yq2bx"]
 
 [node name="FaceClicker" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jjwal")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -21,6 +23,7 @@ color = Color(0.682353, 0.733333, 0.345098, 1)
 
 [node name="FacePosition" type="Control" parent="."]
 layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

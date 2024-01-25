@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0nicki1o5tox"]
+[gd_scene load_steps=3 format=3 uid="uid://c0nicki1o5tox"]
 
-[ext_resource type="Texture2D" uid="uid://b2wh8kyf3m41s" path="res://icon.svg" id="1_dq8qh"]
+[ext_resource type="Texture2D" uid="uid://cphnil34xicxx" path="res://assets/art/feather_component/feather.png" id="1_pk7aw"]
+[ext_resource type="Script" path="res://scenes/game/bossfight/components/feather.gd" id="1_plk8m"]
 
 [node name="Feather" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_plk8m")
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
 layout_mode = 1
@@ -22,15 +24,12 @@ color = Color(0.67451, 0.121569, 0.698039, 1)
 [node name="ClickableArea" type="TextureRect" parent="."]
 modulate = Color(0.8, 0.341176, 0.196078, 1)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_dq8qh")
+texture = ExtResource("1_pk7aw")
+stretch_mode = 5

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjhj5oq6bo6mq"]
+[gd_scene load_steps=6 format=3 uid="uid://cjhj5oq6bo6mq"]
 
 [ext_resource type="PackedScene" uid="uid://bcfs7nljoccss" path="res://scenes/game/bossfight/components/joke_typing.tscn" id="1_fu3yb"]
+[ext_resource type="Script" path="res://scenes/game/bossfight/bossfight.gd" id="1_h1yt4"]
 [ext_resource type="PackedScene" uid="uid://brptrqp46bq11" path="res://scenes/game/bossfight/components/boss_face.tscn" id="1_vme5d"]
 [ext_resource type="PackedScene" uid="uid://c0nicki1o5tox" path="res://scenes/game/bossfight/components/feather.tscn" id="3_ltypo"]
 [ext_resource type="PackedScene" uid="uid://qv7886gfd6lc" path="res://scenes/game/bossfight/components/face_clicker.tscn" id="4_diejx"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_h1yt4")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -44,9 +46,9 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0989583
-anchor_top = 0.228395
-anchor_right = 0.250868
-anchor_bottom = 0.523148
+anchor_top = 0.290123
+anchor_right = 0.201389
+anchor_bottom = 0.532407
 metadata/_edit_use_anchors_ = true
 
 [node name="FaceClicker" parent="." instance=ExtResource("4_diejx")]
