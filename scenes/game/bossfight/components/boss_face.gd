@@ -3,7 +3,6 @@ extends Control
 class_name Boss
 
 signal boss_status_changed(status: BossStatus)
-signal boss_take_damage()
 signal boss_blocked_damage()
 
 
@@ -31,12 +30,10 @@ var previous_defence_mode: BossStatus = BossStatus.DIALOGUE
 @onready var attack_timer: Timer = $attack_timer
 @onready var attack_pb: ProgressBar = $attack_pb
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var defence_mode_timer: Timer = $defence_mode_timer
 
 
-@onready var defence_mode_timer = $defence_mode_timer
-
-
-var boss_status: BossStatus = BossStatus.EARS_COVERED:
+var boss_status: BossStatus = BossStatus.DIALOGUE:
 	set(value):
 		boss_status = value
 		match boss_status:
@@ -64,29 +61,36 @@ var boss_status: BossStatus = BossStatus.EARS_COVERED:
 			BossStatus.ATTACK:
 				$boss_UI/BossFace/Label.text = "ATTACK"
 				boss_status_changed.emit("ATTACK")
-				$AnimationPlayer.play("attacking")
+				animation_player.play("attacking")
 				attack_pb.visible = false
-				defence_mode_timer.stop()
 			BossStatus.DIALOGUE:
 				$boss_UI/BossFace/Label.text = "DIALOGUE"
 				boss_status_changed.emit("DIALOGUE")
 			BossStatus.DAMAGE:
+				print ("BOSS TAKES DAMAGE")
 				$boss_UI/BossFace/Label.text = "DAMAGE"
 				boss_status_changed.emit("DAMAGE")
+				attack_pb.visible = false
+				attack_timer.stop()
+				animation_player.play("damage")
 
 
 func _ready() -> void:
 	attack_timer.wait_time = GameStats.boss_attack_timer
 	attack_pb.max_value = GameStats.boss_attack_timer
+	attack_pb.value = 0
+	attack_pb.visible = false
 	defence_mode_timer.wait_time = GameStats.boss_defence_switch_timer
 
 
 func _process(_delta: float) -> void:
 	attack_pb.value = attack_pb.max_value - attack_timer.time_left
-	print()
 
 
 func boss_attacked(type: AttackType) -> void:
+	if boss_status == BossStatus.DAMAGE:
+		print ("already taking damage")
+		pass
 	match type:
 		AttackType.JOKE:
 			if boss_status == BossStatus.EYES_COVERED:
@@ -109,7 +113,6 @@ func boss_attacked(type: AttackType) -> void:
 
 
 func take_damage() -> void:
-	boss_take_damage.emit()
 	boss_status = BossStatus.DAMAGE
 	print ("boss took damage")
 
@@ -142,9 +145,17 @@ func _attack_finished() -> void:
 	new_defence_mode()
 
 
+func _damage_finished() -> void:
+	new_defence_mode()
+
+
 func _on_defence_mode_timer_timeout() -> void:
 	new_defence_mode()
 
 
 func _on_attack_timer_timeout() -> void:
 	boss_status = BossStatus.ATTACK
+
+
+func _on_begin_battle_timer_timeout():
+	new_defence_mode()

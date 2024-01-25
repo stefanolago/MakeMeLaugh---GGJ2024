@@ -49,10 +49,10 @@ func check_input() -> void:
 
 
 func wrong_joke_anim_played() -> void:
-	inserted_right_word.emit()
+	inserted_wrong_word.emit()
 	write_joke()
 
 
 func right_joke_anim_played() -> void:
-	inserted_wrong_word.emit()
+	inserted_right_word.emit()
 	write_joke()

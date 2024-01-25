@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://brptrqp46bq11"]
+[gd_scene load_steps=7 format=3 uid="uid://brptrqp46bq11"]
 
 [ext_resource type="Texture2D" uid="uid://b2wh8kyf3m41s" path="res://icon.svg" id="1_05mpu"]
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/boss_face.gd" id="1_msnto"]
@@ -33,9 +33,68 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_58j5a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("boss_UI:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("boss_UI:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1152, 648)]
+}
+
+[sub_resource type="Animation" id="Animation_p7ov1"]
+resource_name = "damage"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("boss_UI:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(20, 0), Vector2(-20, 0), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_damage_finished"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ra8oq"]
 _data = {
-"attacking": SubResource("Animation_4lvku")
+"RESET": SubResource("Animation_58j5a"),
+"attacking": SubResource("Animation_4lvku"),
+"damage": SubResource("Animation_p7ov1")
 }
 
 [node name="BossFace" type="Control"]
@@ -95,7 +154,7 @@ offset_bottom = -83.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.96, 2.4)
-text = "EARS_COVERED"
+text = "DIALOGUE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -123,6 +182,10 @@ wait_time = 5.0
 [node name="attack_timer" type="Timer" parent="."]
 wait_time = 4.0
 one_shot = true
+
+[node name="begin_battle_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -132,3 +195,4 @@ libraries = {
 
 [connection signal="timeout" from="defence_mode_timer" to="." method="_on_defence_mode_timer_timeout"]
 [connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="begin_battle_timer" to="." method="_on_begin_battle_timer_timeout"]
