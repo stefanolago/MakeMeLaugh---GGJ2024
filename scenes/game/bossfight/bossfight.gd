@@ -14,7 +14,7 @@ func _on_face_clicker_face_status_changed(status: FaceClicker.FaceStatus) -> voi
 		FaceClicker.FaceStatus.HALF_GRIMACE:
 			player_attack(Boss.AttackType.HALF_GRIMACE)
 		FaceClicker.FaceStatus.FULL_GRIMACE:
-			player_attack(Boss.AttackType.GRIMACE)
+			player_attack(Boss.AttackType.FULL_GRIMACE)
 
 
 func _on_feather_tickled() -> void:
