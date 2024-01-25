@@ -71,7 +71,6 @@ layout_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("3_mxssh")
-autoplay = true
 bus = &"Music"
 
 [connection signal="pressed" from="Control/Buttons/PlayButton" to="." method="_on_play_button_pressed"]

@@ -21,15 +21,18 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.682353, 0.733333, 0.345098, 1)
 
-[node name="FacePosition" type="Control" parent="."]
+[node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -68.0
+offset_right = 68.0
+offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Face" type="Sprite2D" parent="FacePosition"]
-texture = ExtResource("1_yq2bx")
+icon = ExtResource("1_yq2bx")
+flat = true
