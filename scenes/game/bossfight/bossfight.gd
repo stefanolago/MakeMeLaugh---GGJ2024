@@ -10,20 +10,24 @@ func _ready() -> void:
 
 
 func _on_face_clicker_face_status_changed(status: FaceClicker.FaceStatus) -> void:
-	print(status)
+	match status:
+		FaceClicker.FaceStatus.HALF_GRIMACE:
+			player_attack(Boss.AttackType.HALF_GRIMACE)
+		FaceClicker.FaceStatus.FULL_GRIMACE:
+			player_attack(Boss.AttackType.GRIMACE)
 
 
 func _on_feather_tickled() -> void:
-	print("BOSSFIGHT TICKLED")
+	player_attack(Boss.AttackType.TICKLE_LIGHT)
 
 
 func _on_feather_finished_tickling() -> void:
-	print("BOSSFIGHT FINISHED TICKLING")
+	player_attack(Boss.AttackType.TICKLE)
 
 
-func player_attack(attack_type):
-	$BossFace.boss_attacked(attack_type)
+func player_attack(attack_type: Boss.AttackType) -> void:
+	($BossFace as Boss).boss_attacked(attack_type)
 
 
-func _on_joke_typing_inserted_right_word(attack_type):
-	player_attack(attack_type)
+func _on_joke_typing_inserted_right_word() -> void:
+	player_attack(Boss.AttackType.JOKE)
