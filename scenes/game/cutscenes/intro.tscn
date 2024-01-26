@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvtx0cilely5c"]
+[gd_scene load_steps=13 format=3 uid="uid://bvtx0cilely5c"]
 
 [ext_resource type="Script" path="res://scenes/game/cutscenes/intro.gd" id="1_ookg7"]
 [ext_resource type="Texture2D" uid="uid://btpi6uajepcr4" path="res://assets/art/Stanza/Room.png" id="2_kjo4n"]
@@ -252,6 +252,10 @@ _data = {
 "intro_cinematic": SubResource("Animation_ledxy")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jw1gd"]
+cull_mode = 1
+polygon = PackedVector2Array(-47, 94, -49, -21, 46, -20, 44, 102, 110, -95, -105, -95)
+
 [node name="Intro" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -326,3 +330,15 @@ metadata/_edit_lock_ = true
 
 [node name="cinematic_sfx" type="AudioStreamPlayer" parent="."]
 volume_db = -15.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(456, 44)
+occluder = SubResource("OccluderPolygon2D_jw1gd")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(456, 44)
+energy = 4.2
+shadow_enabled = true
+texture = ExtResource("5_65y62")
+texture_scale = 2.37
