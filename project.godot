@@ -37,7 +37,13 @@ directories/dch_directory={
 "wolf": "res://dialogic/wolf.dch"
 }
 directories/dtl_directory={
-"intro": "res://dialogic/intro.dtl"
+"bossfight_intro": "res://dialogic/bossfight_intro.dtl",
+"ending": "res://dialogic/ending.dtl",
+"feather_ineffective": "res://dialogic/feather_ineffective.dtl",
+"intro": "res://dialogic/intro.dtl",
+"joke_ineffective": "res://dialogic/joke_ineffective.dtl",
+"second_phase": "res://dialogic/second_phase.dtl",
+"smorfia_ineffective": "res://dialogic/smorfia_ineffective.dtl"
 }
 
 [display]
@@ -52,6 +58,7 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
 folder_colors={
 "res://assets/": "red",
+"res://dialogic/": "pink",
 "res://globals/": "yellow",
 "res://scenes/": "green"
 }

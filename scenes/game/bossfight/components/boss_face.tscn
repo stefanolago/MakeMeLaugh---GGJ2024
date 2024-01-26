@@ -1,10 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://brptrqp46bq11"]
+[gd_scene load_steps=19 format=3 uid="uid://brptrqp46bq11"]
 
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/boss_face.gd" id="1_msnto"]
 [ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="2_4qcnx"]
+[ext_resource type="Texture2D" uid="uid://dee5intl7fld7" path="res://assets/art/Lupo/lupo-che-ride.png" id="2_kqh3j"]
 [ext_resource type="Texture2D" uid="uid://dhquvkrgg0ul4" path="res://assets/art/Lupo/lupo.png" id="2_r7x3r"]
 [ext_resource type="AudioStream" uid="uid://cry618m15kry2" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-001.wav" id="3_gkcep"]
+[ext_resource type="Texture2D" uid="uid://b277ri4cs74g4" path="res://assets/art/Lupo/non-voglio-sentire.png" id="4_1ba65"]
 [ext_resource type="AudioStream" uid="uid://ditd5fol8jmgl" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-002.wav" id="4_1qjjv"]
+[ext_resource type="Texture2D" uid="uid://4ni2fub51v0v" path="res://assets/art/Lupo/lupo-occhi-chiusi.png" id="5_d3rpw"]
 [ext_resource type="AudioStream" uid="uid://d3pd26cytwwe5" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-003.wav" id="5_mq4e1"]
 [ext_resource type="AudioStream" uid="uid://1fl2ywarqcv2" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-004.wav" id="6_jjbtf"]
 [ext_resource type="AudioStream" uid="uid://5wmge73kboq0" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-005.wav" id="7_bjglq"]
@@ -12,6 +15,52 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jw73"]
 size = Vector2(421, 833)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5x7p8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1ba65")
+}],
+"loop": true,
+"name": &"arms_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r7x3r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1ba65")
+}],
+"loop": true,
+"name": &"ears_covered",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 20.0,
+"texture": ExtResource("5_d3rpw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_r7x3r")
+}],
+"loop": true,
+"name": &"eyes_covered",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kqh3j")
+}],
+"loop": true,
+"name": &"smile",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_58j5a"]
 length = 0.001
@@ -94,9 +143,12 @@ script = ExtResource("1_msnto")
 position = Vector2(6.5, 16.5)
 shape = SubResource("RectangleShape2D_7jw73")
 
-[node name="Boss" type="Sprite2D" parent="."]
+
+[node name="Boss" type="AnimatedSprite2D" parent="."]
 material = ExtResource("2_4qcnx")
-texture = ExtResource("2_r7x3r")
+sprite_frames = SubResource("SpriteFrames_5x7p8")
+animation = &"eyes_covered"
+frame_progress = 0.159678
 
 [node name="AttackLabel" type="Label" parent="."]
 modulate = Color(1, 0, 0, 1)
@@ -139,11 +191,6 @@ wait_time = 5.0
 wait_time = 4.0
 one_shot = true
 
-[node name="begin_battle_timer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-autostart = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ra8oq")
@@ -157,4 +204,3 @@ stream = SubResource("AudioStreamRandomizer_garh4")
 
 [connection signal="timeout" from="DefenceModeTimer" to="." method="_on_defence_mode_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="timeout" from="begin_battle_timer" to="." method="_on_begin_battle_timer_timeout"]

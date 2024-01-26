@@ -53,6 +53,17 @@ metadata/_edit_use_anchors_ = true
 
 [node name="boss_bullet_timer" type="Timer" parent="."]
 
+[node name="debug_end" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1048.0
+offset_top = 612.0
+offset_right = 1148.0
+offset_bottom = 649.0
+text = "END"
+
+[connection signal="boss_blocked_damage" from="BossFace" to="." method="_on_boss_face_boss_blocked_damage"]
+[connection signal="boss_dead" from="BossFace" to="." method="_on_boss_face_boss_dead"]
+[connection signal="boss_second_phase" from="BossFace" to="." method="_on_boss_face_boss_second_phase"]
 [connection signal="boss_status_changed" from="BossFace" to="." method="_on_boss_face_boss_status_changed"]
 [connection signal="inserted_right_word" from="JokeTyping" to="." method="_on_joke_typing_inserted_right_word"]
 [connection signal="inserted_wrong_word" from="JokeTyping" to="." method="_on_joke_typing_inserted_wrong_word"]
@@ -60,3 +71,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="tickled" from="Feather" to="." method="_on_feather_tickled"]
 [connection signal="face_status_changed" from="FaceClicker" to="." method="_on_face_clicker_face_status_changed"]
 [connection signal="timeout" from="boss_bullet_timer" to="." method="_on_boss_bullet_timer_timeout"]
+[connection signal="pressed" from="debug_end" to="." method="_on_debug_end_pressed"]
