@@ -107,6 +107,7 @@ func boss_attacked(type: AttackType) -> void:
 			else:
 				boss_blocked_damage.emit()
 				attack_timer.stop()
+				attack_pb.visible = false
 				Dialogic.start("joke_ineffective")
 		AttackType.FULL_GRIMACE:
 			if boss_status == BossStatus.EARS_COVERED:
@@ -114,6 +115,7 @@ func boss_attacked(type: AttackType) -> void:
 			else:
 				boss_blocked_damage.emit()
 				attack_timer.stop()
+				attack_pb.visible = false
 				Dialogic.start("smorfia_ineffective")
 		AttackType.TICKLE:
 			if boss_status == BossStatus.ARMS_UP:
@@ -121,6 +123,7 @@ func boss_attacked(type: AttackType) -> void:
 			else:
 				boss_blocked_damage.emit()
 				attack_timer.stop()
+				attack_pb.visible = false
 				Dialogic.start("feather_ineffective")
 		AttackType.TICKLE_LIGHT:
 			if boss_status == BossStatus.ARMS_UP:

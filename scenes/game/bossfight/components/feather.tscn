@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0nicki1o5tox"]
+[gd_scene load_steps=8 format=3 uid="uid://c0nicki1o5tox"]
 
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/feather.gd" id="1_plk8m"]
 [ext_resource type="Texture2D" uid="uid://dwvqaf8hqv1x2" path="res://assets/art/Oggetti/Piuma.png" id="2_ln77q"]
 [ext_resource type="Material" uid="uid://c5c2samwdfxk2" path="res://assets/shaders/feather_shake.tres" id="3_7iptx"]
 [ext_resource type="Texture2D" uid="uid://d00o74i2en3jc" path="res://assets/art/UI/panel-border-corner.png" id="4_1j8uq"]
 [ext_resource type="Texture2D" uid="uid://bul8u8eh0lhyh" path="res://assets/art/UI/panel-border-side.png" id="5_5lm7n"]
+[ext_resource type="AudioStream" uid="uid://cohor8odxchba" path="res://assets/audio/sfx/Piuma.wav" id="6_bae7l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_denu6"]
 size = Vector2(180, 217.143)
@@ -71,6 +72,10 @@ position = Vector2(-65.0635, -4.15652)
 rotation = 1.57079
 scale = Vector2(2.66715, 1.01066)
 texture = ExtResource("5_5lm7n")
+
+[node name="feather" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_bae7l")
+stream_paused = true
 
 [connection signal="area_entered" from="FeatherActive" to="." method="_on_feather_active_area_entered"]
 [connection signal="area_exited" from="FeatherActive" to="." method="_on_feather_active_area_exited"]

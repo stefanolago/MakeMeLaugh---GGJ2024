@@ -1,12 +1,95 @@
-[gd_scene load_steps=2 format=3 uid="uid://bp5pm7whfu0ay"]
+[gd_scene load_steps=9 format=3 uid="uid://bp5pm7whfu0ay"]
 
 [ext_resource type="Script" path="res://scenes/game/cutscenes/ending.gd" id="1_4grx4"]
+[ext_resource type="Texture2D" uid="uid://btpi6uajepcr4" path="res://assets/art/Stanza/Room.png" id="2_gescu"]
+[ext_resource type="Texture2D" uid="uid://bqkm8v7schxfc" path="res://assets/art/Bambina/Idle+camminata/sveglia.png" id="3_vy42c"]
+[ext_resource type="Texture2D" uid="uid://dgk38f7avwe4w" path="res://assets/art/Lupo/Pixel-lupo.png" id="4_mja0f"]
+[ext_resource type="Texture2D" uid="uid://c8tf22np2amql" path="res://assets/art/lights/circle.png" id="5_fqh2d"]
+
+[sub_resource type="Animation" id="Animation_h7mxc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wolf:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wolf:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(429, 362)]
+}
+
+[sub_resource type="Animation" id="Animation_1dwxg"]
+resource_name = "ending_cinematic"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wolf:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1, 2, 2.1, 2.2, 3.5, 3.6, 3.7, 5, 5.1, 5.2, 6.5, 6.6, 6.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wolf:position")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.1, 3.6, 5.1, 6.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(429, 362), Vector2(567, 362), Vector2(667, 331), Vector2(759, 308), Vector2(873, 236)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_dialogic"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rgu0e"]
+_data = {
+"RESET": SubResource("Animation_h7mxc"),
+"ending_cinematic": SubResource("Animation_1dwxg")
+}
 
 [node name="Ending" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -4.0
+offset_right = -18.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4grx4")
@@ -21,3 +104,40 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rgu0e")
+}
+
+[node name="Room" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.588235)
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_gescu")
+metadata/_edit_lock_ = true
+
+[node name="Girl" type="Sprite2D" parent="."]
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+position = Vector2(877.445, 222.555)
+scale = Vector2(-1.80672, 1.80672)
+texture = ExtResource("3_vy42c")
+
+[node name="Wolf" type="Sprite2D" parent="."]
+position = Vector2(429, 362)
+texture = ExtResource("4_mja0f")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1003, 148)
+scale = Vector2(0.36, 0.4)
+energy = 1.49
+texture = ExtResource("5_fqh2d")
+texture_scale = 1.38
+metadata/_edit_lock_ = true
+
+[node name="cinematic_sfx" type="AudioStreamPlayer" parent="."]
+volume_db = -15.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(739, 234)
+zoom = Vector2(1.4, 1.4)

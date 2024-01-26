@@ -1,18 +1,5 @@
-join girl 4
-join wolf 0
-The wolf is getting closer
-join wolf 1
-And closer
-join wolf 2
-And closer
-Suddently...
-wolf (smile): AH
-AHAH
-AHAHAH
-Puff
-leave wolf
-The Wolf is now a corgi
-AHAHAH
-Everybody happy
-The end
-[signal arg="credits"]
+wolf (base): HE...
+wolf (base): HE HE...
+wolf (base): HA HA HA AH AH AH!!!
+[clear time="1.0"]
+[signal arg="progress_animation"]

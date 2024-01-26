@@ -1,13 +1,17 @@
-girl (base): It's 3\:00 am
-girl: Everything is dark
-join girl 1
-girl: you are a little girl trying to sleep
-girl: But something doesnt feel right
-girl: You hear something moving in the darkness of your room
-Finally to manage to fall asleep
-leave girl
-You see something in your dream
-join wolf 2
-It's a wolf
-bossfight
-[signal arg="bossfight"]
+girl (base): It's 3\:00 am.
+girl (base): You are a little girl, trying to sleep.
+girl (base): But something doesn't feel right.
+girl (base): You look around your room.
+[clear time="1.0"]
+[signal arg="progress_animation"]
+girl (base): You decide to try you best to fall asleep.
+girl (base): But something just doesn't feel right.
+[clear time="1.0"]
+[signal arg="progress_animation"]
+girl (base): It very late...
+girl (base): You finally start to feel your eyes getting heavy.
+girl (base): ...
+girl (base): ...
+girl (base): It just doesn't...
+[clear time="1.0"]
+[signal arg="progress_animation"]
