@@ -1,67 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0nicki1o5tox"]
+[gd_scene load_steps=4 format=3 uid="uid://c0nicki1o5tox"]
 
 [ext_resource type="Texture2D" uid="uid://cphnil34xicxx" path="res://assets/art/feather_component/feather.png" id="1_pk7aw"]
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/feather.gd" id="1_plk8m"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_si3cd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_denu6"]
+size = Vector2(28, 27)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lsnxe"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_guoun"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qob32"]
-
-[node name="Feather" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Feather" type="Node2D"]
 script = ExtResource("1_plk8m")
 
-[node name="BackgroundColor" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.67451, 0.121569, 0.698039, 1)
-
-[node name="ClickableArea" type="Button" parent="."]
-modulate = Color(0.8, 0.341176, 0.196078, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_si3cd")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_lsnxe")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_guoun")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_qob32")
-action_mode = 0
-icon = ExtResource("1_pk7aw")
-flat = true
-icon_alignment = 1
-expand_icon = true
-
-[node name="FeatherTexture" type="TextureRect" parent="."]
-visible = false
-modulate = Color(0.8, 0.341176, 0.196078, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="FeatherBlack" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
 texture = ExtResource("1_pk7aw")
-stretch_mode = 5
 
-[connection signal="pressed" from="ClickableArea" to="." method="_on_clickable_area_pressed"]
+[node name="FeatherActive" type="Area2D" parent="."]
+modulate = Color(0.8, 0.341176, 0.196078, 1)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FeatherActive"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_denu6")
+
+[node name="Sprite" type="Sprite2D" parent="FeatherActive"]
+texture = ExtResource("1_pk7aw")
+
+[connection signal="area_shape_entered" from="FeatherActive" to="." method="_on_feather_active_area_shape_entered"]
+[connection signal="area_shape_exited" from="FeatherActive" to="." method="_on_feather_active_area_shape_exited"]
+[connection signal="input_event" from="FeatherActive" to="." method="_on_feather_active_input_event"]

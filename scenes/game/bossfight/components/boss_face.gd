@@ -1,4 +1,4 @@
-extends Control
+extends Area2D
 
 class_name Boss
 
@@ -26,10 +26,11 @@ enum AttackType {
 var defence_modes: Array[BossStatus] = [BossStatus.EARS_COVERED,BossStatus.EYES_COVERED,BossStatus.ARMS_UP]
 var previous_defence_mode: BossStatus = BossStatus.DIALOGUE
 
-@onready var attack_timer: Timer = $attack_timer
-@onready var attack_pb: ProgressBar = $boss/attack_pb
+@onready var attack_timer: Timer = $AttackTimer
+@onready var attack_pb: ProgressBar = $AttackPb
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var defence_mode_timer: Timer = $defence_mode_timer
+@onready var defence_mode_timer: Timer = $DefenceModeTimer
+@onready var show_attack_label: Label = $AttackLabel
 
 
 var boss_status: BossStatus = BossStatus.DIALOGUE:
@@ -37,38 +38,38 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 		boss_status = value
 		match boss_status:
 			BossStatus.EARS_COVERED:
-				$boss/BossFace/Label.text = "EARS_COVERED"
+				show_attack_label.text = "EARS_COVERED"
 				boss_status_changed.emit("EARS_COVERED")
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
 				print ("EARS_COVERED")
 			BossStatus.EYES_COVERED:
-				$boss/BossFace/Label.text = "EYES_COVERED"
+				show_attack_label.text = "EYES_COVERED"
 				boss_status_changed.emit("EYES_COVERED")
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
 				print ("EYES_COVERED")
 			BossStatus.ARMS_UP:
-				$boss/BossFace/Label.text = "ARMS_UP"
+				show_attack_label.text = "ARMS_UP"
 				boss_status_changed.emit("ARMS_UP")
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
 				print ("ARMS_UP")
 			BossStatus.ATTACK:
-				$boss/BossFace/Label.text = "ATTACK"
+				show_attack_label.text = "ATTACK"
 				boss_status_changed.emit("ATTACK")
 				animation_player.play("attacking")
 				attack_pb.visible = false
 				($wolf_attack as AudioStreamPlayer).play()
 			BossStatus.DIALOGUE:
-				$boss/BossFace/Label.text = "DIALOGUE"
+				show_attack_label.text = "DIALOGUE"
 				boss_status_changed.emit("DIALOGUE")
 			BossStatus.DAMAGE:
 				print ("BOSS TAKES DAMAGE")
-				$boss/BossFace/Label.text = "DAMAGE"
+				show_attack_label.text = "DAMAGE"
 				boss_status_changed.emit("DAMAGE")
 				attack_pb.visible = false
 				attack_timer.stop()
@@ -162,5 +163,5 @@ func _on_begin_battle_timer_timeout() -> void:
 	new_defence_mode()
 
 
-func _on_debug_attack_pressed():
+func _on_debug_attack_pressed() -> void:
 	boss_status = BossStatus.ATTACK

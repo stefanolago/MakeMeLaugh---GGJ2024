@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 class_name FeatherScene
 
@@ -12,17 +12,7 @@ enum FeatherState {
 signal tickled()
 signal finished_tickling()
 
-
-@onready var feather_button: Button = $ClickableArea
-@onready var feather_texture: TextureRect = $FeatherTexture
-@onready var base_modulate: Color = ($ClickableArea as Button).modulate
-
-
-var shake_zone: Control:
-	set(value):
-		shake_zone = value
-		shake_zone.connect("mouse_entered", _on_mouse_entered_in_shake_zone)
-		shake_zone.connect("mouse_exited", _on_mouse_exited_shake_zone)
+@onready var feather_area: Area2D = $FeatherActive
 
 
 var shake_meter: int = 0:
@@ -34,37 +24,21 @@ var shake_meter: int = 0:
 			finished_tickling.emit()
 
 
-var feather_state: FeatherState = FeatherState.NORMAL:
-	set(value):
-		feather_state = value
-		match feather_state:
-			FeatherState.IN_HAND:
-				feather_button.modulate = Color.BLACK
-				feather_texture.visible = true
-			FeatherState.IN_HAND_AND_TICKLING:
-				feather_button.modulate = Color.BLACK
-				feather_texture.visible = true
-			FeatherState.NORMAL:
-				feather_button.modulate = base_modulate
-				feather_texture.visible = false
+var feather_state: FeatherState = FeatherState.NORMAL
 
 
 var minimum_frames_to_register_shake: float = 200.0
 var total_shake_meter_to_reach: int = 400
 
 
-func _on_mouse_entered_in_shake_zone() -> void:
-	print ("shakezone in ")
-	set_tickling(true)
+# func _on_mouse_entered_in_shake_zone() -> void:
+# 	set_tickling(true)
 
 
-func _on_mouse_exited_shake_zone() -> void:
-	print ("shakezone out ")
-	set_tickling(false)
+# func _on_mouse_exited_shake_zone() -> void:
+# 	set_tickling(false)
 
 
-func _on_clickable_area_pressed() -> void:
-	feather_state = FeatherState.IN_HAND
 
 
 func set_tickling(tickling: bool) -> void:
@@ -75,8 +49,10 @@ func set_tickling(tickling: bool) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	
+
 	if (feather_state == FeatherState.IN_HAND_AND_TICKLING or feather_state == FeatherState.IN_HAND) and event is InputEventMouseMotion:
-		feather_texture.global_position = get_global_mouse_position() - feather_texture.size / 2
+		feather_area.global_position = get_global_mouse_position()
 		
 		if feather_state == FeatherState.IN_HAND_AND_TICKLING and (event as InputEventMouseMotion).relative.length_squared() > minimum_frames_to_register_shake:
 			
@@ -86,3 +62,21 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_released():
 		feather_state = FeatherState.NORMAL
 	
+
+func _on_feather_active_input_event(_viewport:Node, event:InputEvent, _shape_idx:int) -> void:
+	if event is InputEventMouseButton and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:
+		if event.is_released():
+			feather_state = FeatherState.NORMAL
+			feather_area.global_position = global_position
+		else:
+			feather_state = FeatherState.IN_HAND
+
+
+func _on_feather_active_area_shape_entered(_area_rid: RID, _area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		feather_state = FeatherState.IN_HAND_AND_TICKLING
+
+
+func _on_feather_active_area_shape_exited(_area_rid: RID, _area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		feather_state = FeatherState.IN_HAND

@@ -1,16 +1,12 @@
 extends Control
 
 
-@onready var feather_scene: Control = $Feather
+@onready var feather_scene: FeatherScene = $Feather
 @onready var typing_scene: Control = $JokeTyping
 @onready var face_clicker_scene: Control = $FaceClicker
-@onready var boss_portrait_scene: Control = $BossFace
+@onready var boss_portrait_scene: Area2D = $BossFace
 @onready var boss_bullet_timer: Timer = $boss_bullet_timer
 @onready var boss_bullet: PackedScene = preload("res://scenes/game/bossfight/components/bullet.tscn")
-
-
-func _ready() -> void:
-	(feather_scene as FeatherScene).shake_zone = boss_portrait_scene
 
 
 func player_attack(attack_type: Boss.AttackType) -> void:
