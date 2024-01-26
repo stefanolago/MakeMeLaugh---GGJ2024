@@ -62,7 +62,7 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 				attack_pb.value = 0
 				print ("ARMS_UP")
 			BossStatus.ATTACK:
-				boss_sprite.play("default")
+				boss_sprite.play("attack")
 				boss_status_changed.emit("ATTACK")
 				animation_player.play("attacking")
 				attack_pb.visible = false

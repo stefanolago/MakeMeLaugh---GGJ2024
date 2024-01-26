@@ -124,12 +124,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -203.0
+offset_left = -189.0
 offset_top = -5.0
-offset_right = 201.0
+offset_right = 186.0
 offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
+deselect_on_focus_loss_enabled = false
 
 [node name="Panel-border-corner" type="Sprite2D" parent="joke_UI"]
 position = Vector2(-221, -57.9999)

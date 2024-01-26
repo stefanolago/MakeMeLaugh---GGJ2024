@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://brptrqp46bq11"]
+[gd_scene load_steps=22 format=3 uid="uid://brptrqp46bq11"]
 
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/boss_face.gd" id="1_msnto"]
 [ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="2_4qcnx"]
@@ -7,7 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://cry618m15kry2" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-001.wav" id="3_gkcep"]
 [ext_resource type="Texture2D" uid="uid://b277ri4cs74g4" path="res://assets/art/Lupo/non-voglio-sentire.png" id="4_1ba65"]
 [ext_resource type="AudioStream" uid="uid://ditd5fol8jmgl" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-002.wav" id="4_1qjjv"]
+[ext_resource type="Texture2D" uid="uid://ddmmqhq850qjr" path="res://assets/art/Lupo/Testa-lupo.png" id="4_pm61g"]
 [ext_resource type="Texture2D" uid="uid://4ni2fub51v0v" path="res://assets/art/Lupo/lupo-occhi-chiusi.png" id="5_d3rpw"]
+[ext_resource type="Texture2D" uid="uid://cax5d2pgxysne" path="res://assets/art/Lupo/orecchie-abbassate.png" id="5_lr5lh"]
 [ext_resource type="AudioStream" uid="uid://d3pd26cytwwe5" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-003.wav" id="5_mq4e1"]
 [ext_resource type="AudioStream" uid="uid://1fl2ywarqcv2" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-004.wav" id="6_jjbtf"]
 [ext_resource type="AudioStream" uid="uid://5wmge73kboq0" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-005.wav" id="7_bjglq"]
@@ -28,6 +30,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_pm61g")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_r7x3r")
 }],
 "loop": true,
@@ -35,12 +45,15 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 20.0,
+"texture": ExtResource("5_lr5lh")
+}, {
 "duration": 1.0,
-"texture": ExtResource("4_1ba65")
+"texture": ExtResource("2_r7x3r")
 }],
 "loop": true,
 "name": &"ears_covered",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 20.0,
@@ -146,8 +159,8 @@ shape = SubResource("RectangleShape2D_7jw73")
 [node name="Boss" type="AnimatedSprite2D" parent="."]
 material = ExtResource("2_4qcnx")
 sprite_frames = SubResource("SpriteFrames_5x7p8")
-animation = &"eyes_covered"
-frame_progress = 0.159678
+animation = &"attack"
+autoplay = "default"
 
 [node name="AttackPb" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)
@@ -156,9 +169,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -233.0
+offset_left = -234.0
 offset_top = 471.0
-offset_right = 235.0
+offset_right = 234.0
 offset_bottom = 477.0
 grow_horizontal = 2
 grow_vertical = 2
