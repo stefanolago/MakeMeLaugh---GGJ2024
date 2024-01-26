@@ -6,12 +6,15 @@ extends CanvasLayer
 
 @onready var options_menu: Control = $Control/OptionsMenu
 @onready var credits_screen: Control = $Control/Credits
+@onready var title: Label = $Tile
 
 func _on_options_button_pressed() -> void:
 	activate_options_menu(true)
+	title.visible = false
 
 func _on_options_menu_close_option_menu() -> void:
 	activate_options_menu(false)
+	title.visible = true
 
 func activate_options_menu(activated: bool) -> void:
 	options_menu.visible = activated
@@ -24,7 +27,13 @@ func _on_quit_button_pressed() -> void:
 
 func _on_credits_button_pressed() -> void:
 	credits_screen.visible = true
+	title.visible = false
 
 
 func _on_play_button_pressed() -> void:
 	TransitionLayer.change_scene(start_game_scene)
+	title.visible = false
+
+
+func _on_credits_credits_back_button():
+	title.visible = true

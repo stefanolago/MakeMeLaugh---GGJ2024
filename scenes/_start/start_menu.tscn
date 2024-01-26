@@ -75,7 +75,7 @@ layout_mode = 1
 stream = ExtResource("3_mxssh")
 bus = &"Music"
 
-[node name="Label" type="Label" parent="."]
+[node name="Tile" type="Label" parent="."]
 offset_left = 218.0
 offset_top = 182.0
 offset_right = 340.0
@@ -96,3 +96,4 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="Control/Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Control/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="close_option_menu" from="Control/OptionsMenu" to="." method="_on_options_menu_close_option_menu"]
+[connection signal="credits_back_button" from="Control/Credits" to="." method="_on_credits_credits_back_button"]
