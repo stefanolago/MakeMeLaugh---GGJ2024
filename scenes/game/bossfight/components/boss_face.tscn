@@ -161,7 +161,7 @@ material = ExtResource("2_4qcnx")
 sprite_frames = SubResource("SpriteFrames_5x7p8")
 animation = &"arms_up"
 autoplay = "default"
-frame_progress = 0.921371
+frame_progress = 0.978413
 
 [node name="AttackPb" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)

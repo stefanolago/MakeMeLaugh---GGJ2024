@@ -26,7 +26,7 @@ func player_fails() -> void:
 
 
 func spawn_bullet() -> void:
-	var boss_pos = ($BossFace/boss_fire as Marker2D).position
+	var boss_pos: Vector2 = ($BossFace/boss_fire as Marker2D).position
 	var bullet_instance = boss_bullet.instantiate()
 	bullet_instance.position = boss_pos
 	add_child(bullet_instance)
@@ -96,24 +96,24 @@ func _on_boss_bullet_timer_timeout() -> void:
 	spawn_bullet()
 
 
-func _on_debug_end_pressed():
+func _on_debug_end_pressed() -> void:
 	end_bossfight()
 
 
-func _on_boss_face_boss_dead():
+func _on_boss_face_boss_dead() -> void:
 	end_bossfight()
 
 
-func _on_boss_face_boss_second_phase():
+func _on_boss_face_boss_second_phase() -> void:
 	Dialogic.start("second_phase")
 	hide_player_ui()
 
 
-func _on_boss_face_boss_blocked_damage():
+func _on_boss_face_boss_blocked_damage() -> void:
 	hide_player_ui()
 
 
-func DialogicSignal(argument:String):
+func DialogicSignal(argument:String) -> void:
 	if argument == "bossfight_intro_end":
 		($BossFace as Boss).new_defence_mode()
 		show_player_ui()

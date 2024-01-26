@@ -38,11 +38,11 @@ var face_clicks: int = 0:
 		face_clicks = clamp(value, 0, 15)
 		if face_clicks >= 10:
 			face_status = FaceStatus.FULL_GRIMACE
-		elif face_clicks >= 8:
+		elif face_clicks >= 7:
 			face_status = FaceStatus.GRIMACE_2
-		elif face_clicks >= 5:
+		elif face_clicks >= 4:
 			face_status = FaceStatus.GRIMACE_1
-		elif face_clicks >= 2:
+		elif face_clicks >= 1:
 			face_status = FaceStatus.GRIMACE_0
 		else:
 			face_status = FaceStatus.IDLE
@@ -55,4 +55,5 @@ func _on_lose_face_timer_timeout() -> void:
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT and event.is_released():
 		face_clicks += 1
+		($face_click as AudioStreamPlayer).play()
 
