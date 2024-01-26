@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://brptrqp46bq11"]
+[gd_scene load_steps=16 format=3 uid="uid://brptrqp46bq11"]
 
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/boss_face.gd" id="1_msnto"]
+[ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="2_4qcnx"]
 [ext_resource type="Texture2D" uid="uid://dhquvkrgg0ul4" path="res://assets/art/Lupo/Lupo.png" id="2_r7x3r"]
 [ext_resource type="AudioStream" uid="uid://cry618m15kry2" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-001.wav" id="3_gkcep"]
 [ext_resource type="AudioStream" uid="uid://ditd5fol8jmgl" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-002.wav" id="4_1qjjv"]
@@ -94,6 +95,7 @@ position = Vector2(6.5, 16.5)
 shape = SubResource("RectangleShape2D_7jw73")
 
 [node name="Boss" type="Sprite2D" parent="."]
+material = ExtResource("2_4qcnx")
 texture = ExtResource("2_r7x3r")
 
 [node name="AttackLabel" type="Label" parent="."]

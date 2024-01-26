@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d0kfepp6405oy"]
+
+[ext_resource type="Shader" path="res://assets/shaders/shake.gdshader" id="1_kujtj"]
+
+[resource]
+shader = ExtResource("1_kujtj")
+shader_parameter/Strength = 2.0
+shader_parameter/RandomOffset = 1.0
