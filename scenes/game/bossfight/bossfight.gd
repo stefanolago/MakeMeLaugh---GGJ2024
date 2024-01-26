@@ -34,6 +34,7 @@ func _on_face_clicker_face_status_changed(status: FaceClicker.FaceStatus) -> voi
 
 
 func _on_feather_tickled() -> void:
+	print("on feather tickled")
 	player_attack(Boss.AttackType.TICKLE_LIGHT)
 
 
@@ -52,11 +53,13 @@ func _on_boss_face_boss_status_changed(status:String) -> void:
 	match status:
 		"ATTACK":
 			typing_scene.visible = false
+			feather_scene.reset_to_normal()
 			feather_scene.visible = false
 			face_clicker_scene.visible = false
 			boss_bullet_timer.start()
 		"DAMAGE":
 			typing_scene.visible = false
+			feather_scene.reset_to_normal()
 			feather_scene.visible = false
 			face_clicker_scene.visible = false
 		_:

@@ -25,32 +25,11 @@ var shake_meter: int = 0:
 
 
 var feather_state: FeatherState = FeatherState.NORMAL
-
-
 var minimum_frames_to_register_shake: float = 200.0
 var total_shake_meter_to_reach: int = 400
 
 
-# func _on_mouse_entered_in_shake_zone() -> void:
-# 	set_tickling(true)
-
-
-# func _on_mouse_exited_shake_zone() -> void:
-# 	set_tickling(false)
-
-
-
-
-func set_tickling(tickling: bool) -> void:
-	if tickling and feather_state == FeatherState.IN_HAND:
-		feather_state = FeatherState.IN_HAND_AND_TICKLING
-	elif not tickling and feather_state == FeatherState.IN_HAND_AND_TICKLING:
-		feather_state = FeatherState.IN_HAND
-
-
 func _input(event: InputEvent) -> void:
-	
-
 	if (feather_state == FeatherState.IN_HAND_AND_TICKLING or feather_state == FeatherState.IN_HAND) and event is InputEventMouseMotion:
 		feather_area.global_position = get_global_mouse_position()
 		
@@ -66,8 +45,7 @@ func _input(event: InputEvent) -> void:
 func _on_feather_active_input_event(_viewport:Node, event:InputEvent, _shape_idx:int) -> void:
 	if event is InputEventMouseButton and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:
 		if event.is_released():
-			feather_state = FeatherState.NORMAL
-			feather_area.global_position = global_position
+			reset_to_normal()
 		else:
 			feather_state = FeatherState.IN_HAND
 
@@ -80,3 +58,8 @@ func _on_feather_active_area_shape_entered(_area_rid: RID, _area: Area2D, _area_
 func _on_feather_active_area_shape_exited(_area_rid: RID, _area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		feather_state = FeatherState.IN_HAND
+
+
+func reset_to_normal() -> void:
+	feather_state = FeatherState.NORMAL
+	feather_area.global_position = global_position
