@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8i4dav4givqf"]
+[gd_scene load_steps=7 format=3 uid="uid://b8i4dav4givqf"]
 
 [ext_resource type="Script" path="res://scenes/_start/start_menu.gd" id="1_l8e1a"]
 [ext_resource type="PackedScene" uid="uid://bxlfyph8igh8b" path="res://scenes/_options_menu/options_menu.tscn" id="1_q0fgv"]
 [ext_resource type="PackedScene" uid="uid://bvtx0cilely5c" path="res://scenes/game/cutscenes/intro.tscn" id="2_hsxlj"]
 [ext_resource type="PackedScene" uid="uid://dkhsruehu1ue6" path="res://scenes/_credits/credits.tscn" id="3_drggk"]
 [ext_resource type="AudioStream" uid="uid://bxvstvsary0fk" path="res://assets/audio/music/cat music.wav" id="3_mxssh"]
+[ext_resource type="Texture2D" uid="uid://dhquvkrgg0ul4" path="res://assets/art/Lupo/lupo.png" id="6_301i2"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_l8e1a")
 start_game_scene = ExtResource("2_hsxlj")
+metadata/_edit_vertical_guides_ = [575.0]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -25,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0941176, 0.298039, 0.592157, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="Buttons" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -73,8 +75,25 @@ layout_mode = 1
 stream = ExtResource("3_mxssh")
 bus = &"Music"
 
+[node name="Tile" type="Label" parent="."]
+offset_left = 218.0
+offset_top = 182.0
+offset_right = 340.0
+offset_bottom = 198.0
+scale = Vector2(5.86307, 7.00238)
+text = "make ME laugh"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.113725)
+position = Vector2(580, 497)
+texture = ExtResource("6_301i2")
+metadata/_edit_lock_ = true
+
 [connection signal="pressed" from="Control/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Control/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Control/Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Control/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="close_option_menu" from="Control/OptionsMenu" to="." method="_on_options_menu_close_option_menu"]
+[connection signal="credits_back_button" from="Control/Credits" to="." method="_on_credits_credits_back_button"]

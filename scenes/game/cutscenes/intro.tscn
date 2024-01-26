@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvtx0cilely5c"]
+[gd_scene load_steps=12 format=3 uid="uid://bvtx0cilely5c"]
 
 [ext_resource type="Script" path="res://scenes/game/cutscenes/intro.gd" id="1_ookg7"]
 [ext_resource type="Texture2D" uid="uid://btpi6uajepcr4" path="res://assets/art/Stanza/Room.png" id="2_kjo4n"]
 [ext_resource type="AudioStream" uid="uid://5he2777mlmmy" path="res://assets/audio/sfx/UI Menù/Click.wav" id="3_5wme2"]
+[ext_resource type="SpriteFrames" uid="uid://cbo5mqkybf3bq" path="res://scenes/game/cutscenes/girl_default.tres" id="3_6afuo"]
 [ext_resource type="SpriteFrames" uid="uid://jdf2qbit8c1a" path="res://scenes/game/cutscenes/girl_bed_sleep.tres" id="4_8rao2"]
 [ext_resource type="Texture2D" uid="uid://dgk38f7avwe4w" path="res://assets/art/Lupo/Pixel-lupo.png" id="4_w1jqb"]
 [ext_resource type="Texture2D" uid="uid://c8tf22np2amql" path="res://assets/art/lights/circle.png" id="5_65y62"]
+[ext_resource type="SpriteFrames" uid="uid://cw237uwjimjf5" path="res://scenes/game/cutscenes/girl_bed_awake.tres" id="5_wg4j0"]
 
 [sub_resource type="Animation" id="Animation_h4uwt"]
 length = 0.001
@@ -67,7 +69,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(576, 324)]
+"values": [Vector2(576, 395)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -80,6 +82,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Girl:sprite_frames")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_6afuo")]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Girl:animation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"default"]
 }
 
 [sub_resource type="Animation" id="Animation_ledxy"]
@@ -139,10 +165,10 @@ tracks/3/path = NodePath("Room:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(2, 4, 6.99693, 7),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(2, 4, 7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 0.470588)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 0.588235)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -151,10 +177,10 @@ tracks/4/path = NodePath("fade:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 4.6, 5.2, 5.9, 7, 8.4, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 4.6, 5.2, 5.9, 6.99945, 7, 8.4, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.34902), Color(1, 1, 1, 0.34902), Color(1, 1, 1, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -163,10 +189,10 @@ tracks/5/path = NodePath("Girl:position")
 tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(3.64207, 5.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 3.64207, 5.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(576, 395), Vector2(880, 212)]
+"values": [Vector2(576, 395), Vector2(576, 395), Vector2(880, 222.625)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -202,10 +228,22 @@ tracks/8/path = NodePath("Girl:animation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [&"default"]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Girl:sprite_frames")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 5.2, 7.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_6afuo"), ExtResource("5_wg4j0"), ExtResource("4_8rao2")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jtyml"]
@@ -249,9 +287,9 @@ libraries = {
 
 [node name="Girl" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.588235, 0.588235, 0.588235, 1)
-position = Vector2(576, 324)
-scale = Vector2(2.6375, 2.6375)
-sprite_frames = ExtResource("4_8rao2")
+position = Vector2(576, 395)
+scale = Vector2(1.7897, 1.7897)
+sprite_frames = ExtResource("3_6afuo")
 autoplay = "default"
 
 [node name="Wolf" type="Sprite2D" parent="."]
@@ -269,16 +307,22 @@ scale = Vector2(0.36, 0.4)
 energy = 1.49
 texture = ExtResource("5_65y62")
 texture_scale = 1.38
+metadata/_edit_lock_ = true
 
 [node name="fade" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = -3.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [node name="cinematic_sfx" type="AudioStreamPlayer" parent="."]
 volume_db = -15.0

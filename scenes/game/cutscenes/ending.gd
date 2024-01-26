@@ -27,7 +27,7 @@ func continue_dialogic() -> void:
 func start_dialogic() -> void:
 	anim_player.active = false
 	print("pausing")
-	Dialogic.start("intro")
+	Dialogic.start("ending")
 
 
 func load_next_level() -> void:
