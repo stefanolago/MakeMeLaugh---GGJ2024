@@ -4,6 +4,8 @@ class_name Boss
 
 signal boss_status_changed(status: BossStatus)
 signal boss_blocked_damage()
+signal boss_second_phase()
+signal boss_dead()
 
 enum BossStatus {
 	EARS_COVERED,
@@ -30,7 +32,8 @@ var previous_defence_mode: BossStatus = BossStatus.DIALOGUE
 @onready var attack_pb: ProgressBar = $AttackPb
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var defence_mode_timer: Timer = $DefenceModeTimer
-@onready var show_attack_label: Label = $AttackLabel
+@onready var boss_sprite: AnimatedSprite2D = $Boss
+
 
 
 var boss_status: BossStatus = BossStatus.DIALOGUE:
@@ -38,38 +41,38 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 		boss_status = value
 		match boss_status:
 			BossStatus.EARS_COVERED:
-				show_attack_label.text = "EARS_COVERED"
+				boss_sprite.play("ears_covered")
 				boss_status_changed.emit("EARS_COVERED")
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
 				print ("EARS_COVERED")
 			BossStatus.EYES_COVERED:
-				show_attack_label.text = "EYES_COVERED"
+				boss_sprite.play("eyes_covered")
 				boss_status_changed.emit("EYES_COVERED")
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
 				print ("EYES_COVERED")
 			BossStatus.ARMS_UP:
-				show_attack_label.text = "ARMS_UP"
+				boss_sprite.play("arms_up")
 				boss_status_changed.emit("ARMS_UP")
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
 				print ("ARMS_UP")
 			BossStatus.ATTACK:
-				show_attack_label.text = "ATTACK"
+				boss_sprite.play("default")
 				boss_status_changed.emit("ATTACK")
 				animation_player.play("attacking")
 				attack_pb.visible = false
 				($wolf_attack as AudioStreamPlayer).play()
 			BossStatus.DIALOGUE:
-				show_attack_label.text = "DIALOGUE"
+				boss_sprite.play("defaut")
 				boss_status_changed.emit("DIALOGUE")
 			BossStatus.DAMAGE:
 				print ("BOSS TAKES DAMAGE")
-				show_attack_label.text = "DAMAGE"
+				boss_sprite.play("smile")
 				boss_status_changed.emit("DAMAGE")
 				attack_pb.visible = false
 				attack_timer.stop()
@@ -78,6 +81,7 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 
 
 func _ready() -> void:
+	Dialogic.signal_event.connect(DialogicSignal)
 	attack_timer.wait_time = GameStats.boss_attack_timer
 	attack_pb.max_value = GameStats.boss_attack_timer
 	attack_pb.value = 0
@@ -98,17 +102,23 @@ func boss_attacked(type: AttackType) -> void:
 			if boss_status == BossStatus.EYES_COVERED:
 				take_damage()
 			else:
-				block_damage()
+				boss_blocked_damage.emit()
+				attack_timer.stop()
+				Dialogic.start("joke_ineffective")
 		AttackType.FULL_GRIMACE:
 			if boss_status == BossStatus.EARS_COVERED:
 				take_damage()
 			else:
-				block_damage()
+				boss_blocked_damage.emit()
+				attack_timer.stop()
+				Dialogic.start("smorfia_ineffective")
 		AttackType.TICKLE:
 			if boss_status == BossStatus.ARMS_UP:
 				take_damage()
 			else:
-				block_damage()
+				boss_blocked_damage.emit()
+				attack_timer.stop()
+				Dialogic.start("feather_ineffective")
 		AttackType.TICKLE_LIGHT:
 			if boss_status == BossStatus.ARMS_UP:
 				print("TICKLE LIGHT")
@@ -116,7 +126,6 @@ func boss_attacked(type: AttackType) -> void:
 
 func take_damage() -> void:
 	boss_status = BossStatus.DAMAGE
-	print ("boss took damage")
 
 
 func block_damage() -> void:
@@ -148,7 +157,13 @@ func _attack_finished() -> void:
 
 
 func _damage_finished() -> void:
-	new_defence_mode()
+	GameStats.boss_health = GameStats.boss_health - 1
+	if GameStats.boss_health == GameStats.second_phase_start_health:
+		boss_second_phase.emit()
+	elif GameStats.boss_health <= 0:
+		boss_dead.emit()
+	else:
+		new_defence_mode()
 
 
 func _on_defence_mode_timer_timeout() -> void:
@@ -159,5 +174,6 @@ func _on_attack_timer_timeout() -> void:
 	boss_status = BossStatus.ATTACK
 
 
-func _on_begin_battle_timer_timeout() -> void:
-	new_defence_mode()
+func DialogicSignal(argument:String):
+	if argument == "attack_blocked_end":
+		block_damage()

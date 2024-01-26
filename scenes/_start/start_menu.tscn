@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://scenes/_start/start_menu.gd" id="1_l8e1a"]
 [ext_resource type="PackedScene" uid="uid://bxlfyph8igh8b" path="res://scenes/_options_menu/options_menu.tscn" id="1_q0fgv"]
-[ext_resource type="PackedScene" uid="uid://cjhj5oq6bo6mq" path="res://scenes/game/bossfight/bossfight.tscn" id="2_mlawk"]
+[ext_resource type="PackedScene" uid="uid://bvtx0cilely5c" path="res://scenes/game/cutscenes/intro.tscn" id="2_hsxlj"]
 [ext_resource type="PackedScene" uid="uid://dkhsruehu1ue6" path="res://scenes/_credits/credits.tscn" id="3_drggk"]
 [ext_resource type="AudioStream" uid="uid://bxvstvsary0fk" path="res://assets/audio/music/cat music.wav" id="3_mxssh"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_l8e1a")
-start_game_scene = ExtResource("2_mlawk")
+start_game_scene = ExtResource("2_hsxlj")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
