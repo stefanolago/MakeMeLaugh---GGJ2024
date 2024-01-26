@@ -2,7 +2,7 @@ extends Control
 
 
 @onready var feather_scene: FeatherScene = $Feather
-@onready var typing_scene: Control = $JokeTyping
+@onready var typing_scene: Node2D = $JokeTyping
 @onready var face_clicker_scene: Area2D = $FaceClicker
 @onready var boss_portrait_scene: Area2D = $BossFace
 @onready var boss_bullet_timer: Timer = $boss_bullet_timer

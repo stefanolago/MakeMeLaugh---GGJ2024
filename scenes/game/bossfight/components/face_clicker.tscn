@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://qv7886gfd6lc"]
+[gd_scene load_steps=13 format=3 uid="uid://qv7886gfd6lc"]
 
 [ext_resource type="Texture2D" uid="uid://dg88ns2w5pg0v" path="res://assets/art/Bambina/Idle.png" id="1_dux23"]
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/face_clicker.gd" id="1_jjwal"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://meq1cl2yqmmx" path="res://assets/art/Bambina/Smorfia-3.png" id="3_gbva5"]
 [ext_resource type="Texture2D" uid="uid://dem4ufwogv1kv" path="res://assets/art/Bambina/Smorfia-4.png" id="4_crpqg"]
 [ext_resource type="Texture2D" uid="uid://djodi3o5hig4b" path="res://assets/art/Bambina/Smorfia.png" id="5_guwfe"]
+[ext_resource type="Texture2D" uid="uid://d00o74i2en3jc" path="res://assets/art/UI/panel-border-corner.png" id="7_xb71x"]
+[ext_resource type="Texture2D" uid="uid://bul8u8eh0lhyh" path="res://assets/art/UI/panel-border-side.png" id="8_6m1rd"]
 
 [sub_resource type="Shader" id="Shader_5myfo"]
 code = "shader_type canvas_item;
@@ -83,6 +85,7 @@ size = Vector2(171, 164)
 
 [node name="FaceClicker" type="Area2D"]
 script = ExtResource("1_jjwal")
+metadata/_edit_horizontal_guides_ = [101.0]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_pmre6")
@@ -94,6 +97,47 @@ shape = SubResource("RectangleShape2D_18jqt")
 
 [node name="LoseFaceTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="Panel-border-corner" type="Sprite2D" parent="."]
+position = Vector2(-97, -92.9999)
+texture = ExtResource("7_xb71x")
+
+[node name="Panel-border-corner2" type="Sprite2D" parent="."]
+position = Vector2(-95, 91)
+rotation = -1.57079
+texture = ExtResource("7_xb71x")
+
+[node name="Panel-border-corner3" type="Sprite2D" parent="."]
+position = Vector2(95, 91)
+rotation = -3.14159
+texture = ExtResource("7_xb71x")
+
+[node name="Panel-border-corner4" type="Sprite2D" parent="."]
+position = Vector2(95, -92.9999)
+rotation = -4.71238
+texture = ExtResource("7_xb71x")
+
+[node name="Panel-border-side" type="Sprite2D" parent="."]
+position = Vector2(-0.500004, -89)
+scale = Vector2(3.16071, 1)
+texture = ExtResource("8_6m1rd")
+
+[node name="Panel-border-side5" type="Sprite2D" parent="."]
+position = Vector2(-0.500004, 87)
+scale = Vector2(3.16071, 1)
+texture = ExtResource("8_6m1rd")
+
+[node name="Panel-border-side3" type="Sprite2D" parent="."]
+position = Vector2(91.0001, -0.763443)
+rotation = 1.57079
+scale = Vector2(2.97273, 1)
+texture = ExtResource("8_6m1rd")
+
+[node name="Panel-border-side4" type="Sprite2D" parent="."]
+position = Vector2(-91, -0.763443)
+rotation = 1.57079
+scale = Vector2(2.97273, 1)
+texture = ExtResource("8_6m1rd")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="LoseFaceTimer" to="." method="_on_lose_face_timer_timeout"]
