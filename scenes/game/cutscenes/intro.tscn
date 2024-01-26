@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bvtx0cilely5c"]
+[gd_scene load_steps=2 format=3 uid="uid://bvtx0cilely5c"]
+
+[ext_resource type="Script" path="res://scenes/game/cutscenes/intro.gd" id="1_ookg7"]
 
 [node name="Intro" type="Control"]
 layout_mode = 3
@@ -7,6 +9,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ookg7")
+metadata/_edit_lock_ = true
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -17,3 +21,4 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
