@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float Strength : hint_range(0,20) = 2;
+uniform float Strength : hint_range(0,100) = 100;
 uniform float RandomOffset = 1.0;
 
 float random( float seed )

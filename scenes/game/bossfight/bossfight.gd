@@ -4,7 +4,7 @@ extends Control
 @onready var feather_scene: FeatherScene = $Feather
 @onready var typing_scene: Node2D = $JokeTyping
 @onready var face_clicker_scene: Area2D = $FaceClicker
-@onready var boss_portrait_scene: Area2D = $BossFace
+@onready var boss_portrait_scene: Boss = $BossFace
 @onready var boss_bullet_timer: Timer = $boss_bullet_timer
 @onready var boss_bullet: PackedScene = preload("res://scenes/game/bossfight/components/bullet.tscn")
 @onready var ending: PackedScene = preload("res://scenes/game/cutscenes/ending.tscn")
@@ -25,10 +25,10 @@ func player_fails() -> void:
 	pass
 
 
-func spawn_bullet() -> void:
-	var boss_pos = ($BossFace/boss_fire as Marker2D).position
-	var bullet_instance = boss_bullet.instantiate()
-	bullet_instance.position = boss_pos
+func spawn_bullet(pos: Vector2, letter: String) -> void:
+	var bullet_instance: BossBullet = boss_bullet.instantiate()
+	bullet_instance.set_letter(letter)
+	bullet_instance.position = pos
 	add_child(bullet_instance)
 
 
@@ -79,7 +79,7 @@ func _on_boss_face_boss_status_changed(status:String) -> void:
 			feather_scene.reset_to_normal()
 			feather_scene.visible = false
 			face_clicker_scene.visible = false
-			boss_bullet_timer.start()
+			boss_bullet_timer.start(0.1)
 		"DAMAGE":
 			typing_scene.visible = false
 			feather_scene.reset_to_normal()
@@ -93,27 +93,37 @@ func _on_boss_face_boss_status_changed(status:String) -> void:
 
 
 func _on_boss_bullet_timer_timeout() -> void:
-	spawn_bullet()
+	var bullet_data: Dictionary = boss_portrait_scene.get_next_bullet_data()
+	if bullet_data["letter"] != "" or bullet_data["letter"] != " ":
+		print("letter")
+		print(bullet_data["letter"])
+		spawn_bullet((bullet_data["position"] as Vector2), (bullet_data["letter"] as String))
+		boss_bullet_timer.start(0.1)
+	else:
+		if boss_portrait_scene.currently_processed_attack_word.length() > 0:
+			boss_bullet_timer.start(0.3)
+		else:
+			boss_bullet_timer.start(5)
 
 
-func _on_debug_end_pressed():
+func _on_debug_end_pressed() -> void:
 	end_bossfight()
 
 
-func _on_boss_face_boss_dead():
+func _on_boss_face_boss_dead() -> void:
 	end_bossfight()
 
 
-func _on_boss_face_boss_second_phase():
+func _on_boss_face_boss_second_phase() -> void:
 	Dialogic.start("second_phase")
 	hide_player_ui()
 
 
-func _on_boss_face_boss_blocked_damage():
+func _on_boss_face_boss_blocked_damage() -> void:
 	hide_player_ui()
 
 
-func DialogicSignal(argument:String):
+func DialogicSignal(argument:String) -> void:
 	if argument == "bossfight_intro_end":
 		($BossFace as Boss).new_defence_mode()
 		show_player_ui()

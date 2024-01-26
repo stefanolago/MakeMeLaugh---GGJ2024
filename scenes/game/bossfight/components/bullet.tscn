@@ -1,14 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://o4hc5s1i6713"]
+[gd_scene load_steps=5 format=3 uid="uid://o4hc5s1i6713"]
 
-[sub_resource type="Gradient" id="Gradient_ywhfe"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_pjea0"]
-gradient = SubResource("Gradient_ywhfe")
+[ext_resource type="Script" path="res://scenes/game/bossfight/components/bullet.gd" id="1_w6a0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wu6iv"]
-radius = 37.1214
+radius = 12.0
 
 [sub_resource type="Animation" id="Animation_21mla"]
 resource_name = "falling"
@@ -32,13 +27,28 @@ _data = {
 }
 
 [node name="Bullet" type="Node2D"]
+script = ExtResource("1_w6a0r")
 
 [node name="Group" type="Node2D" parent="."]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Group"]
 
-[node name="Sprite2D" type="Sprite2D" parent="Group/RigidBody2D"]
-texture = SubResource("GradientTexture2D_pjea0")
+[node name="Label" type="Label" parent="Group/RigidBody2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -45.0
+offset_right = 2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Group/RigidBody2D"]
 shape = SubResource("CircleShape2D_wu6iv")

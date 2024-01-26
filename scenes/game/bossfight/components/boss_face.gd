@@ -25,15 +25,17 @@ enum AttackType {
 	TICKLE_LIGHT
 }
 
-var defence_modes: Array[BossStatus] = [BossStatus.EARS_COVERED,BossStatus.EYES_COVERED,BossStatus.ARMS_UP]
-var previous_defence_mode: BossStatus = BossStatus.DIALOGUE
-
 @onready var attack_timer: Timer = $AttackTimer
 @onready var attack_pb: ProgressBar = $AttackPb
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var defence_mode_timer: Timer = $DefenceModeTimer
 @onready var boss_sprite: AnimatedSprite2D = $Boss
+@onready var bullet_marker: Marker2D = $Boss/Marker2D
 
+var defence_modes: Array[BossStatus] = [BossStatus.EARS_COVERED,BossStatus.EYES_COVERED,BossStatus.ARMS_UP]
+var previous_defence_mode: BossStatus = BossStatus.DIALOGUE
+var possible_attack_words: Array[String] = ["I HATE YOU", "YOU ARE A FAILURE", "NO ONE LOVES YOU", "DISAPPOINTMENT", "FEAR"]
+var currently_processed_attack_word: String = "" 
 
 
 var boss_status: BossStatus = BossStatus.DIALOGUE:
@@ -78,6 +80,7 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 				attack_timer.stop()
 				animation_player.play("damage")
 				($wolf_hit as AudioStreamPlayer).play()
+
 
 
 func _ready() -> void:
@@ -172,6 +175,20 @@ func _on_attack_timer_timeout() -> void:
 	boss_status = BossStatus.ATTACK
 
 
-func DialogicSignal(argument:String):
+func DialogicSignal(argument:String) -> void:
 	if argument == "attack_blocked_end":
 		block_damage()
+
+
+func get_next_bullet_data() -> Dictionary:
+	var dic_to_return: Dictionary = {"position": bullet_marker.global_position, "letter": currently_processed_attack_word.erase(0, 1)}
+	if currently_processed_attack_word.length() == 0:
+		currently_processed_attack_word = possible_attack_words.pick_random()
+		return dic_to_return
+
+	dic_to_return["letter"] = currently_processed_attack_word[0]
+	currently_processed_attack_word = currently_processed_attack_word.erase(0, 1)
+	
+	
+
+	return dic_to_return

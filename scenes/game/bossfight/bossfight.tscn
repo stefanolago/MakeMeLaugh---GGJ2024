@@ -30,9 +30,6 @@ color = Color(0, 0, 0, 1)
 position = Vector2(564, 222)
 scale = Vector2(0.45, 0.45)
 
-[node name="boss_fire" type="Marker2D" parent="BossFace"]
-position = Vector2(570, 183)
-
 [node name="JokeTyping" parent="." instance=ExtResource("1_fu3yb")]
 position = Vector2(564, 528)
 
@@ -46,6 +43,8 @@ position = Vector2(975, 517)
 metadata/_edit_use_anchors_ = true
 
 [node name="boss_bullet_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
 
 [node name="debug_end" type="Button" parent="."]
 layout_mode = 0
@@ -66,3 +65,7 @@ text = "END"
 [connection signal="face_status_changed" from="FaceClicker" to="." method="_on_face_clicker_face_status_changed"]
 [connection signal="timeout" from="boss_bullet_timer" to="." method="_on_boss_bullet_timer_timeout"]
 [connection signal="pressed" from="debug_end" to="." method="_on_debug_end_pressed"]
+
+[editable path="BossFace"]
+[editable path="JokeTyping"]
+[editable path="Feather"]
