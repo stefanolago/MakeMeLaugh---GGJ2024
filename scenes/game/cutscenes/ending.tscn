@@ -1,10 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://bp5pm7whfu0ay"]
+[gd_scene load_steps=16 format=3 uid="uid://bp5pm7whfu0ay"]
 
 [ext_resource type="Script" path="res://scenes/game/cutscenes/ending.gd" id="1_4grx4"]
 [ext_resource type="Texture2D" uid="uid://btpi6uajepcr4" path="res://assets/art/Stanza/Room.png" id="2_gescu"]
 [ext_resource type="Texture2D" uid="uid://bqkm8v7schxfc" path="res://assets/art/Bambina/Idle+camminata/sveglia.png" id="3_vy42c"]
 [ext_resource type="Texture2D" uid="uid://dgk38f7avwe4w" path="res://assets/art/Lupo/Pixel-lupo.png" id="4_mja0f"]
+[ext_resource type="Texture2D" uid="uid://dx6scg2numf3i" path="res://assets/art/Lupo/Sprite-doggo/Doggo-walk-1.png" id="5_aejiy"]
 [ext_resource type="Texture2D" uid="uid://c8tf22np2amql" path="res://assets/art/lights/circle.png" id="5_fqh2d"]
+[ext_resource type="Texture2D" uid="uid://c85o4trwj52nb" path="res://assets/art/Lupo/Sprite-doggo/Doggo-walk-2.png" id="6_4xrq8"]
+[ext_resource type="Texture2D" uid="uid://b5ncayp3e4gc" path="res://assets/art/Lupo/Sprite-doggo/Doggo-walk-3.png" id="7_1opd7"]
+[ext_resource type="Texture2D" uid="uid://dmjkqbwu5nwqe" path="res://assets/art/Lupo/Sprite-doggo/Doggo-walk-4.png" id="8_eyvo7"]
+[ext_resource type="Texture2D" uid="uid://dtlr86mq5y1t0" path="res://assets/art/Lupo/Sprite-doggo/Doggo-alzato-1.png" id="9_r11ev"]
+[ext_resource type="Texture2D" uid="uid://pm08g83nmmbv" path="res://assets/art/Lupo/Sprite-doggo/Doggo-alzato-2.png" id="10_eiwe3"]
 
 [sub_resource type="Animation" id="Animation_h7mxc"]
 length = 0.001
@@ -18,7 +24,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -32,10 +38,34 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(429, 362)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wolf:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("fade_white:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_1dwxg"]
 resource_name = "ending_cinematic"
-length = 20.0
+length = 12.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -58,7 +88,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 2.1, 3.6, 5.1, 6.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(429, 362), Vector2(567, 362), Vector2(667, 331), Vector2(759, 308), Vector2(873, 236)]
+"values": [Vector2(429, 362), Vector2(515, 362), Vector2(619, 343), Vector2(694, 310), Vector2(787, 262)]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -67,12 +97,39 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(7.9),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(8.3, 12),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"start_dialogic"
+}, {
+"args": [],
+"method": &"load_next_level"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Wolf:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.00098455, 2.1, 3.6, 5.1, 6.6, 7.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("fade_white:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 8.9, 9.4, 9.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rgu0e"]
@@ -80,6 +137,35 @@ _data = {
 "RESET": SubResource("Animation_h7mxc"),
 "ending_cinematic": SubResource("Animation_1dwxg")
 }
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wlb6s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_mja0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_aejiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4xrq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1opd7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_eyvo7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_r11ev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_eiwe3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Ending" type="Control"]
 layout_mode = 3
@@ -123,11 +209,14 @@ position = Vector2(877.445, 222.555)
 scale = Vector2(-1.80672, 1.80672)
 texture = ExtResource("3_vy42c")
 
-[node name="Wolf" type="Sprite2D" parent="."]
+[node name="Wolf" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(429, 362)
-texture = ExtResource("4_mja0f")
+scale = Vector2(1.89, 1.89)
+sprite_frames = SubResource("SpriteFrames_wlb6s")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(1003, 148)
 scale = Vector2(0.36, 0.4)
 energy = 1.49
@@ -137,6 +226,17 @@ metadata/_edit_lock_ = true
 
 [node name="cinematic_sfx" type="AudioStreamPlayer" parent="."]
 volume_db = -15.0
+
+[node name="fade_white" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(739, 234)
