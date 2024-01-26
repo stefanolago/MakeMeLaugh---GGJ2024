@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0nicki1o5tox"]
+[gd_scene load_steps=7 format=3 uid="uid://c0nicki1o5tox"]
 
 [ext_resource type="Texture2D" uid="uid://cphnil34xicxx" path="res://assets/art/feather_component/feather.png" id="1_pk7aw"]
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/feather.gd" id="1_plk8m"]
 [ext_resource type="Material" uid="uid://c5c2samwdfxk2" path="res://assets/shaders/feather_shake.tres" id="3_7iptx"]
+[ext_resource type="Texture2D" uid="uid://d00o74i2en3jc" path="res://assets/art/UI/panel-border-corner.png" id="4_1j8uq"]
+[ext_resource type="Texture2D" uid="uid://bul8u8eh0lhyh" path="res://assets/art/UI/panel-border-side.png" id="5_5lm7n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_denu6"]
 size = Vector2(28, 27)
@@ -24,6 +26,47 @@ shape = SubResource("RectangleShape2D_denu6")
 [node name="Sprite" type="Sprite2D" parent="FeatherActive"]
 material = ExtResource("3_7iptx")
 texture = ExtResource("1_pk7aw")
+
+[node name="Panel-border-corner" type="Sprite2D" parent="."]
+position = Vector2(-25, -24)
+texture = ExtResource("4_1j8uq")
+
+[node name="Panel-border-corner2" type="Sprite2D" parent="."]
+position = Vector2(-25, 24)
+rotation = -1.57079
+texture = ExtResource("4_1j8uq")
+
+[node name="Panel-border-corner3" type="Sprite2D" parent="."]
+position = Vector2(25, 24)
+rotation = -3.14159
+texture = ExtResource("4_1j8uq")
+
+[node name="Panel-border-corner4" type="Sprite2D" parent="."]
+position = Vector2(25, -24)
+rotation = -4.71238
+texture = ExtResource("4_1j8uq")
+
+[node name="Panel-border-side" type="Sprite2D" parent="."]
+position = Vector2(0, -20)
+scale = Vector2(0.571429, 1)
+texture = ExtResource("5_5lm7n")
+
+[node name="Panel-border-side2" type="Sprite2D" parent="."]
+position = Vector2(0, 20)
+scale = Vector2(0.571429, 1)
+texture = ExtResource("5_5lm7n")
+
+[node name="Panel-border-side3" type="Sprite2D" parent="."]
+position = Vector2(20, 1)
+rotation = 1.57079
+scale = Vector2(0.571429, 1)
+texture = ExtResource("5_5lm7n")
+
+[node name="Panel-border-side4" type="Sprite2D" parent="."]
+position = Vector2(-21, 1)
+rotation = 1.57079
+scale = Vector2(0.571429, 1)
+texture = ExtResource("5_5lm7n")
 
 [connection signal="area_entered" from="FeatherActive" to="." method="_on_feather_active_area_entered"]
 [connection signal="area_exited" from="FeatherActive" to="." method="_on_feather_active_area_exited"]

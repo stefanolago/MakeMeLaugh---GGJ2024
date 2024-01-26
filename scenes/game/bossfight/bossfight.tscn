@@ -34,21 +34,14 @@ scale = Vector2(0.45, 0.45)
 position = Vector2(570, 183)
 
 [node name="JokeTyping" parent="." instance=ExtResource("1_fu3yb")]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.725309
-anchor_right = 0.7
-anchor_bottom = 0.878086
-metadata/_edit_use_anchors_ = true
+position = Vector2(564, 528)
 
 [node name="Feather" parent="." instance=ExtResource("3_ltypo")]
-position = Vector2(152, 482)
-scale = Vector2(3, 3)
+position = Vector2(152, 513)
 metadata/_edit_use_anchors_ = true
 
 [node name="FaceClicker" parent="." instance=ExtResource("4_diejx")]
-position = Vector2(975, 475)
+position = Vector2(975, 517)
 metadata/_edit_use_anchors_ = true
 
 [node name="boss_bullet_timer" type="Timer" parent="."]
