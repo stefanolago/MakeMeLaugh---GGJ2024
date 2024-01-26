@@ -55,10 +55,10 @@ func reset_to_normal() -> void:
 
 
 func _on_feather_active_area_entered(_area:Area2D) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and feather_state == FeatherState.IN_HAND:
 		feather_state = FeatherState.IN_HAND_AND_TICKLING
 
 
 func _on_feather_active_area_exited(_area:Area2D) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and feather_state == FeatherState.IN_HAND_AND_TICKLING:
 		feather_state = FeatherState.IN_HAND
