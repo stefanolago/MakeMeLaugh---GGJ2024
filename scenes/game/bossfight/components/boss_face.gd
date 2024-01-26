@@ -29,8 +29,8 @@ enum AttackType {
 @onready var attack_pb: ProgressBar = $AttackPb
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var defence_mode_timer: Timer = $DefenceModeTimer
-@onready var boss_sprite: AnimatedSprite2D = $Boss
-@onready var bullet_marker: Marker2D = $Boss/Marker2D
+@onready var boss_sprite: AnimatedSprite2D = $Node2D/Boss
+@onready var bullet_marker: Marker2D = $Node2D/Boss/Marker2D
 
 var defence_modes: Array[BossStatus] = [BossStatus.EARS_COVERED,BossStatus.EYES_COVERED,BossStatus.ARMS_UP]
 var previous_defence_mode: BossStatus = BossStatus.DIALOGUE

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjhj5oq6bo6mq"]
+[gd_scene load_steps=7 format=3 uid="uid://cjhj5oq6bo6mq"]
 
 [ext_resource type="PackedScene" uid="uid://bcfs7nljoccss" path="res://scenes/game/bossfight/components/joke_typing.tscn" id="1_fu3yb"]
 [ext_resource type="Script" path="res://scenes/game/bossfight/bossfight.gd" id="1_h1yt4"]
 [ext_resource type="PackedScene" uid="uid://brptrqp46bq11" path="res://scenes/game/bossfight/components/boss_face.tscn" id="1_vme5d"]
 [ext_resource type="PackedScene" uid="uid://c0nicki1o5tox" path="res://scenes/game/bossfight/components/feather.tscn" id="3_ltypo"]
 [ext_resource type="PackedScene" uid="uid://qv7886gfd6lc" path="res://scenes/game/bossfight/components/face_clicker.tscn" id="4_diejx"]
+[ext_resource type="PackedScene" uid="uid://44u818wjeuva" path="res://scenes/game/bossfight/components/girl_face.tscn" id="6_r651i"]
 
 [node name="Bossfight" type="Control"]
 layout_mode = 3
@@ -46,6 +47,11 @@ metadata/_edit_use_anchors_ = true
 wait_time = 0.1
 one_shot = true
 
+[node name="GirlFace" parent="." instance=ExtResource("6_r651i")]
+visible = false
+position = Vector2(299, 558)
+scale = Vector2(0.5, 0.5)
+
 [node name="debug_end" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1048.0
@@ -65,7 +71,3 @@ text = "END"
 [connection signal="face_status_changed" from="FaceClicker" to="." method="_on_face_clicker_face_status_changed"]
 [connection signal="timeout" from="boss_bullet_timer" to="." method="_on_boss_bullet_timer_timeout"]
 [connection signal="pressed" from="debug_end" to="." method="_on_debug_end_pressed"]
-
-[editable path="BossFace"]
-[editable path="JokeTyping"]
-[editable path="Feather"]

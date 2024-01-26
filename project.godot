@@ -27,7 +27,6 @@ gdscript/warnings/untyped_declaration=1
 gdscript/warnings/inferred_declaration=1
 gdscript/warnings/unsafe_property_access=1
 gdscript/warnings/unsafe_method_access=1
-gdscript/warnings/unsafe_cast=1
 gdscript/warnings/unsafe_call_argument=1
 
 [dialogic]
@@ -108,6 +107,12 @@ dialogic_default_action={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_render/layer_1="Feather"
+2d_render/layer_2="Boss"
+2d_render/layer_3="Girl"
 
 [rendering]
 

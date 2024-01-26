@@ -32,6 +32,8 @@ script = ExtResource("1_w6a0r")
 [node name="Group" type="Node2D" parent="."]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Group"]
+collision_layer = 2
+collision_mask = 4
 
 [node name="Label" type="Label" parent="Group/RigidBody2D"]
 anchors_preset = 8

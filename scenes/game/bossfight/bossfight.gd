@@ -6,6 +6,7 @@ extends Control
 @onready var face_clicker_scene: Area2D = $FaceClicker
 @onready var boss_portrait_scene: Boss = $BossFace
 @onready var boss_bullet_timer: Timer = $boss_bullet_timer
+@onready var girl_face: GirlFace = $GirlFace
 @onready var boss_bullet: PackedScene = preload("res://scenes/game/bossfight/components/bullet.tscn")
 @onready var ending: PackedScene = preload("res://scenes/game/cutscenes/ending.tscn")
 
@@ -79,24 +80,28 @@ func _on_boss_face_boss_status_changed(status:String) -> void:
 			feather_scene.reset_to_normal()
 			feather_scene.visible = false
 			face_clicker_scene.visible = false
+			girl_face.visible = true
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			boss_bullet_timer.start(0.1)
 		"DAMAGE":
 			typing_scene.visible = false
 			feather_scene.reset_to_normal()
 			feather_scene.visible = false
+			girl_face.visible = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			face_clicker_scene.visible = false
 		_:
 			typing_scene.visible = true
 			feather_scene.visible = true
+			girl_face.visible = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			face_clicker_scene.visible = true
 			boss_bullet_timer.stop()
 
 
 func _on_boss_bullet_timer_timeout() -> void:
 	var bullet_data: Dictionary = boss_portrait_scene.get_next_bullet_data()
-	if bullet_data["letter"] != "" or bullet_data["letter"] != " ":
-		print("letter")
-		print(bullet_data["letter"])
+	if bullet_data["letter"] != "" and bullet_data["letter"] != " ":
 		spawn_bullet((bullet_data["position"] as Vector2), (bullet_data["letter"] as String))
 		boss_bullet_timer.start(0.1)
 	else:
