@@ -14,3 +14,6 @@ func set_letter(value: String) -> void:
 
 func _ready() -> void:
 	label.text = letter
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()

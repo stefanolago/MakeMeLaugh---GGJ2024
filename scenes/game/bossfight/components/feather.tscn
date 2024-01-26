@@ -11,16 +11,19 @@
 size = Vector2(180, 217.143)
 
 [node name="Feather" type="Node2D"]
+material = ExtResource("3_7iptx")
 script = ExtResource("1_plk8m")
 metadata/_edit_horizontal_guides_ = [-121.0, 112.0, -97.0]
 metadata/_edit_vertical_guides_ = [-79.0, 78.0]
 
 [node name="FeatherBlack" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
+use_parent_material = true
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_ln77q")
 
 [node name="FeatherActive" type="Area2D" parent="."]
+use_parent_material = true
 scale = Vector2(0.7, 0.7)
 collision_mask = 2
 
@@ -29,45 +32,53 @@ position = Vector2(5.71429, -2.85715)
 shape = SubResource("RectangleShape2D_denu6")
 
 [node name="Sprite" type="Sprite2D" parent="FeatherActive"]
-material = ExtResource("3_7iptx")
+use_parent_material = true
 texture = ExtResource("2_ln77q")
 
 [node name="Panel-border-corner" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-69, -87)
 texture = ExtResource("4_1j8uq")
 
 [node name="Panel-border-corner2" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-69, 80)
 rotation = -1.57079
 texture = ExtResource("4_1j8uq")
 
 [node name="Panel-border-corner3" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(68, 80)
 rotation = -3.14159
 texture = ExtResource("4_1j8uq")
 
 [node name="Panel-border-corner4" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(68, -87)
 rotation = -4.71238
 texture = ExtResource("4_1j8uq")
 
 [node name="Panel-border-side" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-0.500001, -83)
 scale = Vector2(2.125, 1)
 texture = ExtResource("5_5lm7n")
 
 [node name="Panel-border-side2" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(2.38419e-06, 76)
 scale = Vector2(2.10714, 1)
 texture = ExtResource("5_5lm7n")
 
 [node name="Panel-border-side3" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(64.0005, -4.61213)
 rotation = 1.57079
 scale = Vector2(2.67295, 1)
 texture = ExtResource("5_5lm7n")
 
 [node name="Panel-border-side4" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-65.0635, -4.15652)
 rotation = 1.57079
 scale = Vector2(2.66715, 1.01066)
@@ -75,7 +86,6 @@ texture = ExtResource("5_5lm7n")
 
 [node name="feather" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_bae7l")
-stream_paused = true
 
 [connection signal="area_entered" from="FeatherActive" to="." method="_on_feather_active_area_entered"]
 [connection signal="area_exited" from="FeatherActive" to="." method="_on_feather_active_area_exited"]

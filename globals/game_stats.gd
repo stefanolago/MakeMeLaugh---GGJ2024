@@ -8,3 +8,4 @@ var second_phase_start_health: int = 2
 
 var second_phase:bool = false
 
+var girl_health: int = 3

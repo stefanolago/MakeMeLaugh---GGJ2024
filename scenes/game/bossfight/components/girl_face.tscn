@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://44u818wjeuva"]
+[gd_scene load_steps=5 format=3 uid="uid://44u818wjeuva"]
 
 [ext_resource type="Texture2D" uid="uid://dg88ns2w5pg0v" path="res://assets/art/Bambina/Idle.png" id="1_qy56d"]
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/girl_face.gd" id="1_xdtvh"]
+[ext_resource type="Material" uid="uid://krecw3hs186d" path="res://assets/shaders/girl_attacked.tres" id="2_kxv2c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yys5v"]
 radius = 68.469
@@ -10,6 +11,7 @@ radius = 68.469
 script = ExtResource("1_xdtvh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("2_kxv2c")
 texture = ExtResource("1_qy56d")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -18,3 +20,5 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_yys5v")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
