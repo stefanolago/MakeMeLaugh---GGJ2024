@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://c62eo8bcj3u75" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-006.wav" id="8_nsh7b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jw73"]
-size = Vector2(421, 833)
+size = Vector2(517, 720)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5x7p8"]
 animations = [{
@@ -153,14 +153,15 @@ collision_layer = 2
 script = ExtResource("1_msnto")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(6.5, 16.5)
+position = Vector2(-6.5, -4)
 shape = SubResource("RectangleShape2D_7jw73")
 
 [node name="Boss" type="AnimatedSprite2D" parent="."]
 material = ExtResource("2_4qcnx")
 sprite_frames = SubResource("SpriteFrames_5x7p8")
-animation = &"attack"
+animation = &"arms_up"
 autoplay = "default"
+frame_progress = 0.921371
 
 [node name="AttackPb" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)
