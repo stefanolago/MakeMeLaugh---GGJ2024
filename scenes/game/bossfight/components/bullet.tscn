@@ -35,10 +35,10 @@ _data = {
 
 [node name="Group" type="Node2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Group"]
-texture = SubResource("GradientTexture2D_pjea0")
-
 [node name="RigidBody2D" type="RigidBody2D" parent="Group"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Group/RigidBody2D"]
+texture = SubResource("GradientTexture2D_pjea0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Group/RigidBody2D"]
 shape = SubResource("CircleShape2D_wu6iv")
