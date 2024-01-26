@@ -1,14 +1,5 @@
-The wolf is getting closer
-And closer
-And closer
-Suddently...
-wolf (smile): AH
-AHAH
-AHAHAH
-Puff
-leave wolf
-The Wolf is now a corgi
-AHAHAH
-Everybody happy
-The end
-[signal arg="credits"]
+wolf (base): HE...
+wolf (base): HE HE...
+wolf (base): HA HA HA AH AH AH!!!
+[clear time="1.0"]
+[signal arg="progress_animation"]

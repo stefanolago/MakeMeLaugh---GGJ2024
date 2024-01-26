@@ -2,9 +2,36 @@
 
 [ext_resource type="Script" path="res://scenes/game/cutscenes/ending.gd" id="1_4grx4"]
 [ext_resource type="Texture2D" uid="uid://btpi6uajepcr4" path="res://assets/art/Stanza/Room.png" id="2_gescu"]
-[ext_resource type="Texture2D" uid="uid://eaolfpxg5f6s" path="res://assets/art/Bambina/Pixel.png" id="3_6pw7m"]
+[ext_resource type="Texture2D" uid="uid://bqkm8v7schxfc" path="res://assets/art/Bambina/Idle+camminata/sveglia.png" id="3_vy42c"]
 [ext_resource type="Texture2D" uid="uid://dgk38f7avwe4w" path="res://assets/art/Lupo/Pixel-lupo.png" id="4_mja0f"]
 [ext_resource type="Texture2D" uid="uid://c8tf22np2amql" path="res://assets/art/lights/circle.png" id="5_fqh2d"]
+
+[sub_resource type="Animation" id="Animation_h7mxc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wolf:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wolf:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(429, 362)]
+}
 
 [sub_resource type="Animation" id="Animation_1dwxg"]
 resource_name = "ending_cinematic"
@@ -40,36 +67,12 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
-
-[sub_resource type="Animation" id="Animation_h7mxc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Wolf:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(7.9),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Wolf:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(429, 362)]
+"values": [{
+"args": [],
+"method": &"start_dialogic"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rgu0e"]
@@ -83,6 +86,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -4.0
+offset_right = -18.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4grx4")
@@ -112,9 +119,9 @@ metadata/_edit_lock_ = true
 
 [node name="Girl" type="Sprite2D" parent="."]
 modulate = Color(0.588235, 0.588235, 0.588235, 1)
-position = Vector2(876, 211)
-scale = Vector2(-2.638, 2.638)
-texture = ExtResource("3_6pw7m")
+position = Vector2(877.445, 222.555)
+scale = Vector2(-1.80672, 1.80672)
+texture = ExtResource("3_vy42c")
 
 [node name="Wolf" type="Sprite2D" parent="."]
 position = Vector2(429, 362)
@@ -126,6 +133,7 @@ scale = Vector2(0.36, 0.4)
 energy = 1.49
 texture = ExtResource("5_fqh2d")
 texture_scale = 1.38
+metadata/_edit_lock_ = true
 
 [node name="cinematic_sfx" type="AudioStreamPlayer" parent="."]
 volume_db = -15.0

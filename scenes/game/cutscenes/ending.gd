@@ -19,3 +19,17 @@ func DialogicSignal(argument:String) -> void:
 		print("continue playing")
 
 
+func continue_dialogic() -> void:
+	anim_player.active = false
+	Dialogic.paused = false
+
+
+func start_dialogic() -> void:
+	anim_player.active = false
+	print("pausing")
+	Dialogic.start("intro")
+
+
+func load_next_level() -> void:
+	Dialogic.paused = false
+	TransitionLayer.change_scene(credits)

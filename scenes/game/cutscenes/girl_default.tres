@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://cbo5mqkybf3bq"]
+
+[ext_resource type="Texture2D" uid="uid://dqrvfaaqoxe8l" path="res://assets/art/Bambina/Idle+camminata/1.png" id="1_knxg1"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_knxg1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
