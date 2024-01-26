@@ -1,0 +1,13 @@
+girl (base): It's 3\:00 am
+girl: Everything is dark
+join girl 1
+girl: you are a little girl trying to sleep
+girl: But something doesnt feel right
+girl: You hear something moving in the darkness of your room
+Finally to manage to fall asleep
+leave girl
+You see something in your dream
+join wolf 2
+It's a wolf
+bossfight
+[signal arg="bossfight"]

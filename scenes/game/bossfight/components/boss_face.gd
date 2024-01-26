@@ -161,7 +161,3 @@ func _on_attack_timer_timeout() -> void:
 
 func _on_begin_battle_timer_timeout() -> void:
 	new_defence_mode()
-
-
-func _on_debug_attack_pressed() -> void:
-	boss_status = BossStatus.ATTACK
