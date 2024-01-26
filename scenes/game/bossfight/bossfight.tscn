@@ -58,15 +58,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="boss_bullet_timer" type="Timer" parent="."]
 
-[node name="debug_attack" type="Button" parent="."]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 583.0
-offset_right = 61.0
-offset_bottom = 607.0
-scale = Vector2(2.78858, 2.55166)
-text = "ATTACK"
-
 [connection signal="boss_status_changed" from="BossFace" to="." method="_on_boss_face_boss_status_changed"]
 [connection signal="inserted_right_word" from="JokeTyping" to="." method="_on_joke_typing_inserted_right_word"]
 [connection signal="inserted_wrong_word" from="JokeTyping" to="." method="_on_joke_typing_inserted_wrong_word"]
@@ -74,4 +65,3 @@ text = "ATTACK"
 [connection signal="tickled" from="Feather" to="." method="_on_feather_tickled"]
 [connection signal="face_status_changed" from="FaceClicker" to="." method="_on_face_clicker_face_status_changed"]
 [connection signal="timeout" from="boss_bullet_timer" to="." method="_on_boss_bullet_timer_timeout"]
-[connection signal="pressed" from="debug_attack" to="BossFace" method="_on_debug_attack_pressed"]
