@@ -19,13 +19,12 @@ modulate = Color(0.8, 0.341176, 0.196078, 1)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FeatherActive"]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_denu6")
 
 [node name="Sprite" type="Sprite2D" parent="FeatherActive"]
 material = ExtResource("3_7iptx")
 texture = ExtResource("1_pk7aw")
 
-[connection signal="area_shape_entered" from="FeatherActive" to="." method="_on_feather_active_area_shape_entered"]
-[connection signal="area_shape_exited" from="FeatherActive" to="." method="_on_feather_active_area_shape_exited"]
+[connection signal="area_entered" from="FeatherActive" to="." method="_on_feather_active_area_entered"]
+[connection signal="area_exited" from="FeatherActive" to="." method="_on_feather_active_area_exited"]
 [connection signal="input_event" from="FeatherActive" to="." method="_on_feather_active_input_event"]

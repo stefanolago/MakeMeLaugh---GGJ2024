@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/boss_face.gd" id="1_msnto"]
 [ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="2_4qcnx"]
-[ext_resource type="Texture2D" uid="uid://dhquvkrgg0ul4" path="res://assets/art/Lupo/Lupo.png" id="2_r7x3r"]
+[ext_resource type="Texture2D" uid="uid://dhquvkrgg0ul4" path="res://assets/art/Lupo/lupo.png" id="2_r7x3r"]
 [ext_resource type="AudioStream" uid="uid://cry618m15kry2" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-001.wav" id="3_gkcep"]
 [ext_resource type="AudioStream" uid="uid://ditd5fol8jmgl" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-002.wav" id="4_1qjjv"]
 [ext_resource type="AudioStream" uid="uid://d3pd26cytwwe5" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-003.wav" id="5_mq4e1"]

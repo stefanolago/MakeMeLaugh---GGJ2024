@@ -1,56 +1,99 @@
-[gd_scene load_steps=7 format=3 uid="uid://qv7886gfd6lc"]
+[gd_scene load_steps=11 format=3 uid="uid://qv7886gfd6lc"]
 
+[ext_resource type="Texture2D" uid="uid://dg88ns2w5pg0v" path="res://assets/art/Bambina/Idle.png" id="1_dux23"]
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/face_clicker.gd" id="1_jjwal"]
-[ext_resource type="Texture2D" uid="uid://b2wh8kyf3m41s" path="res://icon.svg" id="1_yq2bx"]
+[ext_resource type="Texture2D" uid="uid://swqw4wy55y02" path="res://assets/art/Bambina/Smorfia-2.png" id="2_cavvb"]
+[ext_resource type="Texture2D" uid="uid://meq1cl2yqmmx" path="res://assets/art/Bambina/Smorfia-3.png" id="3_gbva5"]
+[ext_resource type="Texture2D" uid="uid://dem4ufwogv1kv" path="res://assets/art/Bambina/Smorfia-4.png" id="4_crpqg"]
+[ext_resource type="Texture2D" uid="uid://djodi3o5hig4b" path="res://assets/art/Bambina/Smorfia.png" id="5_guwfe"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uh7ce"]
+[sub_resource type="Shader" id="Shader_5myfo"]
+code = "shader_type canvas_item;
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3uijx"]
+uniform float Strength : hint_range(0,20) = 2;
+uniform float RandomOffset = 1.0;
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7ar5"]
+float random( float seed )
+{
+	return fract( 543.2543 * sin( dot( vec2( seed, seed ), vec2( 3525.46 + RandomOffset, -54.3415 ) ) ) );
+}
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xs8gm"]
+void vertex()
+{
+	vec2 VERTEX_OFFSET = VERTEX;
+	VERTEX_OFFSET.x += (
+		random(( trunc( VERTEX_OFFSET.y)) + TIME ) - 0.5) * Strength ;
 
-[node name="FaceClicker" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+	VERTEX_OFFSET.y += (
+		random(( trunc( VERTEX_OFFSET.x)) + TIME) - 0.5) * Strength;
+	
+	VERTEX = VERTEX_OFFSET;	
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pmre6"]
+shader = SubResource("Shader_5myfo")
+shader_parameter/Strength = 1.0
+shader_parameter/RandomOffset = 1.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bt780"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_guwfe")
+}],
+"loop": true,
+"name": &"grimace_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cavvb")
+}],
+"loop": true,
+"name": &"grimace_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_gbva5")
+}],
+"loop": true,
+"name": &"grimace_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_crpqg")
+}],
+"loop": true,
+"name": &"grimace_full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dux23")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18jqt"]
+size = Vector2(171, 164)
+
+[node name="FaceClicker" type="Area2D"]
 script = ExtResource("1_jjwal")
 
-[node name="Background" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.682353, 0.733333, 0.345098, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_pmre6")
+sprite_frames = SubResource("SpriteFrames_bt780")
+animation = &"idle"
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -68.0
-offset_top = -68.0
-offset_right = 68.0
-offset_bottom = 68.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_uh7ce")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_3uijx")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_p7ar5")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_xs8gm")
-icon = ExtResource("1_yq2bx")
-flat = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_18jqt")
 
 [node name="LoseFaceTimer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="LoseFaceTimer" to="." method="_on_lose_face_timer_timeout"]

@@ -3,7 +3,7 @@ extends Control
 
 @onready var feather_scene: FeatherScene = $Feather
 @onready var typing_scene: Control = $JokeTyping
-@onready var face_clicker_scene: Control = $FaceClicker
+@onready var face_clicker_scene: Area2D = $FaceClicker
 @onready var boss_portrait_scene: Area2D = $BossFace
 @onready var boss_bullet_timer: Timer = $boss_bullet_timer
 @onready var boss_bullet: PackedScene = preload("res://scenes/game/bossfight/components/bullet.tscn")
@@ -27,8 +27,6 @@ func spawn_bullet() -> void:
 
 func _on_face_clicker_face_status_changed(status: FaceClicker.FaceStatus) -> void:
 	match status:
-		FaceClicker.FaceStatus.HALF_GRIMACE:
-			player_attack(Boss.AttackType.HALF_GRIMACE)
 		FaceClicker.FaceStatus.FULL_GRIMACE:
 			player_attack(Boss.AttackType.FULL_GRIMACE)
 

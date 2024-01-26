@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 script = ExtResource("1_h1yt4")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -23,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 1)
 
 [node name="BossFace" parent="." instance=ExtResource("1_vme5d")]
@@ -48,12 +48,7 @@ scale = Vector2(3, 3)
 metadata/_edit_use_anchors_ = true
 
 [node name="FaceClicker" parent="." instance=ExtResource("4_diejx")]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.775174
-anchor_top = 0.584877
-anchor_right = 0.94184
-anchor_bottom = 0.912037
+position = Vector2(975, 475)
 metadata/_edit_use_anchors_ = true
 
 [node name="boss_bullet_timer" type="Timer" parent="."]
