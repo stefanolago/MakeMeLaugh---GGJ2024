@@ -121,8 +121,7 @@ func boss_attacked(type: AttackType) -> void:
 				Dialogic.start("feather_ineffective")
 		AttackType.TICKLE_LIGHT:
 			if boss_status == BossStatus.ARMS_UP:
-				print("TICKLE LIGHT")
-
+				pass
 
 func take_damage() -> void:
 	boss_status = BossStatus.DAMAGE
@@ -131,7 +130,6 @@ func take_damage() -> void:
 func block_damage() -> void:
 	boss_blocked_damage.emit()
 	boss_status = BossStatus.ATTACK
-	print ("boss blocked")
 
 
 func new_defence_mode() -> void:

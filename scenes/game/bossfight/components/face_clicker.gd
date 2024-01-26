@@ -36,7 +36,6 @@ var face_status: FaceStatus = FaceStatus.IDLE:
 var face_clicks: int = 0:
 	set(value):
 		face_clicks = clamp(value, 0, 15)
-		print(face_clicks)
 		if face_clicks >= 10:
 			face_status = FaceStatus.FULL_GRIMACE
 		elif face_clicks >= 8:

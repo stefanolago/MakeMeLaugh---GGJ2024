@@ -22,6 +22,7 @@ var shake_meter: int = 0:
 			tickled.emit()
 		if shake_meter > total_shake_meter_to_reach:
 			finished_tickling.emit()
+			reset_to_normal()
 
 
 var feather_state: FeatherState = FeatherState.NORMAL
@@ -50,6 +51,7 @@ func _on_feather_active_input_event(_viewport:Node, event:InputEvent, _shape_idx
 func reset_to_normal() -> void:
 	feather_state = FeatherState.NORMAL
 	feather_area.global_position = global_position
+	shake_meter = 0
 
 
 func _on_feather_active_area_entered(_area:Area2D) -> void:

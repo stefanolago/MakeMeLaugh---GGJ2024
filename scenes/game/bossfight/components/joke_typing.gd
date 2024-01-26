@@ -42,10 +42,8 @@ func check_input() -> void:
 	var is_good: bool = player_input.text.strip_edges() == current_joke
 	if is_good:
 		($AnimationPlayer as AnimationPlayer).play("right_joke")
-		print ("correct joke")
 	else:
 		($AnimationPlayer as AnimationPlayer).play("wrong_joke")
-		print ("wrong joke")
 
 
 func wrong_joke_anim_played() -> void:

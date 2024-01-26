@@ -26,7 +26,6 @@ func player_fails() -> void:
 
 
 func spawn_bullet() -> void:
-	print ("spawn bullet")
 	var boss_pos = ($BossFace/boss_fire as Marker2D).position
 	var bullet_instance = boss_bullet.instantiate()
 	bullet_instance.position = boss_pos
@@ -53,20 +52,22 @@ func _on_face_clicker_face_status_changed(status: FaceClicker.FaceStatus) -> voi
 	match status:
 		FaceClicker.FaceStatus.FULL_GRIMACE:
 			player_attack(Boss.AttackType.FULL_GRIMACE)
+			print ("damage FULL_GRIMACE")
 
 
 func _on_feather_tickled() -> void:
-	print("on feather tickled")
 	player_attack(Boss.AttackType.TICKLE_LIGHT)
+	print ("damage _on_feather_tickled")
 
 
 func _on_feather_finished_tickling() -> void:
-	print ("tickled")
 	player_attack(Boss.AttackType.TICKLE)
+	print ("damage _on_feather_finished_tickling")
 
 
 func _on_joke_typing_inserted_right_word() -> void:
 	player_attack(Boss.AttackType.JOKE)
+	print ("damage _on_joke_typing_inserted_right_word")
 
 func _on_joke_typing_inserted_wrong_word() -> void:
 	player_fails()
