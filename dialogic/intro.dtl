@@ -1,17 +1,14 @@
 girl (base): It's 3\:00 am.
-girl (base): You are a little girl, trying to sleep.
-girl (base): But something doesn't feel right.
-girl (base): You look around your room.
-[clear time="1.0"]
-[signal arg="progress_animation"]
-girl (base): You decide to try you best to fall asleep.
-girl (base): But something just doesn't feel right.
+girl (base): I wish I could sleep.
+girl (base): But my head feels heavy.
 [clear time="1.0"]
 [signal arg="progress_animation"]
 girl (base): It's very late...
-girl (base): You finally start to feel your eyes getting heavy.
+girl (base): I'm starting to feel my eyes closing.
+[clear time="1.0"]
+[signal arg="progress_animation"]
 girl (base): ...
 girl (base): ...
-girl (base): It just doesn't...
+girl (base): Something doesn't feel right...
 [clear time="1.0"]
 [signal arg="progress_animation"]

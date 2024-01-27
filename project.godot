@@ -21,6 +21,7 @@ TransitionLayer="*res://globals/transition_layer.tscn"
 GameStats="*res://globals/game_stats.gd"
 Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 PauseMenu="*res://globals/pause_menu.tscn"
+CreditSong="*res://globals/credit_song.tscn"
 
 [debug]
 

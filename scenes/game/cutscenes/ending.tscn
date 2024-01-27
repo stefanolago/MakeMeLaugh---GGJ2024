@@ -82,7 +82,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Girl/manina:visible")
+tracks/4/path = NodePath("manina:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -103,10 +103,23 @@ tracks/5/keys = {
 "update": 0,
 "values": [0]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("manina:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(819, 240)]
+}
 
 [sub_resource type="Animation" id="Animation_1dwxg"]
 resource_name = "ending_cinematic"
 length = 20.0
+step = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -138,11 +151,14 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(8.2, 19.6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(8.2, 16.1, 19.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
 "method": &"start_dialogic"
+}, {
+"args": [],
+"method": &"start_credits_song"
 }, {
 "args": [],
 "method": &"load_next_level"
@@ -223,7 +239,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Girl/manina:visible")
+tracks/9/path = NodePath("manina:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -235,34 +251,22 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Girl/manina:frame")
+tracks/10/path = NodePath("drone_sfx:volume_db")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(16, 16.4, 16.8, 17.2, 17.6, 18, 18.4, 18.8, 19.2, 19.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("drone_sfx:volume_db")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
 "times": PackedFloat32Array(0, 1.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-30.0, -20.0]
 }
-tracks/12/type = "audio"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("cinematic_sfx")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("cinematic_sfx")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -282,7 +286,19 @@ tracks/12/keys = {
 }],
 "times": PackedFloat32Array(13.5, 14.4, 17.3, 18)
 }
-tracks/12/use_blend = true
+tracks/11/use_blend = true
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("manina:position")
+tracks/12/interp = 0
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(16, 16.4, 16.8, 17.2, 17.6, 18, 18.4, 18.8, 19.2, 19.6, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(819, 240), Vector2(826, 240), Vector2(819, 240), Vector2(826, 240), Vector2(819, 240), Vector2(826, 240), Vector2(819, 240), Vector2(826, 240), Vector2(819, 240), Vector2(826, 240), Vector2(819, 240)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rgu0e"]
 _data = {
@@ -298,20 +314,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_kgmhn")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_68y16"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("22_15b0l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_f5ev8")
 }],
 "loop": true,
 "name": &"default",
@@ -380,6 +382,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_68y16"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_15b0l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_f5ev8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Ending" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -422,20 +438,21 @@ position = Vector2(877.255, 219.79)
 scale = Vector2(1.80194, 1.80194)
 sprite_frames = SubResource("SpriteFrames_rrgrk")
 
-[node name="manina" type="AnimatedSprite2D" parent="Girl"]
-visible = false
-z_index = 1
-position = Vector2(-27.363, 9.10074)
-scale = Vector2(1.16215, 1.16215)
-sprite_frames = SubResource("SpriteFrames_68y16")
-autoplay = "default"
-frame = 1
-
 [node name="Wolf" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(429, 362)
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_wlb6s")
+
+[node name="manina" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(0.588235, 0.588235, 0.588235, 1)
+z_index = 1
+position = Vector2(819, 240)
+scale = Vector2(2.09412, 2.09412)
+sprite_frames = SubResource("SpriteFrames_68y16")
+autoplay = "default"
+frame = 1
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
@@ -470,3 +487,4 @@ bus = &"SFX"
 stream = ExtResource("26_13yxx")
 volume_db = -20.0
 autoplay = true
+bus = &"SFX"
