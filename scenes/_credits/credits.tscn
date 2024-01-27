@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkhsruehu1ue6"]
+[gd_scene load_steps=5 format=3 uid="uid://dkhsruehu1ue6"]
 
 [ext_resource type="Script" path="res://scenes/_credits/credits.gd" id="1_v0gdx"]
+[ext_resource type="AudioStream" uid="uid://yy4e4eabnmx8" path="res://assets/audio/sfx/UI Menù/Back.wav" id="2_qfmh7"]
 
 [sub_resource type="Theme" id="Theme_ba7kw"]
 Label/font_sizes/font_size = 25
@@ -110,5 +111,10 @@ anchor_bottom = 0.961
 grow_vertical = 0
 text = " < Back 
 "
+
+[node name="back_button" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qfmh7")
+volume_db = -15.0
+bus = &"SFX"
 
 [connection signal="pressed" from="ColorRect/BackButton" to="." method="_on_back_button_pressed"]

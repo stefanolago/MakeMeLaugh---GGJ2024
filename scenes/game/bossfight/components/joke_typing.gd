@@ -38,6 +38,7 @@ func _input(event: InputEvent) -> void:
 		check_input()
 	elif event is InputEventKey and event.is_pressed() and not event.is_echo() and visible:
 		player_input.grab_focus()
+		($typing_sfx as AudioStreamPlayer).play()
 
 
 func check_input() -> void:

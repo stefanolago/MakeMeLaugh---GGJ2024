@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://44u818wjeuva"]
+[gd_scene load_steps=6 format=3 uid="uid://44u818wjeuva"]
 
 [ext_resource type="Material" uid="uid://krecw3hs186d" path="res://assets/shaders/girl_attacked.tres" id="1_irtyx"]
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/girl_face.gd" id="1_xdtvh"]
 [ext_resource type="Texture2D" uid="uid://6par3r1014kl" path="res://assets/art/Bambina/Solo-volto-1.png" id="2_ssltm"]
+[ext_resource type="AudioStream" uid="uid://d1so4m0fd0jmk" path="res://assets/audio/sfx/HitBulletBimba/HitBulletBimbaFin.wav" id="4_arjo8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yys5v"]
 radius = 44.0114
@@ -29,6 +30,11 @@ one_shot = true
 [node name="block_move_timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="hit_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_arjo8")
+volume_db = -5.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

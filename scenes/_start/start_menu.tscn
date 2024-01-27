@@ -4,13 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://bxlfyph8igh8b" path="res://scenes/_options_menu/options_menu.tscn" id="1_q0fgv"]
 [ext_resource type="PackedScene" uid="uid://bvtx0cilely5c" path="res://scenes/game/cutscenes/intro.tscn" id="2_hsxlj"]
 [ext_resource type="PackedScene" uid="uid://dkhsruehu1ue6" path="res://scenes/_credits/credits.tscn" id="3_drggk"]
-[ext_resource type="AudioStream" uid="uid://bxvstvsary0fk" path="res://assets/audio/music/cat music.wav" id="3_mxssh"]
+[ext_resource type="AudioStream" uid="uid://b32ddpvwwgaa1" path="res://assets/audio/sfx/UI Menù/Confirm.wav" id="3_tx0tu"]
 [ext_resource type="Texture2D" uid="uid://dhquvkrgg0ul4" path="res://assets/art/Lupo/lupo.png" id="6_301i2"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_l8e1a")
 start_game_scene = ExtResource("2_hsxlj")
 metadata/_edit_vertical_guides_ = [575.0]
+
+[node name="Confirm_sfx" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_tx0tu")
+volume_db = -15.0
+bus = &"SFX"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -72,10 +78,6 @@ anchor_bottom = 0.8
 visible = false
 layout_mode = 1
 final_credits = false
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
-stream = ExtResource("3_mxssh")
-bus = &"Music"
 
 [node name="Tile" type="Label" parent="."]
 offset_left = 218.0

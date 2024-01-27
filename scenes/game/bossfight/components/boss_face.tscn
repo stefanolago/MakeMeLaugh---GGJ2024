@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://brptrqp46bq11"]
+[gd_scene load_steps=34 format=3 uid="uid://brptrqp46bq11"]
 
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/boss_face.gd" id="1_msnto"]
 [ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="2_4qcnx"]
@@ -13,12 +13,15 @@
 [ext_resource type="AudioStream" uid="uid://qbn3nnoyrblc" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-001.wav" id="10_4oyww"]
 [ext_resource type="Texture2D" uid="uid://b4hc1yvb7ba4r" path="res://assets/art/Lupo/lupo-ghigno.png" id="10_5oxhh"]
 [ext_resource type="AudioStream" uid="uid://cxcxwciem4gxe" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-002.wav" id="11_10nkk"]
+[ext_resource type="AudioStream" uid="uid://bjkjd7yxaonyh" path="res://assets/audio/sfx/LupoSogghigna/HeheLupo-001.wav" id="11_j0nw1"]
 [ext_resource type="AudioStream" uid="uid://buhalv7r347en" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-002.wav" id="11_x8pta"]
 [ext_resource type="AudioStream" uid="uid://j2u2ijaa74m2" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-003.wav" id="12_1kagt"]
+[ext_resource type="AudioStream" uid="uid://caabpcguahq16" path="res://assets/audio/sfx/LupoSogghigna/HeheLupo-002.wav" id="12_ftcqt"]
 [ext_resource type="AudioStream" uid="uid://cxi6r0noex6d1" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-003.wav" id="12_ramax"]
 [ext_resource type="AudioStream" uid="uid://ch7jth0eaja63" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-004.wav" id="13_k70qe"]
 [ext_resource type="AudioStream" uid="uid://bn6fax3vs8lt6" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-004.wav" id="13_oglb5"]
 [ext_resource type="AudioStream" uid="uid://dncv25y7ikl8g" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-005.wav" id="14_ym3lc"]
+[ext_resource type="AudioStream" uid="uid://k20x2mdyao7c" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-006.wav" id="18_7dlfb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jw73"]
 size = Vector2(517, 720)
@@ -157,7 +160,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5, 2, 4, 6, 8, 9.5, 10),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-800, -200), Vector2(800, -200), Vector2(-800, -200), Vector2(800, -200), Vector2(-800, -200), Vector2(800, -200), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(-800, -100), Vector2(800, -300), Vector2(-800, -300), Vector2(800, -100), Vector2(-800, -100), Vector2(800, -300), Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -242,7 +245,14 @@ _data = {
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_garh4"]
-streams_count = 5
+streams_count = 2
+stream_0/stream = ExtResource("11_j0nw1")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("12_ftcqt")
+stream_1/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_m1asg"]
+streams_count = 6
 stream_0/stream = ExtResource("10_3n64y")
 stream_0/weight = 1.0
 stream_1/stream = ExtResource("11_x8pta")
@@ -253,6 +263,8 @@ stream_3/stream = ExtResource("13_oglb5")
 stream_3/weight = 1.0
 stream_4/stream = ExtResource("14_ym3lc")
 stream_4/weight = 1.0
+stream_5/stream = ExtResource("18_7dlfb")
+stream_5/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w1elo"]
 streams_count = 4
@@ -340,13 +352,13 @@ volume_db = -10.0
 bus = &"SFX"
 
 [node name="wolf_attack" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_garh4")
-volume_db = -20.0
+stream = SubResource("AudioStreamRandomizer_m1asg")
+volume_db = -15.0
 bus = &"SFX"
 
 [node name="wolf_woosh" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_w1elo")
-volume_db = -20.0
+volume_db = -15.0
 bus = &"SFX"
 
 [connection signal="timeout" from="DefenceModeTimer" to="." method="_on_defence_mode_timer_timeout"]

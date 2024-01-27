@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxlfyph8igh8b"]
+[gd_scene load_steps=5 format=3 uid="uid://bxlfyph8igh8b"]
 
 [ext_resource type="Script" path="res://scenes/_options_menu/options_menu.gd" id="1_lpdjf"]
+[ext_resource type="AudioStream" uid="uid://yy4e4eabnmx8" path="res://assets/audio/sfx/UI Menù/Back.wav" id="3_ytxx1"]
 [ext_resource type="PackedScene" uid="uid://otacf7gyxcpp" path="res://scenes/_options_menu/audio/audio_options.tscn" id="4_a1oik"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muirh"]
@@ -37,5 +38,10 @@ anchor_bottom = 0.96142
 grow_vertical = 0
 text = " < Back "
 metadata/_edit_use_anchors_ = true
+
+[node name="back_button" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ytxx1")
+volume_db = -15.0
+bus = &"SFX"
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

@@ -1,13 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvtx0cilely5c"]
+[gd_scene load_steps=17 format=3 uid="uid://bvtx0cilely5c"]
 
 [ext_resource type="Script" path="res://scenes/game/cutscenes/intro.gd" id="1_ookg7"]
 [ext_resource type="Texture2D" uid="uid://btpi6uajepcr4" path="res://assets/art/Stanza/Room.png" id="2_kjo4n"]
 [ext_resource type="SpriteFrames" uid="uid://cbo5mqkybf3bq" path="res://scenes/game/cutscenes/girl_default.tres" id="3_6afuo"]
 [ext_resource type="SpriteFrames" uid="uid://jdf2qbit8c1a" path="res://scenes/game/cutscenes/girl_bed_sleep.tres" id="4_8rao2"]
-[ext_resource type="AudioStream" uid="uid://yr0jcf1ebx34" path="res://assets/audio/sfx/CutsceneIntro/ClickLuce.wav" id="4_dv8r8"]
+[ext_resource type="AudioStream" uid="uid://brcugsob45dxw" path="res://assets/audio/sfx/CutsceneIntro/ClickLuceFin.wav" id="4_ru83s"]
 [ext_resource type="Texture2D" uid="uid://dgk38f7avwe4w" path="res://assets/art/Lupo/Pixel-lupo.png" id="4_w1jqb"]
 [ext_resource type="Texture2D" uid="uid://c8tf22np2amql" path="res://assets/art/lights/circle.png" id="5_65y62"]
 [ext_resource type="SpriteFrames" uid="uid://cw237uwjimjf5" path="res://scenes/game/cutscenes/girl_bed_awake.tres" id="5_wg4j0"]
+[ext_resource type="AudioStream" uid="uid://b8wmnd6v3g480" path="res://assets/audio/sfx/CutsceneIntro/AmbienceIntro.wav" id="9_4ntg6"]
 [ext_resource type="Texture2D" uid="uid://eu88ioop2lsv" path="res://assets/art/lights/cone_light.png" id="9_hpajw"]
 
 [sub_resource type="Animation" id="Animation_h4uwt"]
@@ -241,9 +242,9 @@ tracks/7/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("4_dv8r8")
+"stream": ExtResource("4_ru83s")
 }],
-"times": PackedFloat32Array(6.7)
+"times": PackedFloat32Array(7)
 }
 tracks/7/use_blend = true
 tracks/8/type = "value"
@@ -305,6 +306,30 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("ambiance_sfx:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(2.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("ambiance_sfx:volume_db")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(2.1, 4.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, -15.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jtyml"]
@@ -399,6 +424,11 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="cinematic_sfx" type="AudioStreamPlayer" parent="."]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="ambiance_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_4ntg6")
 volume_db = -15.0
 bus = &"SFX"
 

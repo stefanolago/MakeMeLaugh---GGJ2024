@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var title: Label = $Tile
 
 func _on_options_button_pressed() -> void:
+	($Confirm_sfx as AudioStreamPlayer).play()
 	activate_options_menu(true)
 	title.visible = false
 
@@ -23,14 +24,17 @@ func activate_options_menu(activated: bool) -> void:
 
 
 func _on_quit_button_pressed() -> void:
+	($Confirm_sfx as AudioStreamPlayer).play()
 	get_tree().quit()
 
 func _on_credits_button_pressed() -> void:
+	($Confirm_sfx as AudioStreamPlayer).play()
 	credits_screen.visible = true
 	title.visible = false
 
 
 func _on_play_button_pressed() -> void:
+	($Confirm_sfx as AudioStreamPlayer).play()
 	TransitionLayer.change_scene(start_game_scene)
 	title.visible = false
 

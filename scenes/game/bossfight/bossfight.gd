@@ -111,6 +111,7 @@ func _on_boss_face_boss_status_changed(status:String) -> void:
 
 
 func _on_boss_bullet_timer_timeout() -> void:
+	($bullet_sfx as AudioStreamPlayer).play()
 	var bullet_data: Dictionary = boss_portrait_scene.get_next_bullet_data()
 	if bullet_data["letter"] != "" and bullet_data["letter"] != " ":
 		spawn_bullet((bullet_data["position"] as Vector2), (bullet_data["letter"] as String))
