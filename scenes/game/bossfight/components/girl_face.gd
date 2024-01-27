@@ -57,6 +57,7 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 		invincible_timer.start()
 		block_move_timer.start()
 		active_material.set_shader_parameter("Strength", 30)
+		($hit_sfx as AudioStreamPlayer).play()
 		if GameStats.player_health <= 0:
 			player_dead.emit()
 
