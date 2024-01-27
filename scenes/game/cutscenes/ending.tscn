@@ -1,8 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://bp5pm7whfu0ay"]
+[gd_scene load_steps=35 format=3 uid="uid://bp5pm7whfu0ay"]
 
 [ext_resource type="Script" path="res://scenes/game/cutscenes/ending.gd" id="1_4grx4"]
 [ext_resource type="AudioStream" uid="uid://tbq8xboas0oe" path="res://assets/audio/sfx/CutsceneOutro/DoggoBark.wav" id="2_725cg"]
 [ext_resource type="Texture2D" uid="uid://btpi6uajepcr4" path="res://assets/art/Stanza/Room.png" id="2_gescu"]
+[ext_resource type="AudioStream" uid="uid://b2awbvqdolxol" path="res://assets/audio/sfx/CutsceneOutro/Magic.wav" id="2_id1kd"]
 [ext_resource type="AudioStream" uid="uid://cc5wkvagtjxm3" path="res://assets/audio/sfx/CutsceneOutro/HEHEBimba.wav" id="2_y226s"]
 [ext_resource type="Texture2D" uid="uid://ctg4m1vm8d4kf" path="res://assets/art/Bambina/Sorriso-bambina-1.png" id="3_fjrsj"]
 [ext_resource type="Texture2D" uid="uid://lxptknj4nm53" path="res://assets/art/Bambina/Sorriso-bambina-2.png" id="4_kgmhn"]
@@ -24,7 +25,6 @@
 [ext_resource type="Texture2D" uid="uid://s2ivpmpck713" path="res://assets/art/Lupo/Trasformazione/Trasformazione-8.png" id="18_7oc7m"]
 [ext_resource type="Texture2D" uid="uid://ceh6034v38u50" path="res://assets/art/Lupo/Pixel-doggo/Standing-2.png" id="20_nwm1b"]
 [ext_resource type="Texture2D" uid="uid://cx41eirr572f1" path="res://assets/art/Lupo/Pixel-doggo/Standing-1.png" id="21_tibmi"]
-[ext_resource type="Texture2D" uid="uid://bhie0ipm0ospu" path="res://assets/art/Bambina/Mano-bambina-1.png" id="22_15b0l"]
 [ext_resource type="Texture2D" uid="uid://bcnkxhreufvi0" path="res://assets/art/Bambina/Mano-bambina-2.png" id="23_f5ev8"]
 [ext_resource type="Texture2D" uid="uid://b5dh8hmv8y11j" path="res://assets/art/Lupo/Sprite-doggo/Doggo-alzato-3-risata.png" id="24_hfxba"]
 [ext_resource type="AudioStream" uid="uid://e5qnkwb7icee" path="res://assets/audio/music/AmbienceIntro.wav" id="26_13yxx"]
@@ -282,6 +282,10 @@ tracks/11/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
+"stream": ExtResource("2_id1kd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
 "stream": ExtResource("2_725cg")
 }, {
 "end_offset": 0.0,
@@ -296,7 +300,7 @@ tracks/11/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("2_725cg")
 }],
-"times": PackedFloat32Array(13.5, 14.4, 17.3, 18)
+"times": PackedFloat32Array(8.8, 13.5, 14.4, 17.3, 18)
 }
 tracks/11/use_blend = true
 tracks/12/type = "value"
@@ -406,20 +410,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_68y16"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("22_15b0l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_f5ev8")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="Ending" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -465,18 +455,16 @@ sprite_frames = SubResource("SpriteFrames_rrgrk")
 [node name="Wolf" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(429, 362)
-scale = Vector2(1.89, 1.89)
+scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_wlb6s")
 
-[node name="manina" type="AnimatedSprite2D" parent="."]
+[node name="manina" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(0.588235, 0.588235, 0.588235, 1)
 z_index = 1
 position = Vector2(819, 240)
 scale = Vector2(2.09412, 2.09412)
-sprite_frames = SubResource("SpriteFrames_68y16")
-autoplay = "default"
-frame = 1
+texture = ExtResource("23_f5ev8")
 
 [node name="VIgnetta" type="Sprite2D" parent="."]
 visible = false
@@ -505,7 +493,8 @@ metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(739, 234)
-zoom = Vector2(1.4, 1.4)
+offset = Vector2(30, 10)
+zoom = Vector2(2, 2)
 
 [node name="cinematic_sfx" type="AudioStreamPlayer" parent="."]
 volume_db = -20.0
