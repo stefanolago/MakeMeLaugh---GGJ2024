@@ -1,20 +1,23 @@
-[gd_scene load_steps=24 format=3 uid="uid://brptrqp46bq11"]
+[gd_scene load_steps=28 format=3 uid="uid://brptrqp46bq11"]
 
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/boss_face.gd" id="1_msnto"]
 [ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="2_4qcnx"]
 [ext_resource type="Texture2D" uid="uid://dg88ns2w5pg0v" path="res://assets/art/Bambina/Idle.png" id="2_kotg8"]
 [ext_resource type="Texture2D" uid="uid://dee5intl7fld7" path="res://assets/art/Lupo/lupo-che-ride.png" id="2_kqh3j"]
 [ext_resource type="Texture2D" uid="uid://dhquvkrgg0ul4" path="res://assets/art/Lupo/lupo.png" id="2_r7x3r"]
-[ext_resource type="AudioStream" uid="uid://cry618m15kry2" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-001.wav" id="3_gkcep"]
 [ext_resource type="Texture2D" uid="uid://b277ri4cs74g4" path="res://assets/art/Lupo/non-voglio-sentire.png" id="4_1ba65"]
-[ext_resource type="AudioStream" uid="uid://ditd5fol8jmgl" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-002.wav" id="4_1qjjv"]
 [ext_resource type="Texture2D" uid="uid://ddmmqhq850qjr" path="res://assets/art/Lupo/Testa-lupo.png" id="4_pm61g"]
 [ext_resource type="Texture2D" uid="uid://4ni2fub51v0v" path="res://assets/art/Lupo/lupo-occhi-chiusi.png" id="5_d3rpw"]
 [ext_resource type="Texture2D" uid="uid://cax5d2pgxysne" path="res://assets/art/Lupo/orecchie-abbassate.png" id="5_lr5lh"]
-[ext_resource type="AudioStream" uid="uid://d3pd26cytwwe5" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-003.wav" id="5_mq4e1"]
-[ext_resource type="AudioStream" uid="uid://1fl2ywarqcv2" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-004.wav" id="6_jjbtf"]
-[ext_resource type="AudioStream" uid="uid://5wmge73kboq0" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-005.wav" id="7_bjglq"]
-[ext_resource type="AudioStream" uid="uid://c62eo8bcj3u75" path="res://assets/audio/sfx/Wolf Attack/wolf_attack-006.wav" id="8_nsh7b"]
+[ext_resource type="AudioStream" uid="uid://dnynmvcf8ivy4" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-001.wav" id="10_3n64y"]
+[ext_resource type="AudioStream" uid="uid://bupg48rweff0e" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-001.wav" id="10_4oyww"]
+[ext_resource type="AudioStream" uid="uid://cx7d0lm34v5t8" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-002.wav" id="11_10nkk"]
+[ext_resource type="AudioStream" uid="uid://dk47rnfgs1dq" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-002.wav" id="11_x8pta"]
+[ext_resource type="AudioStream" uid="uid://cjpnfoskyl6g1" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-003.wav" id="12_1kagt"]
+[ext_resource type="AudioStream" uid="uid://duihjpgfhk08c" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-003.wav" id="12_ramax"]
+[ext_resource type="AudioStream" uid="uid://ddiena2bwgd08" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-004.wav" id="13_k70qe"]
+[ext_resource type="AudioStream" uid="uid://c3qelmjbhrgvw" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-004.wav" id="13_oglb5"]
+[ext_resource type="AudioStream" uid="uid://btb05vvg5yhn" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-005.wav" id="14_ym3lc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jw73"]
 size = Vector2(517, 720)
@@ -78,6 +81,18 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_58j5a"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_4lvku"]
 resource_name = "attacking"
@@ -103,10 +118,22 @@ tracks/1/path = NodePath("Node2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 2.075, 4.075, 6.075, 8.05, 9.5, 10),
+"times": PackedFloat32Array(0, 0.5, 2, 4, 6, 8, 9.5, 10),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-500, -200), Vector2(500, -200), Vector2(-500, -200), Vector2(500, -200), Vector2(-500, -200), Vector2(500, -200), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("wolf_woosh:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 4, 6, 8, 9.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true]
 }
 
 [sub_resource type="Animation" id="Animation_0xg20"]
@@ -138,6 +165,18 @@ tracks/1/keys = {
 "method": &"_attack_finished"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("wolf_woosh:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true]
+}
 
 [sub_resource type="Animation" id="Animation_p7ov1"]
 resource_name = "damage"
@@ -166,19 +205,28 @@ _data = {
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_garh4"]
-streams_count = 6
-stream_0/stream = ExtResource("3_gkcep")
+streams_count = 5
+stream_0/stream = ExtResource("10_3n64y")
 stream_0/weight = 1.0
-stream_1/stream = ExtResource("4_1qjjv")
+stream_1/stream = ExtResource("11_x8pta")
 stream_1/weight = 1.0
-stream_2/stream = ExtResource("5_mq4e1")
+stream_2/stream = ExtResource("12_1kagt")
 stream_2/weight = 1.0
-stream_3/stream = ExtResource("6_jjbtf")
+stream_3/stream = ExtResource("13_oglb5")
 stream_3/weight = 1.0
-stream_4/stream = ExtResource("7_bjglq")
+stream_4/stream = ExtResource("14_ym3lc")
 stream_4/weight = 1.0
-stream_5/stream = ExtResource("8_nsh7b")
-stream_5/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w1elo"]
+streams_count = 4
+stream_0/stream = ExtResource("10_4oyww")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("11_10nkk")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("12_ramax")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("13_k70qe")
+stream_3/weight = 1.0
 
 [node name="BossFace" type="Area2D"]
 collision_layer = 2
@@ -250,9 +298,18 @@ libraries = {
 
 [node name="wolf_hit" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_garh4")
+volume_db = -10.0
+bus = &"SFX"
 
 [node name="wolf_attack" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_garh4")
+volume_db = -20.0
+bus = &"SFX"
+
+[node name="wolf_woosh" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_w1elo")
+volume_db = -20.0
+bus = &"SFX"
 
 [connection signal="timeout" from="DefenceModeTimer" to="." method="_on_defence_mode_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -30,6 +30,7 @@ var face_status: FaceStatus = FaceStatus.IDLE:
 					animated_sprite.play("grimace_2")
 				FaceStatus.FULL_GRIMACE:
 					animated_sprite.play("grimace_full")
+					($smorfia as AudioStreamPlayer).play()
 				
 
 

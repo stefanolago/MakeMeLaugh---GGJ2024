@@ -55,6 +55,7 @@ layout_mode = 2
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="Control/Buttons"]
+visible = false
 layout_mode = 2
 text = "Quit"
 
@@ -70,6 +71,7 @@ anchor_bottom = 0.8
 [node name="Credits" parent="Control" instance=ExtResource("3_drggk")]
 visible = false
 layout_mode = 1
+final_credits = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("3_mxssh")
@@ -80,7 +82,7 @@ offset_left = 218.0
 offset_top = 182.0
 offset_right = 340.0
 offset_bottom = 198.0
-scale = Vector2(5.86307, 7.00238)
+theme_override_font_sizes/font_size = 94
 text = "make ME laugh"
 horizontal_alignment = 1
 vertical_alignment = 1

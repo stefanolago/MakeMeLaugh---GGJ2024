@@ -66,6 +66,14 @@ text/autopauses={}
 glossary/default_case_sensitive=true
 text/autoadvance_enabled=false
 text/absolute_autopauses=false
+event_default_overrides={
+"Music": {
+"audio_bus": "SFX"
+},
+"Sound": {
+"audio_bus": "SFX"
+}
+}
 
 [display]
 
@@ -87,6 +95,7 @@ folder_colors={
 [gui]
 
 theme/custom_font="res://assets/fonts/04B_03__.TTF"
+theme/default_font_subpixel_positioning=0
 
 [input]
 

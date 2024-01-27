@@ -35,5 +35,5 @@ func _on_play_button_pressed() -> void:
 	title.visible = false
 
 
-func _on_credits_credits_back_button():
+func _on_credits_credits_back_button() -> void:
 	title.visible = true

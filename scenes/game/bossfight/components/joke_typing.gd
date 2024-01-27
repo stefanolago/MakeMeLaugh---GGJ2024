@@ -41,8 +41,10 @@ func _input(event: InputEvent) -> void:
 func check_input() -> void:
 	var is_good: bool = player_input.text.strip_edges() == current_joke
 	if is_good:
+		($correct_type as AudioStreamPlayer).play()
 		($AnimationPlayer as AnimationPlayer).play("right_joke")
 	else:
+		($wrong_type as AudioStreamPlayer).play()
 		($AnimationPlayer as AnimationPlayer).play("wrong_joke")
 
 
