@@ -11,13 +11,34 @@ extends Control
 @onready var boss_bullet: PackedScene = preload("res://scenes/game/bossfight/components/bullet.tscn")
 @onready var ending: PackedScene = preload("res://scenes/game/cutscenes/ending.tscn")
 @onready var game_over_scene: PackedScene = preload("res://scenes/_game_over/game_over.tscn")
+@onready var boss_music_1: AudioStreamWAV = preload("res://assets/audio/music/boss_part_2_.wav")
+@onready var boss_music_2: AudioStreamWAV = preload("res://assets/audio/music/boss_part_2_.wav")
+@onready var audio_stream_drone: AudioStreamPlayer = $music_drone
+@onready var audio_stream_boss_1: AudioStreamPlayer = $music_1
+@onready var audio_stream_boss_2: AudioStreamPlayer = $music_2
 
 var phase_mult: float = 1.0
+var current_volume: float 
 
 func _ready() -> void:
 	hide_player_ui()
 	Dialogic.signal_event.connect(DialogicSignal)
 	Dialogic.start("bossfight_intro")
+	fade_music_in(audio_stream_drone, 3)
+
+
+func fade_music_in(stream_player:AudioStreamPlayer, speed:float) -> void:
+	var music_tween: Tween = get_tree().create_tween()
+	current_volume = stream_player.volume_db
+	stream_player.volume_db = -40
+	music_tween.tween_callback(stream_player.play)
+	music_tween.tween_property(stream_player, "volume_db", current_volume, speed)
+
+
+func fade_music_out(stream_player:AudioStreamPlayer, speed:float) -> void:
+	var music_tween: Tween = get_tree().create_tween()
+	music_tween.tween_property(stream_player, "volume_db", -40, speed)
+	music_tween.tween_callback(stream_player.stop)
 
 
 func player_attack(attack_type: Boss.AttackType) -> void:
@@ -37,6 +58,7 @@ func spawn_bullet(pos: Vector2, letter: String) -> void:
 
 
 func end_bossfight() -> void:
+	fade_music_out(audio_stream_boss_2, 1)
 	TransitionLayer.change_scene(ending)
 
 
@@ -146,6 +168,7 @@ func _on_girl_face_player_dead() -> void:
 
 func DialogicSignal(argument:String) -> void:
 	if argument == "bossfight_intro_end":
+		fade_music_in(audio_stream_boss_1, 0.1)
 		($BossFace as Boss).new_defence_mode()
 		show_player_ui()
 	if argument == "second_phase_end":
@@ -153,6 +176,7 @@ func DialogicSignal(argument:String) -> void:
 		phase_mult = 0.4
 		($BossFace as Boss).new_defence_mode()
 		show_player_ui()
-
+	if argument == "fade_out_drone":
+		fade_music_out(audio_stream_drone, 0.5)
 
 

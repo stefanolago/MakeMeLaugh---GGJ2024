@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8i4dav4givqf"]
+[gd_scene load_steps=8 format=3 uid="uid://b8i4dav4givqf"]
 
 [ext_resource type="Script" path="res://scenes/_start/start_menu.gd" id="1_l8e1a"]
 [ext_resource type="PackedScene" uid="uid://bxlfyph8igh8b" path="res://scenes/_options_menu/options_menu.tscn" id="1_q0fgv"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dkhsruehu1ue6" path="res://scenes/_credits/credits.tscn" id="3_drggk"]
 [ext_resource type="AudioStream" uid="uid://b32ddpvwwgaa1" path="res://assets/audio/sfx/UI Menù/Confirm.wav" id="3_tx0tu"]
 [ext_resource type="Texture2D" uid="uid://dhquvkrgg0ul4" path="res://assets/art/Lupo/lupo.png" id="6_301i2"]
+[ext_resource type="AudioStream" uid="uid://eiyouj6n1hbl" path="res://assets/audio/music/Main_mENU.wav" id="7_asd4m"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_l8e1a")
@@ -94,6 +95,11 @@ modulate = Color(1, 1, 1, 0.113725)
 position = Vector2(580, 497)
 texture = ExtResource("6_301i2")
 metadata/_edit_lock_ = true
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_asd4m")
+bus = &"Music"
 
 [connection signal="pressed" from="Control/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Control/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]

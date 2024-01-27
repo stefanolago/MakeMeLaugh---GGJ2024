@@ -3,5 +3,6 @@ wolf (base): You know who I am.
 wolf (base): We are old friends at this point.
 wolf (base): I know you were hoping to rest tonight, but I have other plans.
 wolf (base): I'll be here with you.
+[signal arg="fade_out_drone"]
 wolf (base): Forever.
 [signal arg="bossfight_intro_end"]
