@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjhj5oq6bo6mq"]
+[gd_scene load_steps=12 format=3 uid="uid://cjhj5oq6bo6mq"]
 
 [ext_resource type="PackedScene" uid="uid://bcfs7nljoccss" path="res://scenes/game/bossfight/components/joke_typing.tscn" id="1_fu3yb"]
 [ext_resource type="Script" path="res://scenes/game/bossfight/bossfight.gd" id="1_h1yt4"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://44u818wjeuva" path="res://scenes/game/bossfight/components/girl_face.tscn" id="6_r651i"]
 [ext_resource type="AudioStream" uid="uid://sm7oh0jsdh3p" path="res://assets/audio/sfx/Bullet.wav" id="8_o7enk"]
 [ext_resource type="AudioStream" uid="uid://csakrbqto1j1b" path="res://assets/audio/music/Drone_LupoStart.wav" id="9_l3t3g"]
+[ext_resource type="AudioStream" uid="uid://cpas24vqnvjik" path="res://assets/audio/music/First_phase_Boss.wav" id="10_ib206"]
 [ext_resource type="AudioStream" uid="uid://vxekxe0pcdle" path="res://assets/audio/music/boss_part_2_.wav" id="10_kd0yi"]
 
 [node name="Bossfight" type="Control"]
@@ -105,7 +106,7 @@ bus = &"Music"
 
 [node name="music_1" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("10_kd0yi")
+stream = ExtResource("10_ib206")
 volume_db = -10.0
 bus = &"Music"
 

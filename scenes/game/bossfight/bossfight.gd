@@ -154,6 +154,7 @@ func _on_boss_face_boss_dead() -> void:
 
 
 func _on_boss_face_boss_second_phase() -> void:
+	fade_music_out(audio_stream_boss_1, 0.5)
 	Dialogic.start("second_phase")
 	hide_player_ui()
 
@@ -172,6 +173,7 @@ func DialogicSignal(argument:String) -> void:
 		($BossFace as Boss).new_defence_mode()
 		show_player_ui()
 	if argument == "second_phase_end":
+		fade_music_in(audio_stream_boss_2, 0.1)
 		GameStats.second_phase = true
 		phase_mult = 0.4
 		($BossFace as Boss).new_defence_mode()
