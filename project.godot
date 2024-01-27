@@ -87,6 +87,7 @@ folder_colors={
 [gui]
 
 theme/custom_font="res://assets/fonts/04B_03__.TTF"
+theme/default_font_subpixel_positioning=0
 
 [input]
 

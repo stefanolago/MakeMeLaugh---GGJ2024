@@ -7,6 +7,9 @@ var bossfight:PackedScene = preload("res://scenes/game/bossfight/bossfight.tscn"
 func _ready() -> void:
 	Dialogic.signal_event.connect(DialogicSignal)
 	anim_player.play("intro_cinematic")
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
+
 
 func DialogicSignal(argument:String) -> void:
 	if argument == "bossfight":
