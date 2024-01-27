@@ -7,9 +7,10 @@ extends Control
 @onready var boss_portrait_scene: Boss = $BossFace
 @onready var boss_bullet_timer: Timer = $boss_bullet_timer
 @onready var girl_face: GirlFace = $GirlFace
+@onready var movement_limit:Node2D = $movement_limit
 @onready var boss_bullet: PackedScene = preload("res://scenes/game/bossfight/components/bullet.tscn")
 @onready var ending: PackedScene = preload("res://scenes/game/cutscenes/ending.tscn")
-
+@onready var game_over_scene: PackedScene = preload("res://scenes/_game_over/game_over.tscn")
 
 func _ready() -> void:
 	hide_player_ui()
@@ -49,6 +50,11 @@ func hide_player_ui() -> void:
 	face_clicker_scene.visible = false
 
 
+func game_over() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	TransitionLayer.change_scene(game_over_scene)
+
+
 func _on_face_clicker_face_status_changed(status: FaceClicker.FaceStatus) -> void:
 	match status:
 		FaceClicker.FaceStatus.FULL_GRIMACE_ATTACK:
@@ -76,6 +82,7 @@ func _on_joke_typing_inserted_wrong_word() -> void:
 func _on_boss_face_boss_status_changed(status:String) -> void:
 	match status:
 		"ATTACK":
+			movement_limit.visible = true
 			typing_scene.visible = false
 			feather_scene.reset_to_normal()
 			feather_scene.visible = false
@@ -84,6 +91,7 @@ func _on_boss_face_boss_status_changed(status:String) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			boss_bullet_timer.start(0.1)
 		"DAMAGE":
+			movement_limit.visible = false
 			typing_scene.visible = false
 			feather_scene.reset_to_normal()
 			feather_scene.visible = false
@@ -91,6 +99,7 @@ func _on_boss_face_boss_status_changed(status:String) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			face_clicker_scene.visible = false
 		_:
+			movement_limit.visible = false
 			typing_scene.visible = true
 			feather_scene.visible = true
 			girl_face.visible = false
@@ -128,6 +137,10 @@ func _on_boss_face_boss_blocked_damage() -> void:
 	hide_player_ui()
 
 
+func _on_girl_face_player_dead() -> void:
+	game_over()
+
+
 func DialogicSignal(argument:String) -> void:
 	if argument == "bossfight_intro_end":
 		($BossFace as Boss).new_defence_mode()
@@ -136,5 +149,6 @@ func DialogicSignal(argument:String) -> void:
 		GameStats.second_phase = true
 		($BossFace as Boss).new_defence_mode()
 		show_player_ui()
+
 
 
