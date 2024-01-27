@@ -1,0 +1,249 @@
+[gd_scene load_steps=23 format=3 uid="uid://bcfs7nljoccss"]
+
+[ext_resource type="Script" path="res://scenes/game/bossfight/components/joke_typing.gd" id="1_gd0n1"]
+[ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="1_hsuhm"]
+[ext_resource type="Texture2D" uid="uid://d00o74i2en3jc" path="res://assets/art/UI/panel-border-corner.png" id="2_1nxf1"]
+[ext_resource type="Texture2D" uid="uid://bul8u8eh0lhyh" path="res://assets/art/UI/panel-border-side.png" id="3_7bqmx"]
+[ext_resource type="AudioStream" uid="uid://ddq0g67loh5q0" path="res://assets/audio/sfx/HitLupoFin/HitLupo-001.wav" id="5_pgjri"]
+[ext_resource type="AudioStream" uid="uid://d3uno76n1b0qk" path="res://assets/audio/sfx/HitLupoFin/HitLupo-002.wav" id="6_dsivj"]
+[ext_resource type="AudioStream" uid="uid://pbn6twkbmjge" path="res://assets/audio/sfx/HitLupoFin/HitLupo-003.wav" id="7_lmmx6"]
+[ext_resource type="AudioStream" uid="uid://yy38dgs7433b" path="res://assets/audio/sfx/HitLupoFin/HitLupo-004.wav" id="8_870ks"]
+[ext_resource type="AudioStream" uid="uid://cw7608i5f2aub" path="res://assets/audio/sfx/HitLupoFin/HitLupo-005.wav" id="9_b6p0e"]
+[ext_resource type="AudioStream" uid="uid://bnherco7pg4mi" path="res://assets/audio/sfx/UI Menù/Error.wav" id="10_vfk5v"]
+[ext_resource type="AudioStream" uid="uid://cco5gigpj48m6" path="res://assets/audio/sfx/TypeTastieraPlayer/Lettera-001.wav" id="11_e7mvy"]
+[ext_resource type="AudioStream" uid="uid://dtsl751531bxf" path="res://assets/audio/sfx/TypeTastieraPlayer/Lettera-002.wav" id="12_gsrmv"]
+[ext_resource type="AudioStream" uid="uid://by7pgnh6u1ir8" path="res://assets/audio/sfx/TypeTastieraPlayer/Lettera-003.wav" id="13_5joio"]
+[ext_resource type="AudioStream" uid="uid://bveblwvyvd4eb" path="res://assets/audio/sfx/TypeTastieraPlayer/Lettera-004.wav" id="14_11m6n"]
+[ext_resource type="AudioStream" uid="uid://conu4i6d51xs4" path="res://assets/audio/sfx/TypeTastieraPlayer/Lettera-005.wav" id="15_8cvjr"]
+
+[sub_resource type="Animation" id="Animation_cae7m"]
+resource_name = "right_joke"
+length = 0.8
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.45),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"right_joke_anim_played"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("joke_UI:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2.08165e-12, 50), Vector2(2.08165e-12, -100), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vadex"]
+resource_name = "wrong_joke"
+length = 0.7
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.65),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"wrong_joke_anim_played"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("joke_UI:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-20, 2.08165e-12), Vector2(20, 2.08165e-12), Vector2(-20, 2.08165e-12), Vector2(20, 2.08165e-12), Vector2(-20, 2.08165e-12), Vector2(20, 2.08165e-12), Vector2(-20, 2.08165e-12), Vector2(20, 2.08165e-12), Vector2(-15, 2.08165e-12), Vector2(15, 2.08165e-12), Vector2(-10, 2.08165e-12), Vector2(10, 2.08165e-12), Vector2(-5, 2.08165e-12), Vector2(2.08165e-12, 2.08165e-12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0g10k"]
+_data = {
+"right_joke": SubResource("Animation_cae7m"),
+"wrong_joke": SubResource("Animation_vadex")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1nx0i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7dej"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rksfh"]
+streams_count = 5
+stream_0/stream = ExtResource("5_pgjri")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("6_dsivj")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("7_lmmx6")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("8_870ks")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("9_b6p0e")
+stream_4/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t6odj"]
+streams_count = 5
+stream_0/stream = ExtResource("11_e7mvy")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("12_gsrmv")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("13_5joio")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("14_11m6n")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("15_8cvjr")
+stream_4/weight = 1.0
+
+[node name="JokeTyping" type="Node2D"]
+material = ExtResource("1_hsuhm")
+script = ExtResource("1_gd0n1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0g10k")
+}
+
+[node name="joke_UI" type="Control" parent="."]
+use_parent_material = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="joke_UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.607843, 1)
+
+[node name="Joke_display" type="Label" parent="joke_UI"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -42.0
+offset_right = 109.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "sei per seo?
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player_input" type="LineEdit" parent="joke_UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -5.0
+offset_right = 186.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/caret_color = Color(0, 0, 0, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1nx0i")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u7dej")
+alignment = 1
+expand_to_text_length = true
+selecting_enabled = false
+flat = true
+
+[node name="Panel-border-corner" type="Sprite2D" parent="joke_UI"]
+use_parent_material = true
+position = Vector2(-219, -57.9999)
+texture = ExtResource("2_1nxf1")
+
+[node name="Panel-border-corner2" type="Sprite2D" parent="joke_UI"]
+use_parent_material = true
+position = Vector2(-219, 46)
+rotation = -1.57079
+texture = ExtResource("2_1nxf1")
+
+[node name="Panel-border-corner3" type="Sprite2D" parent="joke_UI"]
+use_parent_material = true
+position = Vector2(219, 46)
+rotation = -3.14159
+texture = ExtResource("2_1nxf1")
+
+[node name="Panel-border-corner4" type="Sprite2D" parent="joke_UI"]
+use_parent_material = true
+position = Vector2(219, -57.9999)
+rotation = 1.5708
+texture = ExtResource("2_1nxf1")
+
+[node name="Panel-border-side" type="Sprite2D" parent="joke_UI"]
+use_parent_material = true
+position = Vector2(-0.49999, -54)
+scale = Vector2(7.625, 1)
+texture = ExtResource("3_7bqmx")
+
+[node name="Panel-border-side5" type="Sprite2D" parent="joke_UI"]
+use_parent_material = true
+position = Vector2(1.00002, 42)
+scale = Vector2(7.64286, 1)
+texture = ExtResource("3_7bqmx")
+
+[node name="Panel-border-side3" type="Sprite2D" parent="joke_UI"]
+use_parent_material = true
+position = Vector2(215, -5.0072)
+rotation = 1.57079
+scale = Vector2(1.57117, 1)
+texture = ExtResource("3_7bqmx")
+
+[node name="Panel-border-side4" type="Sprite2D" parent="joke_UI"]
+use_parent_material = true
+position = Vector2(-215, -5.89917)
+rotation = 1.57079
+scale = Vector2(1.53932, 1)
+texture = ExtResource("3_7bqmx")
+
+[node name="correct_type" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_rksfh")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="wrong_type" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_vfk5v")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="typing_sfx" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_t6odj")
+volume_db = -10.0
+bus = &"SFX"

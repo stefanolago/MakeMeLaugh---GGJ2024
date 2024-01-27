@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxlfyph8igh8b"]
+[gd_scene load_steps=6 format=3 uid="uid://bxlfyph8igh8b"]
 
 [ext_resource type="Script" path="res://scenes/_options_menu/options_menu.gd" id="1_lpdjf"]
 [ext_resource type="AudioStream" uid="uid://yy4e4eabnmx8" path="res://assets/audio/sfx/UI Menù/Back.wav" id="3_ytxx1"]
 [ext_resource type="PackedScene" uid="uid://otacf7gyxcpp" path="res://scenes/_options_menu/audio/audio_options.tscn" id="4_a1oik"]
+[ext_resource type="AudioStream" uid="uid://bdvp3wplhfhe6" path="res://assets/audio/sfx/UI Menù/HoverFitta.wav" id="4_qov30"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muirh"]
 bg_color = Color(0.180392, 0.180392, 0.180392, 1)
@@ -44,4 +45,11 @@ stream = ExtResource("3_ytxx1")
 volume_db = -15.0
 bus = &"SFX"
 
+[node name="hover_sfx" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("4_qov30")
+volume_db = -15.0
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

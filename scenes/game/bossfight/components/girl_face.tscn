@@ -33,7 +33,7 @@ one_shot = true
 
 [node name="hit_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_arjo8")
-volume_db = -5.0
+volume_db = -10.0
 bus = &"SFX"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
