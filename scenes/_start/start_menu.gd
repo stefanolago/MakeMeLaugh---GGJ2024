@@ -70,17 +70,17 @@ func _on_credits_credits_back_button() -> void:
 	title.visible = true
 
 
-func _on_play_button_mouse_entered():
+func _on_play_button_mouse_entered() -> void:
 	play_hover_sfx()
 
 
-func _on_options_button_mouse_entered():
+func _on_options_button_mouse_entered() -> void:
 	play_hover_sfx()
 
 
-func _on_credits_button_mouse_entered():
+func _on_credits_button_mouse_entered() -> void:
 	play_hover_sfx()
 
 
-func _on_quit_button_mouse_entered():
+func _on_quit_button_mouse_entered() -> void:
 	play_hover_sfx()
