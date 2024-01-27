@@ -71,6 +71,7 @@ anchor_bottom = 0.8
 [node name="Credits" parent="Control" instance=ExtResource("3_drggk")]
 visible = false
 layout_mode = 1
+final_credits = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("3_mxssh")
