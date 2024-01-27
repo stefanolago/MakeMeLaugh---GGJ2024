@@ -28,6 +28,7 @@ enum State {
 
 var phase_mult: float = 1.0
 var current_volume: float 
+var bullet_velocity: int = 0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -60,10 +61,11 @@ func player_fails() -> void:
 	pass
 
 
-func spawn_bullet(pos: Vector2, letter: String) -> void:
+func spawn_bullet(pos: Vector2, letter: String, velocity: int) -> void:
 	var bullet_instance: BossBullet = boss_bullet.instantiate()
 	bullet_instance.set_letter(letter)
 	bullet_instance.position = pos
+	bullet_instance.set_velocity(velocity)
 	add_child(bullet_instance)
 
 
@@ -159,7 +161,7 @@ func _on_boss_bullet_timer_timeout() -> void:
 	($bullet_sfx as AudioStreamPlayer).play()
 	var bullet_data: Dictionary = boss_face.get_next_bullet_data()
 	if bullet_data["letter"] != "" and bullet_data["letter"] != " ":
-		spawn_bullet((bullet_data["position"] as Vector2), (bullet_data["letter"] as String))
+		spawn_bullet((bullet_data["position"] as Vector2), (bullet_data["letter"] as String), bullet_velocity)
 		boss_bullet_timer.start(0.1 * phase_mult)
 	else:
 		if boss_face.currently_processed_attack_word.length() > 0:
@@ -209,6 +211,7 @@ func DialogicSignal(argument:String) -> void:
 		phase_mult = 0.4
 		start_boss_fight()
 
+		bullet_velocity = GameStats.second_phase_bullet_vel
 	if argument == "fade_out_drone":
 		fade_music_out(audio_stream_drone, 0.5)
 

@@ -4,10 +4,15 @@ if :
 	- No
 		[signal arg="show_tutorial_false"]
 wolf (base): Hello, Me.
-wolf (base): You know who I am.
-wolf (base): We are old friends at this point.
-wolf (base): I know you were hoping to rest tonight, but I have other plans.
-wolf (base): I'll be here with you.
+wolf (base): I was waiting for you.
+wolf (base): …
+wolf (base): You want me gone?
+wolf (base): Oh, but I can't.
+wolf (base): I'm here to stay, Me.
+wolf (base): I will always be with you.
+Close your eyes child, and look at me.
 [signal arg="fade_out_drone"]
-wolf (base): Forever.
+wolf (base): We are together.
+As one.
+Forever.
 [signal arg="bossfight_intro_end"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvtx0cilely5c"]
+[gd_scene load_steps=18 format=3 uid="uid://bvtx0cilely5c"]
 
 [ext_resource type="Script" path="res://scenes/game/cutscenes/intro.gd" id="1_ookg7"]
 [ext_resource type="Texture2D" uid="uid://btpi6uajepcr4" path="res://assets/art/Stanza/Room.png" id="2_kjo4n"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://brcugsob45dxw" path="res://assets/audio/sfx/CutsceneIntro/ClickLuceFin.wav" id="4_ru83s"]
 [ext_resource type="Texture2D" uid="uid://dgk38f7avwe4w" path="res://assets/art/Lupo/Pixel-lupo.png" id="4_w1jqb"]
 [ext_resource type="Texture2D" uid="uid://c8tf22np2amql" path="res://assets/art/lights/circle.png" id="5_65y62"]
+[ext_resource type="AudioStream" uid="uid://bm1xln52pofhc" path="res://assets/audio/sfx/CutsceneIntro/Thunder.wav" id="5_f3g4e"]
 [ext_resource type="SpriteFrames" uid="uid://cw237uwjimjf5" path="res://scenes/game/cutscenes/girl_bed_awake.tres" id="5_wg4j0"]
 [ext_resource type="AudioStream" uid="uid://b8wmnd6v3g480" path="res://assets/audio/sfx/CutsceneIntro/AmbienceIntro.wav" id="9_4ntg6"]
 [ext_resource type="Texture2D" uid="uid://eu88ioop2lsv" path="res://assets/art/lights/cone_light.png" id="9_hpajw"]
@@ -112,7 +113,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("LightningBolt:enabled")
+tracks/8/path = NodePath("Control/LightningBolt:enabled")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -136,7 +137,7 @@ tracks/9/keys = {
 
 [sub_resource type="Animation" id="Animation_ledxy"]
 resource_name = "intro_cinematic"
-length = 11.0
+length = 12.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -168,7 +169,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(2, 4.59085, 6.25644, 11),
+"times": PackedFloat32Array(2, 4.59085, 6.25644, 11.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [],
@@ -243,8 +244,12 @@ tracks/7/keys = {
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": ExtResource("4_ru83s")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_f3g4e")
 }],
-"times": PackedFloat32Array(7)
+"times": PackedFloat32Array(7, 9.2)
 }
 tracks/7/use_blend = true
 tracks/8/type = "value"
@@ -286,7 +291,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("LightningBolt:enabled")
+tracks/11/path = NodePath("Control/LightningBolt:enabled")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -343,10 +348,10 @@ polygon = PackedVector2Array(-49, 46, -48, -7, -51, -26, -42, -46, -32, -34, -36
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jw1gd"]
 cull_mode = 1
-polygon = PackedVector2Array(-47, 94, -49, -21, 46, -20, 44, 102, 110, -95, -105, -95)
+polygon = PackedVector2Array(-52, 88, -52, -14, 50, -14, 50, 88, 115, -101, -105, -100)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n1dtr"]
-polygon = PackedVector2Array(-78, -11, -106, -100, 115, -102, 76, -10, 47, 92, 48.7664, -10.1768, -50.442, -10.821, -48, 80)
+polygon = PackedVector2Array(-79, -10, -106, -100, 115, -102, 82, -5, 50, 88, 50, -14, -52, -14, -52, 88)
 
 [node name="Intro" type="Control"]
 layout_mode = 3
@@ -389,6 +394,7 @@ autoplay = "default"
 
 [node name="Wolf" type="Sprite2D" parent="."]
 visible = false
+modulate = Color(1, 1, 1, 0.45098)
 position = Vector2(454, 409)
 texture = ExtResource("4_w1jqb")
 
@@ -430,6 +436,7 @@ bus = &"SFX"
 [node name="ambiance_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_4ntg6")
 volume_db = -15.0
+autoplay = true
 bus = &"SFX"
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
@@ -439,10 +446,20 @@ occluder = SubResource("OccluderPolygon2D_jw1gd")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="LightOccluder2D"]
 occluder = SubResource("OccluderPolygon2D_n1dtr")
 
-[node name="LightningBolt" type="PointLight2D" parent="."]
-position = Vector2(518.948, 398.038)
+[node name="Control" type="Control" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LightningBolt" type="PointLight2D" parent="Control"]
+position = Vector2(514, 365)
 rotation = 1.5708
-scale = Vector2(0.848346, 0.754574)
+scale = Vector2(0.882267, 0.754574)
 enabled = false
 energy = 1.02
 shadow_enabled = true

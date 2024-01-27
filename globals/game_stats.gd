@@ -9,6 +9,7 @@ var player_health: int
 var invincibility_time: float
 var block_move_time: float
 var second_phase:bool
+var second_phase_bullet_vel: int = 300
 
 var show_tutorial: bool = true
 
@@ -27,3 +28,4 @@ func reset() -> void:
 	invincibility_time = 1.0
 	block_move_time = 0.5
 	second_phase = false
+	second_phase_bullet_vel = 300

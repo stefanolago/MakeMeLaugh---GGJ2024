@@ -7,7 +7,7 @@ var credits:PackedScene = preload("res://scenes/_credits/credits.tscn")
 func _ready() -> void:
 	Dialogic.signal_event.connect(DialogicSignal)
 	anim_player.play("ending_cinematic")
-	#Dialogic.start("ending")
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 func DialogicSignal(argument:String) -> void:
@@ -33,3 +33,7 @@ func start_dialogic() -> void:
 func load_next_level() -> void:
 	Dialogic.paused = false
 	TransitionLayer.change_scene(credits)
+
+
+func start_credits_song() -> void:
+	CreditSong.start_song()
