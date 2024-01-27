@@ -22,7 +22,7 @@ func reset() -> void:
 	boss_attack_timer_phase2 = 7
 	boss_defence_switch_timer = 20
 	boss_health = 8
-	second_phase_start_health = 4
+	second_phase_start_health = 7
 	player_health = 5
 	invincibility_time = 1.0
 	block_move_time = 0.5

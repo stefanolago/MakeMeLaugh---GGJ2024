@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://brptrqp46bq11"]
+[gd_scene load_steps=35 format=3 uid="uid://brptrqp46bq11"]
 
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/boss_face.gd" id="1_msnto"]
 [ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="2_4qcnx"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b4hc1yvb7ba4r" path="res://assets/art/Lupo/lupo-ghigno.png" id="10_5oxhh"]
 [ext_resource type="AudioStream" uid="uid://cxcxwciem4gxe" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-002.wav" id="11_10nkk"]
 [ext_resource type="AudioStream" uid="uid://bjkjd7yxaonyh" path="res://assets/audio/sfx/LupoSogghigna/HeheLupo-001.wav" id="11_j0nw1"]
+[ext_resource type="Texture2D" uid="uid://df0dj0b01wq60" path="res://assets/art/Nervetto.png" id="11_o31gj"]
 [ext_resource type="AudioStream" uid="uid://buhalv7r347en" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-002.wav" id="11_x8pta"]
 [ext_resource type="AudioStream" uid="uid://j2u2ijaa74m2" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-003.wav" id="12_1kagt"]
 [ext_resource type="AudioStream" uid="uid://caabpcguahq16" path="res://assets/audio/sfx/LupoSogghigna/HeheLupo-002.wav" id="12_ftcqt"]
@@ -308,12 +309,18 @@ color = Color(0.329412, 0.329412, 0.329412, 1)
 [node name="Boss" type="AnimatedSprite2D" parent="Node2D"]
 material = ExtResource("2_4qcnx")
 sprite_frames = SubResource("SpriteFrames_5x7p8")
-animation = &"ears_covered"
 autoplay = "default"
-frame_progress = 0.457632
 
 [node name="Marker2D" type="Marker2D" parent="Node2D/Boss"]
 position = Vector2(-2, 113)
+
+[node name="nervetto" type="TextureRect" parent="Node2D"]
+visible = false
+offset_left = 103.0
+offset_top = -421.0
+offset_right = 203.0
+offset_bottom = -321.0
+texture = ExtResource("11_o31gj")
 
 [node name="AttackPb" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)
