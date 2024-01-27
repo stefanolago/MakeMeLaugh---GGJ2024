@@ -1,6 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://bp5pm7whfu0ay"]
+[gd_scene load_steps=35 format=3 uid="uid://bp5pm7whfu0ay"]
 
 [ext_resource type="Script" path="res://scenes/game/cutscenes/ending.gd" id="1_4grx4"]
+[ext_resource type="AudioStream" uid="uid://tbq8xboas0oe" path="res://assets/audio/sfx/CutsceneOutro/DoggoBark.wav" id="2_725cg"]
 [ext_resource type="Texture2D" uid="uid://btpi6uajepcr4" path="res://assets/art/Stanza/Room.png" id="2_gescu"]
 [ext_resource type="AudioStream" uid="uid://cc5wkvagtjxm3" path="res://assets/audio/sfx/CutsceneOutro/HEHEBimba.wav" id="2_y226s"]
 [ext_resource type="Texture2D" uid="uid://ctg4m1vm8d4kf" path="res://assets/art/Bambina/Sorriso-bambina-1.png" id="3_fjrsj"]
@@ -106,7 +107,6 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_1dwxg"]
 resource_name = "ending_cinematic"
 length = 20.0
-step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -266,9 +266,21 @@ tracks/12/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
+"stream": ExtResource("2_725cg")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
 "stream": ExtResource("2_y226s")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_725cg")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_725cg")
 }],
-"times": PackedFloat32Array(14.4)
+"times": PackedFloat32Array(13.5, 14.4, 17.3, 18)
 }
 tracks/12/use_blend = true
 
@@ -417,6 +429,7 @@ position = Vector2(-27.363, 9.10074)
 scale = Vector2(1.16215, 1.16215)
 sprite_frames = SubResource("SpriteFrames_68y16")
 autoplay = "default"
+frame = 1
 
 [node name="Wolf" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
