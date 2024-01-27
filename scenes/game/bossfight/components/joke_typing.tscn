@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bcfs7nljoccss"]
+[gd_scene load_steps=16 format=3 uid="uid://bcfs7nljoccss"]
 
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/joke_typing.gd" id="1_gd0n1"]
 [ext_resource type="Texture2D" uid="uid://d00o74i2en3jc" path="res://assets/art/UI/panel-border-corner.png" id="2_1nxf1"]
@@ -78,6 +78,10 @@ _data = {
 "wrong_joke": SubResource("Animation_vadex")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1nx0i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7dej"]
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rksfh"]
 streams_count = 5
 stream_0/stream = ExtResource("4_fi1bt")
@@ -149,7 +153,14 @@ offset_right = 186.0
 offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
-deselect_on_focus_loss_enabled = false
+mouse_filter = 2
+theme_override_colors/caret_color = Color(0, 0, 0, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1nx0i")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u7dej")
+alignment = 1
+expand_to_text_length = true
+selecting_enabled = false
+flat = true
 
 [node name="Panel-border-corner" type="Sprite2D" parent="joke_UI"]
 position = Vector2(-221, -57.9999)

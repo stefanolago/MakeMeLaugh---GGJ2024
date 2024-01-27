@@ -36,6 +36,8 @@ func write_joke() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("enter"):
 		check_input()
+	elif event is InputEventKey and event.is_pressed() and not event.is_echo() and visible:
+		player_input.grab_focus()
 
 
 func check_input() -> void:
