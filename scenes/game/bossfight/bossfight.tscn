@@ -17,6 +17,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_h1yt4")
+metadata/_edit_horizontal_guides_ = [555.0]
+metadata/_edit_vertical_guides_ = [576.0]
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -29,11 +31,11 @@ mouse_filter = 1
 color = Color(0, 0, 0, 1)
 
 [node name="BossFace" parent="." instance=ExtResource("1_vme5d")]
-position = Vector2(564, 222)
+position = Vector2(576, 222)
 scale = Vector2(0.45, 0.45)
 
 [node name="JokeTyping" parent="." instance=ExtResource("1_fu3yb")]
-position = Vector2(564, 528)
+position = Vector2(576, 528)
 
 [node name="Feather" parent="." instance=ExtResource("3_ltypo")]
 material = ExtResource("5_603lb")
@@ -42,7 +44,7 @@ metadata/_edit_horizontal_guides_ = [-121.0, 112.0]
 metadata/_edit_use_anchors_ = true
 
 [node name="FaceClicker" parent="." instance=ExtResource("4_diejx")]
-position = Vector2(975, 517)
+position = Vector2(973, 517)
 metadata/_edit_use_anchors_ = true
 
 [node name="boss_bullet_timer" type="Timer" parent="."]
@@ -50,10 +52,26 @@ wait_time = 0.1
 one_shot = true
 
 [node name="MinMarker" type="Marker2D" parent="."]
-position = Vector2(236, 312)
+position = Vector2(276, 312)
 
 [node name="MaxMarker" type="Marker2D" parent="."]
-position = Vector2(875, 555)
+position = Vector2(876, 555)
+
+[node name="movement_limit" type="Node2D" parent="."]
+
+[node name="limit_1" type="VScrollBar" parent="movement_limit"]
+offset_left = 212.0
+offset_top = 312.0
+offset_right = 455.0
+offset_bottom = 320.0
+rotation = 1.57079
+
+[node name="limit_2" type="VScrollBar" parent="movement_limit"]
+offset_left = 940.0
+offset_top = 312.0
+offset_right = 1183.0
+offset_bottom = 320.0
+rotation = 1.57079
 
 [node name="GirlFace" parent="." node_paths=PackedStringArray("min_position", "max_position") instance=ExtResource("6_r651i")]
 visible = false
@@ -80,4 +98,5 @@ text = "END"
 [connection signal="tickled" from="Feather" to="." method="_on_feather_tickled"]
 [connection signal="face_status_changed" from="FaceClicker" to="." method="_on_face_clicker_face_status_changed"]
 [connection signal="timeout" from="boss_bullet_timer" to="." method="_on_boss_bullet_timer_timeout"]
+[connection signal="player_dead" from="GirlFace" to="." method="_on_girl_face_player_dead"]
 [connection signal="pressed" from="debug_end" to="." method="_on_debug_end_pressed"]
