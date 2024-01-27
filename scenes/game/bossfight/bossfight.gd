@@ -193,27 +193,38 @@ func _on_girl_face_player_dead() -> void:
 
 
 func DialogicSignal(argument:String) -> void:
-	if argument == "show_tutorial_false":
-		GameStats.show_tutorial = false
+	match argument:
+		"show_tutorial_false":
+			GameStats.show_tutorial = false
+		"bossfight_intro_end":
+			if not GameStats.show_tutorial:
+				start_boss_fight()
+			else:
+				boss_face.start_tutorial()
 
-	# start of boss fight after the initial dialogue if 
-	# tutorial is not set, else start tutorial
-	if argument == "bossfight_intro_end":
-		if not GameStats.show_tutorial:
+			fade_music_in(audio_stream_boss_1, 0.1)
+		"second_phase_end":
+			fade_music_in(audio_stream_boss_2, 0.1)
+			GameStats.second_phase = true
+			phase_mult = 0.4
 			start_boss_fight()
-		else:
-			boss_face.start_tutorial()
 
-		fade_music_in(audio_stream_boss_1, 0.1)
-	if argument == "second_phase_end":
-		fade_music_in(audio_stream_boss_2, 0.1)
-		GameStats.second_phase = true
-		phase_mult = 0.4
-		start_boss_fight()
-
-		bullet_velocity = GameStats.second_phase_bullet_vel
-	if argument == "fade_out_drone":
-		fade_music_out(audio_stream_drone, 0.5)
+			bullet_velocity = GameStats.second_phase_bullet_vel
+		"fade_out_drone":
+			fade_music_out(audio_stream_drone, 0.5)
+		"ears_covered_tutorial":
+			print("EARS COVERED")
+			face_clicker_scene.visible = true
+			boss_face.boss_status = Boss.BossStatus.EYES_COVERED_TUTORIAL
+		"eyes_covered_tutorial":
+			print("EYES COVERED")
+			typing_scene.visible = true
+			boss_face.boss_status = Boss.BossStatus.ARMS_UP_TUTORIAL
+			
+		"arms_up_tutorial":
+			print("ARMS UP")
+			feather_scene.visible = true
+			boss_face.new_defence_mode()
 
 
 func start_boss_fight() -> void:
