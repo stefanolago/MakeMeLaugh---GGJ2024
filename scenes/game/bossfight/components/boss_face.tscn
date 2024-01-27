@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://brptrqp46bq11"]
+[gd_scene load_steps=29 format=3 uid="uid://brptrqp46bq11"]
 
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/boss_face.gd" id="1_msnto"]
 [ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="2_4qcnx"]
@@ -92,6 +92,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackPb:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_4lvku"]
@@ -196,9 +208,25 @@ tracks/0/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_u8jlh"]
+resource_name = "attack_charged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackPb:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0.541176, 0.478431, 1), Color(1, 0, 0, 1), Color(1, 0.541176, 0.478431, 1), Color(1, 0, 0, 1), Color(1, 0.541176, 0.478431, 1), Color(1, 0, 0, 1), Color(1, 0.541176, 0.478431, 1), Color(1, 0, 0, 1), Color(1, 0.541176, 0.478431, 1), Color(1, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ra8oq"]
 _data = {
 "RESET": SubResource("Animation_58j5a"),
+"attack_charged": SubResource("Animation_u8jlh"),
 "attacking": SubResource("Animation_4lvku"),
 "attacking_phase2": SubResource("Animation_0xg20"),
 "damage": SubResource("Animation_p7ov1")
@@ -282,6 +310,7 @@ grow_vertical = 2
 mouse_filter = 2
 max_value = 4.0
 step = 0.05
+value = 4.0
 show_percentage = false
 
 [node name="DefenceModeTimer" type="Timer" parent="."]

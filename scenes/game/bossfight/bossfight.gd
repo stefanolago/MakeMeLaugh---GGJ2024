@@ -51,7 +51,7 @@ func hide_player_ui() -> void:
 
 func _on_face_clicker_face_status_changed(status: FaceClicker.FaceStatus) -> void:
 	match status:
-		FaceClicker.FaceStatus.FULL_GRIMACE:
+		FaceClicker.FaceStatus.FULL_GRIMACE_ATTACK:
 			player_attack(Boss.AttackType.FULL_GRIMACE)
 			print ("damage FULL_GRIMACE")
 
