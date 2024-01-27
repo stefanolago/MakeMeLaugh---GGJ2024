@@ -31,6 +31,7 @@ enum AttackType {
 @onready var defence_mode_timer: Timer = $DefenceModeTimer
 @onready var boss_sprite: AnimatedSprite2D = $Node2D/Boss
 @onready var bullet_marker: Marker2D = $Node2D/Boss/Marker2D
+@onready var active_material: ShaderMaterial = ($Node2D/Boss as AnimatedSprite2D).material
 
 var defence_modes: Array[BossStatus] = [BossStatus.EARS_COVERED,BossStatus.EYES_COVERED,BossStatus.ARMS_UP]
 var previous_defence_mode: BossStatus = BossStatus.DIALOGUE
@@ -129,7 +130,14 @@ func boss_attacked(type: AttackType) -> void:
 				Dialogic.start("feather_ineffective")
 		AttackType.TICKLE_LIGHT:
 			if boss_status == BossStatus.ARMS_UP:
-				pass
+				set_shader_value(20.0)
+				var tween: Tween = get_tree().create_tween()
+				tween.tween_method(set_shader_value, 20.0, 1.0, 0.5)
+
+
+func set_shader_value(value: float) -> void:
+	active_material.set_shader_parameter("Strength", value)
+
 
 func take_damage() -> void:
 	boss_status = BossStatus.DAMAGE

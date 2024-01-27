@@ -39,8 +39,6 @@ var feather_state: FeatherState = FeatherState.NORMAL:
 					($feather as AudioStreamPlayer).stream_paused = true
 					if not animation_player.is_playing():
 						animation_player.play("feather_tickling")
-			FeatherState.IN_HAND_AND_TICKLING:
-				print("YO")
 		feather_state = value
 
 var minimum_frames_to_register_shake: float = 200.0

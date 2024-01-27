@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/game/cutscenes/intro.gd" id="1_ookg7"]
 [ext_resource type="Texture2D" uid="uid://btpi6uajepcr4" path="res://assets/art/Stanza/Room.png" id="2_kjo4n"]
-[ext_resource type="AudioStream" uid="uid://5he2777mlmmy" path="res://assets/audio/sfx/UI Menù/Click.wav" id="3_5wme2"]
 [ext_resource type="SpriteFrames" uid="uid://cbo5mqkybf3bq" path="res://scenes/game/cutscenes/girl_default.tres" id="3_6afuo"]
 [ext_resource type="SpriteFrames" uid="uid://jdf2qbit8c1a" path="res://scenes/game/cutscenes/girl_bed_sleep.tres" id="4_8rao2"]
+[ext_resource type="AudioStream" uid="uid://yr0jcf1ebx34" path="res://assets/audio/sfx/CutsceneIntro/ClickLuce.wav" id="4_dv8r8"]
 [ext_resource type="Texture2D" uid="uid://dgk38f7avwe4w" path="res://assets/art/Lupo/Pixel-lupo.png" id="4_w1jqb"]
 [ext_resource type="Texture2D" uid="uid://c8tf22np2amql" path="res://assets/art/lights/circle.png" id="5_65y62"]
 [ext_resource type="SpriteFrames" uid="uid://cw237uwjimjf5" path="res://scenes/game/cutscenes/girl_bed_awake.tres" id="5_wg4j0"]
@@ -75,7 +75,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PointLight2D:visible")
+tracks/5/path = NodePath("LampLight:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -222,7 +222,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("PointLight2D:visible")
+tracks/6/path = NodePath("LampLight:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -241,9 +241,9 @@ tracks/7/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("3_5wme2")
+"stream": ExtResource("4_dv8r8")
 }],
-"times": PackedFloat32Array(7)
+"times": PackedFloat32Array(6.7)
 }
 tracks/7/use_blend = true
 tracks/8/type = "value"
@@ -376,7 +376,7 @@ position = Vector2(576, 323)
 offset = Vector2(0, 30)
 zoom = Vector2(3, 3)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="LampLight" type="PointLight2D" parent="."]
 position = Vector2(1003, 148)
 scale = Vector2(0.36, 0.4)
 energy = 1.54
