@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bp5pm7whfu0ay"]
+[gd_scene load_steps=36 format=3 uid="uid://bp5pm7whfu0ay"]
 
 [ext_resource type="Script" path="res://scenes/game/cutscenes/ending.gd" id="1_4grx4"]
 [ext_resource type="AudioStream" uid="uid://tbq8xboas0oe" path="res://assets/audio/sfx/CutsceneOutro/DoggoBark.wav" id="2_725cg"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bcnkxhreufvi0" path="res://assets/art/Bambina/Mano-bambina-2.png" id="23_f5ev8"]
 [ext_resource type="Texture2D" uid="uid://b5dh8hmv8y11j" path="res://assets/art/Lupo/Sprite-doggo/Doggo-alzato-3-risata.png" id="24_hfxba"]
 [ext_resource type="AudioStream" uid="uid://e5qnkwb7icee" path="res://assets/audio/music/AmbienceIntro.wav" id="26_13yxx"]
+[ext_resource type="Texture2D" uid="uid://fu8pc1anqgf" path="res://assets/art/VIgnetta.png" id="27_fgtyt"]
 
 [sub_resource type="Animation" id="Animation_h7mxc"]
 length = 0.001
@@ -115,11 +116,22 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(819, 240)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("VIgnetta:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_1dwxg"]
 resource_name = "ending_cinematic"
 length = 20.0
-step = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -299,6 +311,18 @@ tracks/12/keys = {
 "update": 0,
 "values": [Vector2(819, 240), Vector2(826, 240), Vector2(819, 240), Vector2(826, 240), Vector2(819, 240), Vector2(826, 240), Vector2(819, 240), Vector2(826, 240), Vector2(819, 240), Vector2(826, 240), Vector2(819, 240)]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("VIgnetta:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(13, 13.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rgu0e"]
 _data = {
@@ -441,7 +465,7 @@ sprite_frames = SubResource("SpriteFrames_rrgrk")
 [node name="Wolf" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(429, 362)
-scale = Vector2(1.25, 1.25)
+scale = Vector2(1.89, 1.89)
 sprite_frames = SubResource("SpriteFrames_wlb6s")
 
 [node name="manina" type="AnimatedSprite2D" parent="."]
@@ -453,6 +477,11 @@ scale = Vector2(2.09412, 2.09412)
 sprite_frames = SubResource("SpriteFrames_68y16")
 autoplay = "default"
 frame = 1
+
+[node name="VIgnetta" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(786, 206)
+texture = ExtResource("27_fgtyt")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
@@ -476,8 +505,7 @@ metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(739, 234)
-offset = Vector2(30, 10)
-zoom = Vector2(2, 2)
+zoom = Vector2(1.4, 1.4)
 
 [node name="cinematic_sfx" type="AudioStreamPlayer" parent="."]
 volume_db = -20.0
