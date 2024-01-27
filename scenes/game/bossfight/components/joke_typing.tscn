@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bcfs7nljoccss"]
+[gd_scene load_steps=17 format=3 uid="uid://bcfs7nljoccss"]
 
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/joke_typing.gd" id="1_gd0n1"]
 [ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="1_hsuhm"]
