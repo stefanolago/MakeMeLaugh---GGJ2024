@@ -39,6 +39,7 @@ position = Vector2(576, 222)
 scale = Vector2(0.45, 0.45)
 
 [node name="JokeTyping" parent="." instance=ExtResource("1_fu3yb")]
+process_mode = 3
 position = Vector2(576, 528)
 
 [node name="Feather" parent="." instance=ExtResource("3_ltypo")]

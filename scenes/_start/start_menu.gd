@@ -30,6 +30,10 @@ func fade_music_out() -> void:
 	music_tween.tween_callback(music.stop)
 
 
+func play_hover_sfx() -> void:
+	($hover_sfx as AudioStreamPlayer).play()
+
+
 func _on_options_button_pressed() -> void:
 	($Confirm_sfx as AudioStreamPlayer).play()
 	activate_options_menu(true)
@@ -64,3 +68,19 @@ func _on_play_button_pressed() -> void:
 
 func _on_credits_credits_back_button() -> void:
 	title.visible = true
+
+
+func _on_play_button_mouse_entered():
+	play_hover_sfx()
+
+
+func _on_options_button_mouse_entered():
+	play_hover_sfx()
+
+
+func _on_credits_button_mouse_entered():
+	play_hover_sfx()
+
+
+func _on_quit_button_mouse_entered():
+	play_hover_sfx()

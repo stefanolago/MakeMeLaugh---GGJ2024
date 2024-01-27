@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8i4dav4givqf"]
+[gd_scene load_steps=9 format=3 uid="uid://b8i4dav4givqf"]
 
 [ext_resource type="Script" path="res://scenes/_start/start_menu.gd" id="1_l8e1a"]
 [ext_resource type="PackedScene" uid="uid://bxlfyph8igh8b" path="res://scenes/_options_menu/options_menu.tscn" id="1_q0fgv"]
@@ -7,17 +7,12 @@
 [ext_resource type="AudioStream" uid="uid://b32ddpvwwgaa1" path="res://assets/audio/sfx/UI Menù/Confirm.wav" id="3_tx0tu"]
 [ext_resource type="Texture2D" uid="uid://dhquvkrgg0ul4" path="res://assets/art/Lupo/lupo.png" id="6_301i2"]
 [ext_resource type="AudioStream" uid="uid://eiyouj6n1hbl" path="res://assets/audio/music/Main_mENU.wav" id="7_asd4m"]
+[ext_resource type="AudioStream" uid="uid://bdvp3wplhfhe6" path="res://assets/audio/sfx/UI Menù/HoverFitta.wav" id="8_ph07u"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_l8e1a")
 start_game_scene = ExtResource("2_hsxlj")
 metadata/_edit_vertical_guides_ = [575.0]
-
-[node name="Confirm_sfx" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-stream = ExtResource("3_tx0tu")
-volume_db = -15.0
-bus = &"SFX"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -96,14 +91,30 @@ position = Vector2(580, 497)
 texture = ExtResource("6_301i2")
 metadata/_edit_lock_ = true
 
+[node name="Confirm_sfx" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_tx0tu")
+volume_db = -15.0
+bus = &"SFX"
+
 [node name="music" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("7_asd4m")
 bus = &"Music"
 
+[node name="hover_sfx" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("8_ph07u")
+volume_db = -15.0
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="Control/Buttons/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="Control/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="Control/Buttons/OptionsButton" to="." method="_on_options_button_mouse_entered"]
 [connection signal="pressed" from="Control/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="mouse_entered" from="Control/Buttons/CreditsButton" to="." method="_on_credits_button_mouse_entered"]
 [connection signal="pressed" from="Control/Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="mouse_entered" from="Control/Buttons/QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="Control/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="close_option_menu" from="Control/OptionsMenu" to="." method="_on_options_menu_close_option_menu"]
 [connection signal="credits_back_button" from="Control/Credits" to="." method="_on_credits_credits_back_button"]

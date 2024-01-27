@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkhsruehu1ue6"]
+[gd_scene load_steps=10 format=3 uid="uid://dkhsruehu1ue6"]
 
 [ext_resource type="Script" path="res://scenes/_credits/credits.gd" id="1_v0gdx"]
 [ext_resource type="AudioStream" uid="uid://yy4e4eabnmx8" path="res://assets/audio/sfx/UI Menù/Back.wav" id="2_qfmh7"]
 [ext_resource type="Texture2D" uid="uid://5r4f786nhrhc" path="res://assets/art/Lupo/Pixel-doggo/Walk-1.png" id="3_5shbk"]
 [ext_resource type="Texture2D" uid="uid://brmy0o24vljn3" path="res://assets/art/Lupo/Pixel-doggo/Walk-2.png" id="4_t4ybp"]
 [ext_resource type="Texture2D" uid="uid://dh2f8pqi621rg" path="res://assets/art/Lupo/Pixel-doggo/Walk-3.png" id="5_xryl0"]
+[ext_resource type="AudioStream" uid="uid://bdvp3wplhfhe6" path="res://assets/audio/sfx/UI Menù/HoverFitta.wav" id="6_jd5ep"]
 
 [sub_resource type="Theme" id="Theme_ba7kw"]
 Label/font_sizes/font_size = 25
@@ -137,6 +138,12 @@ stream = ExtResource("2_qfmh7")
 volume_db = -15.0
 bus = &"SFX"
 
+[node name="hover_sfx" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("6_jd5ep")
+volume_db = -15.0
+bus = &"SFX"
+
 [node name="doggo_1" type="AnimatedSprite2D" parent="."]
 position = Vector2(230, 148)
 sprite_frames = SubResource("SpriteFrames_yl2pp")
@@ -148,4 +155,5 @@ scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_yl2pp")
 frame_progress = 0.780373
 
+[connection signal="mouse_entered" from="ColorRect/BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="ColorRect/BackButton" to="." method="_on_back_button_pressed"]

@@ -19,3 +19,7 @@ func _on_back_button_pressed() -> void:
 		TransitionLayer.change_scene_to_file(main_menu)
 	else:
 		credits_back_button.emit()
+
+
+func _on_back_button_mouse_entered():
+	($hover_sfx as AudioStreamPlayer).play()
