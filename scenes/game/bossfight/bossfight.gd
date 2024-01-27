@@ -12,6 +12,8 @@ extends Control
 @onready var ending: PackedScene = preload("res://scenes/game/cutscenes/ending.tscn")
 @onready var game_over_scene: PackedScene = preload("res://scenes/_game_over/game_over.tscn")
 
+var phase_mult: float = 1.0
+
 func _ready() -> void:
 	hide_player_ui()
 	Dialogic.signal_event.connect(DialogicSignal)
@@ -89,7 +91,7 @@ func _on_boss_face_boss_status_changed(status:String) -> void:
 			face_clicker_scene.visible = false
 			girl_face.visible = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-			boss_bullet_timer.start(0.1)
+			boss_bullet_timer.start(0.5)
 		"DAMAGE":
 			movement_limit.visible = false
 			typing_scene.visible = false
@@ -112,12 +114,12 @@ func _on_boss_bullet_timer_timeout() -> void:
 	var bullet_data: Dictionary = boss_portrait_scene.get_next_bullet_data()
 	if bullet_data["letter"] != "" and bullet_data["letter"] != " ":
 		spawn_bullet((bullet_data["position"] as Vector2), (bullet_data["letter"] as String))
-		boss_bullet_timer.start(0.1)
+		boss_bullet_timer.start(0.1 * phase_mult)
 	else:
 		if boss_portrait_scene.currently_processed_attack_word.length() > 0:
-			boss_bullet_timer.start(0.3)
+			boss_bullet_timer.start(0.3 * phase_mult)
 		else:
-			boss_bullet_timer.start(5)
+			boss_bullet_timer.start(5 * phase_mult)
 
 
 func _on_debug_end_pressed() -> void:
@@ -147,6 +149,7 @@ func DialogicSignal(argument:String) -> void:
 		show_player_ui()
 	if argument == "second_phase_end":
 		GameStats.second_phase = true
+		phase_mult = 0.4
 		($BossFace as Boss).new_defence_mode()
 		show_player_ui()
 

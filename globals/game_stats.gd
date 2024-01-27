@@ -1,14 +1,28 @@
 extends Node
 
-var boss_attack_timer: int = 10
-var boss_defence_switch_timer: int = 20
-var boss_health: int = 4
-var second_phase_start_health: int = 2
-var player_health: int = 5
-var invincibility_time: float = 1
-var block_move_time: float = 0.5
+var boss_attack_timer: int
+var boss_attack_timer_phase2: int
+var boss_defence_switch_timer: int
+var boss_health: int
+var second_phase_start_health: int
+var player_health: int
+var invincibility_time: float
+var block_move_time: float
+var second_phase:bool
 
 
-### DO NOT TOUCH ###
-var second_phase:bool = false
-###
+func _ready():
+	reset()
+
+
+func reset() -> void:
+	print ("restarting")
+	boss_attack_timer = 10
+	boss_attack_timer_phase2 = 7
+	boss_defence_switch_timer = 20
+	boss_health = 8
+	second_phase_start_health = 4
+	player_health = 5
+	invincibility_time = 1.0
+	block_move_time = 0.5
+	second_phase = false

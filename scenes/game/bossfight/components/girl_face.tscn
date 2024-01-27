@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://6par3r1014kl" path="res://assets/art/Bambina/Solo-volto-1.png" id="2_ssltm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yys5v"]
-radius = 68.469
+radius = 44.0114
 
 [node name="GirlFace" type="Node2D"]
 script = ExtResource("1_xdtvh")

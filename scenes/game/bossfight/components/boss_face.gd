@@ -34,7 +34,7 @@ enum AttackType {
 
 var defence_modes: Array[BossStatus] = [BossStatus.EARS_COVERED,BossStatus.EYES_COVERED,BossStatus.ARMS_UP]
 var previous_defence_mode: BossStatus = BossStatus.DIALOGUE
-var possible_attack_words: Array[String] = ["I HATE YOU", "YOU ARE A FAILURE", "NO ONE LOVES YOU", "DISAPPOINTMENT", "FEAR"]
+var possible_attack_words: Array[String] = ["I HATE YOU", "YOU ARE A FAILURE", "NO ONE LOVES YOU", "DISAPPOINTMENT", "FEAR", "PARASITE", "DEATH", "USELESS", "NO NO NO NO", "GO AWAY"]
 var currently_processed_attack_word: String = "" 
 
 
@@ -66,9 +66,17 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 			BossStatus.ATTACK:
 				boss_sprite.play("attack")
 				boss_status_changed.emit("ATTACK")
-				animation_player.play("attacking")
 				attack_pb.visible = false
 				($wolf_attack as AudioStreamPlayer).play()
+				if GameStats.second_phase:
+					attack_timer.wait_time = GameStats.boss_attack_timer_phase2
+					attack_pb.max_value = GameStats.boss_attack_timer_phase2
+					animation_player.play("attacking_phase2")
+				else:
+					attack_timer.wait_time = GameStats.boss_attack_timer
+					attack_pb.max_value = GameStats.boss_attack_timer
+					animation_player.play("attacking")
+
 			BossStatus.DIALOGUE:
 				boss_sprite.play("defaut")
 				boss_status_changed.emit("DIALOGUE")
@@ -191,9 +199,9 @@ func get_next_bullet_data() -> Dictionary:
 		currently_processed_attack_word = possible_attack_words.pick_random()
 		return dic_to_return
 
+
 	dic_to_return["letter"] = currently_processed_attack_word[0]
 	currently_processed_attack_word = currently_processed_attack_word.erase(0, 1)
-	
-	
+
 
 	return dic_to_return

@@ -78,6 +78,7 @@ event_default_overrides={
 [display]
 
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="res://assets/art/Cursore.png"
 
 [editor_plugins]
 
