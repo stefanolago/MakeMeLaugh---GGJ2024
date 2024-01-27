@@ -11,9 +11,19 @@ var state: State = State.NORMAL
 @onready var invincible_timer: Timer = $InvincibilityTimer
 @onready var active_material: ShaderMaterial = ($Sprite2D as Sprite2D).material
 
+@export var min_position: Marker2D
+@export var max_position: Marker2D
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	global_position = get_global_mouse_position()
+	if visible:
+		var clamped_mouse_pos: Vector2 = get_global_mouse_position()
+		clamped_mouse_pos.x = clampf(clamped_mouse_pos.x, min_position.global_position.x, max_position.global_position.x)
+		
+		clamped_mouse_pos.y = clampf(clamped_mouse_pos.y, min_position.global_position.y, max_position.global_position.y)
+		global_position = clamped_mouse_pos
+
+		Input.warp_mouse(clamped_mouse_pos)
 
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
