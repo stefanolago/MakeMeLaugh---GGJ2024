@@ -34,11 +34,12 @@ func write_joke() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("enter"):
+	if event.is_action_pressed("enter") and player_input.text != "":
 		check_input()
 	elif event is InputEventKey and event.is_pressed() and not event.is_echo() and visible:
 		player_input.grab_focus()
-		($typing_sfx as AudioStreamPlayer).play()
+		if not event.is_action_pressed("enter"):
+			($typing_sfx as AudioStreamPlayer).play()
 
 
 func check_input() -> void:

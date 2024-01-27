@@ -11,7 +11,7 @@ var block_move_time: float
 var second_phase:bool
 
 
-func _ready():
+func _ready() -> void:
 	reset()
 
 

@@ -15,6 +15,7 @@ signal face_status_changed(status: FaceStatus)
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var click_stream: AudioStreamPlayer = $face_click
 
 var face_status: FaceStatus = FaceStatus.IDLE:
 	set(value):
@@ -55,14 +56,18 @@ func attack_anim_finished() -> void:
 	face_status = FaceStatus.FULL_GRIMACE_ATTACK
 	($LoseFaceTimer as Timer).start()
 	face_clicks = 0
+	click_stream.pitch_scale = 1
 
 
 func _on_lose_face_timer_timeout() -> void:
 	face_clicks -= 1
+	if not click_stream.pitch_scale <= 1:
+		click_stream.pitch_scale = click_stream.pitch_scale - 0.3
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT and event.is_released() and not anim_player.is_playing():
 		face_clicks += 1
-		($face_click as AudioStreamPlayer).play()
+		click_stream.pitch_scale = click_stream.pitch_scale + 0.3
+		click_stream.play()
 
