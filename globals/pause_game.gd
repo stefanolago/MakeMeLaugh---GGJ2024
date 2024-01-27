@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 var is_pointer_vis: bool
 
@@ -12,13 +12,12 @@ var game_is_pause:bool = false:
 					is_pointer_vis = false
 				else:
 					is_pointer_vis = true
-				print (is_pointer_vis)
 				get_tree().paused = true
-				self.visible = true
+				visible = true
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			false:
 				get_tree().paused = false
-				self.visible = false
+				visible = false
 				if is_pointer_vis == false:
 					Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
