@@ -8,6 +8,9 @@ signal boss_second_phase()
 signal boss_dead()
 
 enum BossStatus {
+	EARS_COVERED_TUTORIAL,
+	EYES_COVERED_TUTORIAL,
+	ARMS_UP_TUTORIAL,
 	EARS_COVERED,
 	EYES_COVERED,
 	ARMS_UP,
@@ -42,31 +45,36 @@ var currently_processed_attack_word: String = ""
 var boss_status: BossStatus = BossStatus.DIALOGUE:
 	set(value):
 		boss_status = value
+		boss_status_changed.emit(boss_status)
 		match boss_status:
+			BossStatus.EARS_COVERED_TUTORIAL:
+				boss_sprite.play("ears_covered")
+				print("TUTORIAL EARS")
+			BossStatus.EYES_COVERED_TUTORIAL:
+				print("TUTORIAL EYES")
+			BossStatus.ARMS_UP_TUTORIAL:
+				print("TUTORIAL ARMS")
 			BossStatus.EARS_COVERED:
 				boss_sprite.play("ears_covered")
-				boss_status_changed.emit("EARS_COVERED")
+				
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
 				print ("EARS_COVERED")
 			BossStatus.EYES_COVERED:
 				boss_sprite.play("eyes_covered")
-				boss_status_changed.emit("EYES_COVERED")
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
 				print ("EYES_COVERED")
 			BossStatus.ARMS_UP:
 				boss_sprite.play("arms_up")
-				boss_status_changed.emit("ARMS_UP")
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
 				print ("ARMS_UP")
 			BossStatus.ATTACK:
 				boss_sprite.play("attack")
-				boss_status_changed.emit("ATTACK")
 				attack_pb.visible = false
 				($wolf_attack as AudioStreamPlayer).play()
 				if GameStats.second_phase:
@@ -80,16 +88,13 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 
 			BossStatus.DIALOGUE:
 				boss_sprite.play("defaut")
-				boss_status_changed.emit("DIALOGUE")
 			BossStatus.DAMAGE:
 				print ("BOSS TAKES DAMAGE")
 				boss_sprite.play("smile")
-				boss_status_changed.emit("DAMAGE")
 				attack_pb.visible = false
 				attack_timer.stop()
 				animation_player.play("damage")
 				($wolf_hit as AudioStreamPlayer).play()
-
 
 
 func _ready() -> void:
@@ -215,3 +220,7 @@ func get_next_bullet_data() -> Dictionary:
 
 
 	return dic_to_return
+
+
+func start_tutorial() -> void:
+	boss_status = BossStatus.EARS_COVERED_TUTORIAL

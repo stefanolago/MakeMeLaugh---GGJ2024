@@ -13,7 +13,7 @@ enum State {
 @onready var feather_scene: FeatherScene = $Feather
 @onready var typing_scene: Node2D = $JokeTyping
 @onready var face_clicker_scene: Area2D = $FaceClicker
-@onready var boss_portrait_scene: Boss = $BossFace
+@onready var boss_face: Boss = $BossFace
 @onready var boss_bullet_timer: Timer = $boss_bullet_timer
 @onready var girl_face: GirlFace = $GirlFace
 @onready var movement_limit:Node2D = $movement_limit
@@ -30,6 +30,7 @@ var phase_mult: float = 1.0
 var current_volume: float 
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	hide_player_ui()
 	Dialogic.signal_event.connect(DialogicSignal)
 	Dialogic.start("bossfight_intro")
@@ -112,9 +113,22 @@ func _on_joke_typing_inserted_right_word() -> void:
 func _on_joke_typing_inserted_wrong_word() -> void:
 	player_fails()
 
-func _on_boss_face_boss_status_changed(status:String) -> void:
+func _on_boss_face_boss_status_changed(status: Boss.BossStatus) -> void:
 	match status:
-		"ATTACK":
+		Boss.BossStatus.EARS_COVERED_TUTORIAL:
+			#print("TUTORIAL EARS")
+			#boss_face.boss_status = Boss.BossStatus.EYES_COVERED_TUTORIAL
+			Dialogic.start("ears_covered_tutorial")
+		Boss.BossStatus.EYES_COVERED_TUTORIAL:
+			#print("TUTORIAL EYES")
+			#boss_face.boss_status = Boss.BossStatus.ARMS_UP_TUTORIAL
+			Dialogic.start("eyes_covered_tutorial")
+		Boss.BossStatus.ARMS_UP_TUTORIAL:
+			#print("TUTORIAL ARMS")
+			Dialogic.start("arms_up_tutorial")
+			#boss_face.new_defence_mode()
+			#show_player_ui()
+		Boss.BossStatus.ATTACK:
 			movement_limit.visible = true
 			typing_scene.visible = false
 			feather_scene.reset_to_normal()
@@ -123,7 +137,7 @@ func _on_boss_face_boss_status_changed(status:String) -> void:
 			girl_face.visible = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			boss_bullet_timer.start(0.5)
-		"DAMAGE":
+		Boss.BossStatus.DAMAGE:
 			movement_limit.visible = false
 			typing_scene.visible = false
 			feather_scene.reset_to_normal()
@@ -143,12 +157,12 @@ func _on_boss_face_boss_status_changed(status:String) -> void:
 
 func _on_boss_bullet_timer_timeout() -> void:
 	($bullet_sfx as AudioStreamPlayer).play()
-	var bullet_data: Dictionary = boss_portrait_scene.get_next_bullet_data()
+	var bullet_data: Dictionary = boss_face.get_next_bullet_data()
 	if bullet_data["letter"] != "" and bullet_data["letter"] != " ":
 		spawn_bullet((bullet_data["position"] as Vector2), (bullet_data["letter"] as String))
 		boss_bullet_timer.start(0.1 * phase_mult)
 	else:
-		if boss_portrait_scene.currently_processed_attack_word.length() > 0:
+		if boss_face.currently_processed_attack_word.length() > 0:
 			boss_bullet_timer.start(0.3 * phase_mult)
 		else:
 			boss_bullet_timer.start(5 * phase_mult)
@@ -185,6 +199,8 @@ func DialogicSignal(argument:String) -> void:
 	if argument == "bossfight_intro_end":
 		if not GameStats.show_tutorial:
 			start_boss_fight()
+		else:
+			boss_face.start_tutorial()
 
 		fade_music_in(audio_stream_boss_1, 0.1)
 	if argument == "second_phase_end":
@@ -198,5 +214,5 @@ func DialogicSignal(argument:String) -> void:
 
 
 func start_boss_fight() -> void:
-	boss_portrait_scene.new_defence_mode()
+	boss_face.new_defence_mode()
 	show_player_ui()

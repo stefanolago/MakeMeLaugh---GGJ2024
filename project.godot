@@ -37,8 +37,11 @@ directories/dch_directory={
 "wolf": "res://dialogic/wolf.dch"
 }
 directories/dtl_directory={
+"arms_up_tutorial": "res://dialogic/arms_up_tutorial.dtl",
 "bossfight_intro": "res://dialogic/bossfight_intro.dtl",
+"ears_covered_tutorial": "res://dialogic/ears_covered_tutorial.dtl",
 "ending": "res://dialogic/ending.dtl",
+"eyes_covered_tutorial": "res://dialogic/eyes_covered_tutorial.dtl",
 "feather_ineffective": "res://dialogic/feather_ineffective.dtl",
 "intro": "res://dialogic/intro.dtl",
 "joke_ineffective": "res://dialogic/joke_ineffective.dtl",
