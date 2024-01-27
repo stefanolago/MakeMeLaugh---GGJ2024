@@ -94,6 +94,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	attack_pb.value = attack_pb.max_value - attack_timer.time_left
+	if attack_pb.value >= 8.0 and not animation_player.is_playing():
+		animation_player.play("attack_charged")
 
 
 func boss_attacked(type: AttackType) -> void:

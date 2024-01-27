@@ -4,5 +4,5 @@
 
 [resource]
 shader = ExtResource("1_kujtj")
-shader_parameter/Strength = 5.0
+shader_parameter/Strength = 1.0
 shader_parameter/RandomOffset = 1.0

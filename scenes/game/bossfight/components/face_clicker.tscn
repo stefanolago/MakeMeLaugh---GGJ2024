@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://qv7886gfd6lc"]
+[gd_scene load_steps=19 format=3 uid="uid://qv7886gfd6lc"]
 
 [ext_resource type="Texture2D" uid="uid://dg88ns2w5pg0v" path="res://assets/art/Bambina/Idle.png" id="1_dux23"]
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/face_clicker.gd" id="1_jjwal"]
+[ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="1_s6egf"]
 [ext_resource type="Texture2D" uid="uid://swqw4wy55y02" path="res://assets/art/Bambina/Smorfia-2.png" id="2_cavvb"]
 [ext_resource type="Texture2D" uid="uid://meq1cl2yqmmx" path="res://assets/art/Bambina/Smorfia-3.png" id="3_gbva5"]
 [ext_resource type="Texture2D" uid="uid://dem4ufwogv1kv" path="res://assets/art/Bambina/Smorfia-4.png" id="4_crpqg"]
@@ -11,34 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://5he2777mlmmy" path="res://assets/audio/sfx/UI Menù/Click.wav" id="9_kp4qc"]
 [ext_resource type="AudioStream" uid="uid://cxsllpo80qag7" path="res://assets/audio/sfx/BimbaSmorfie/BimbaSmorfie-001.wav" id="10_v7op2"]
 [ext_resource type="AudioStream" uid="uid://ku0v06ewpxky" path="res://assets/audio/sfx/BimbaSmorfie/BimbaSmorfie-002.wav" id="11_ahkwf"]
-
-[sub_resource type="Shader" id="Shader_5myfo"]
-code = "shader_type canvas_item;
-
-uniform float Strength : hint_range(0,20) = 2;
-uniform float RandomOffset = 1.0;
-
-float random( float seed )
-{
-	return fract( 543.2543 * sin( dot( vec2( seed, seed ), vec2( 3525.46 + RandomOffset, -54.3415 ) ) ) );
-}
-
-void vertex()
-{
-	vec2 VERTEX_OFFSET = VERTEX;
-	VERTEX_OFFSET.x += (
-		random(( trunc( VERTEX_OFFSET.y)) + TIME ) - 0.5) * Strength ;
-
-	VERTEX_OFFSET.y += (
-		random(( trunc( VERTEX_OFFSET.x)) + TIME) - 0.5) * Strength;
-	
-	VERTEX = VERTEX_OFFSET;	
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pmre6"]
-shader = SubResource("Shader_5myfo")
-shader_parameter/Strength = 1.0
-shader_parameter/RandomOffset = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bt780"]
 animations = [{
@@ -93,12 +66,87 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("11_ahkwf")
 stream_1/weight = 1.0
 
+[sub_resource type="Animation" id="Animation_5box7"]
+resource_name = "grimace_attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0872665, 0.0872665, -0.0872665, 0.0872665, 0.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_anim_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_lfo4p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t83vu"]
+_data = {
+"RESET": SubResource("Animation_lfo4p"),
+"grimace_attack": SubResource("Animation_5box7")
+}
+
 [node name="FaceClicker" type="Area2D"]
+material = ExtResource("1_s6egf")
 script = ExtResource("1_jjwal")
 metadata/_edit_horizontal_guides_ = [101.0]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_pmre6")
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_bt780")
 animation = &"idle"
 
@@ -109,41 +157,49 @@ shape = SubResource("RectangleShape2D_18jqt")
 autostart = true
 
 [node name="Panel-border-corner" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-97, -92.9999)
 texture = ExtResource("7_xb71x")
 
 [node name="Panel-border-corner2" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-95, 91)
 rotation = -1.57079
 texture = ExtResource("7_xb71x")
 
 [node name="Panel-border-corner3" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(95, 91)
 rotation = -3.14159
 texture = ExtResource("7_xb71x")
 
 [node name="Panel-border-corner4" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(95, -92.9999)
 rotation = -4.71238
 texture = ExtResource("7_xb71x")
 
 [node name="Panel-border-side" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-0.500004, -89)
 scale = Vector2(3.16071, 1)
 texture = ExtResource("8_6m1rd")
 
 [node name="Panel-border-side5" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-0.500004, 87)
 scale = Vector2(3.16071, 1)
 texture = ExtResource("8_6m1rd")
 
 [node name="Panel-border-side3" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(91.0001, -0.763443)
 rotation = 1.57079
 scale = Vector2(2.97273, 1)
 texture = ExtResource("8_6m1rd")
 
 [node name="Panel-border-side4" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-91, -0.763443)
 rotation = 1.57079
 scale = Vector2(2.97273, 1)
@@ -158,6 +214,11 @@ bus = &"SFX"
 stream = SubResource("AudioStreamRandomizer_w7yv5")
 volume_db = -10.0
 bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t83vu")
+}
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="LoseFaceTimer" to="." method="_on_lose_face_timer_timeout"]
