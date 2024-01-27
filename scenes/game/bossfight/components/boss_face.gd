@@ -157,6 +157,8 @@ func block_damage() -> void:
 
 
 func new_defence_mode() -> void:
+	if GameStats.second_phase:
+		($Node2D/nervetto as TextureRect).visible = true
 	roll_new_defence_mode()
 
 
