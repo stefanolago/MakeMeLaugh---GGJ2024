@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvtx0cilely5c"]
+[gd_scene load_steps=16 format=3 uid="uid://bvtx0cilely5c"]
 
 [ext_resource type="Script" path="res://scenes/game/cutscenes/intro.gd" id="1_ookg7"]
 [ext_resource type="Texture2D" uid="uid://btpi6uajepcr4" path="res://assets/art/Stanza/Room.png" id="2_kjo4n"]
-[ext_resource type="AudioStream" uid="uid://5he2777mlmmy" path="res://assets/audio/sfx/UI Menù/Click.wav" id="3_5wme2"]
 [ext_resource type="SpriteFrames" uid="uid://cbo5mqkybf3bq" path="res://scenes/game/cutscenes/girl_default.tres" id="3_6afuo"]
 [ext_resource type="SpriteFrames" uid="uid://jdf2qbit8c1a" path="res://scenes/game/cutscenes/girl_bed_sleep.tres" id="4_8rao2"]
+[ext_resource type="AudioStream" uid="uid://yr0jcf1ebx34" path="res://assets/audio/sfx/CutsceneIntro/ClickLuce.wav" id="4_dv8r8"]
 [ext_resource type="Texture2D" uid="uid://dgk38f7avwe4w" path="res://assets/art/Lupo/Pixel-lupo.png" id="4_w1jqb"]
 [ext_resource type="Texture2D" uid="uid://c8tf22np2amql" path="res://assets/art/lights/circle.png" id="5_65y62"]
 [ext_resource type="SpriteFrames" uid="uid://cw237uwjimjf5" path="res://scenes/game/cutscenes/girl_bed_awake.tres" id="5_wg4j0"]
+[ext_resource type="Texture2D" uid="uid://eu88ioop2lsv" path="res://assets/art/lights/cone_light.png" id="9_hpajw"]
 
 [sub_resource type="Animation" id="Animation_h4uwt"]
 length = 0.001
@@ -74,7 +75,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PointLight2D:visible")
+tracks/5/path = NodePath("LampLight:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -95,10 +96,46 @@ tracks/6/keys = {
 "update": 1,
 "values": [ExtResource("3_6afuo")]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DirectionalLight2D:energy")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.3]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LightningBolt:enabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Wolf:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ledxy"]
 resource_name = "intro_cinematic"
-length = 10.0
+length = 11.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -130,7 +167,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(2, 4.59085, 6.25644, 10),
+"times": PackedFloat32Array(2, 4.59085, 6.25644, 11),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [],
@@ -165,10 +202,10 @@ tracks/4/path = NodePath("fade:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 4.6, 5.2, 5.9, 6.99945, 7, 8.4, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.34902), Color(1, 1, 1, 0.34902), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -185,7 +222,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("PointLight2D:visible")
+tracks/6/path = NodePath("LampLight:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -204,9 +241,9 @@ tracks/7/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("3_5wme2")
+"stream": ExtResource("4_dv8r8")
 }],
-"times": PackedFloat32Array(7)
+"times": PackedFloat32Array(6.7)
 }
 tracks/7/use_blend = true
 tracks/8/type = "value"
@@ -221,6 +258,54 @@ tracks/8/keys = {
 "update": 1,
 "values": [ExtResource("3_6afuo"), ExtResource("5_wg4j0"), ExtResource("4_8rao2")]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("DirectionalLight2D:energy")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(6.3, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.3, 0.5]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("DirectionalLight2D:energy")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(4.6, 5.2, 5.9),
+"transitions": PackedFloat32Array(1, 3.4822, 0.125),
+"update": 0,
+"values": [0.3, 2.2, 0.3]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LightningBolt:enabled")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 9.6, 9.7, 9.8, 10, 10.1, 10.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Wolf:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 9.8, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jtyml"]
 _data = {
@@ -228,9 +313,15 @@ _data = {
 "intro_cinematic": SubResource("Animation_ledxy")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1hgo4"]
+polygon = PackedVector2Array(-49, 46, -48, -7, -51, -26, -42, -46, -32, -34, -36.0339, -15, 2, -15, 17, -51, 39, -49, 33, -8, 48, 45)
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jw1gd"]
 cull_mode = 1
 polygon = PackedVector2Array(-47, 94, -49, -21, 46, -20, 44, 102, 110, -95, -105, -95)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n1dtr"]
+polygon = PackedVector2Array(-78, -11, -106, -100, 115, -102, 76, -10, 47, 92, 48.7664, -10.1768, -50.442, -10.821, -48, 80)
 
 [node name="Intro" type="Control"]
 layout_mode = 3
@@ -272,20 +363,25 @@ sprite_frames = ExtResource("3_6afuo")
 autoplay = "default"
 
 [node name="Wolf" type="Sprite2D" parent="."]
-position = Vector2(-89, 288)
+visible = false
+position = Vector2(454, 409)
 texture = ExtResource("4_w1jqb")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Wolf"]
+visible = false
+occluder = SubResource("OccluderPolygon2D_1hgo4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 323)
 offset = Vector2(0, 30)
 zoom = Vector2(3, 3)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="LampLight" type="PointLight2D" parent="."]
 position = Vector2(1003, 148)
 scale = Vector2(0.36, 0.4)
-energy = 1.49
+energy = 1.54
 texture = ExtResource("5_65y62")
-texture_scale = 1.38
+texture_scale = 1.41
 metadata/_edit_lock_ = true
 
 [node name="fade" type="ColorRect" parent="."]
@@ -310,13 +406,19 @@ bus = &"SFX"
 position = Vector2(456, 44)
 occluder = SubResource("OccluderPolygon2D_jw1gd")
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(456, 44)
-energy = 4.2
+[node name="LightOccluder2D" type="LightOccluder2D" parent="LightOccluder2D"]
+occluder = SubResource("OccluderPolygon2D_n1dtr")
+
+[node name="LightningBolt" type="PointLight2D" parent="."]
+position = Vector2(518.948, 398.038)
+rotation = 1.5708
+scale = Vector2(0.848346, 0.754574)
+enabled = false
+energy = 1.02
 shadow_enabled = true
-texture = ExtResource("5_65y62")
-texture_scale = 2.37
+texture = ExtResource("9_hpajw")
+offset = Vector2(4, 82.8235)
+texture_scale = 4.0
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.3

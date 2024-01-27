@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjhj5oq6bo6mq"]
+[gd_scene load_steps=8 format=3 uid="uid://cjhj5oq6bo6mq"]
 
 [ext_resource type="PackedScene" uid="uid://bcfs7nljoccss" path="res://scenes/game/bossfight/components/joke_typing.tscn" id="1_fu3yb"]
 [ext_resource type="Script" path="res://scenes/game/bossfight/bossfight.gd" id="1_h1yt4"]
 [ext_resource type="PackedScene" uid="uid://brptrqp46bq11" path="res://scenes/game/bossfight/components/boss_face.tscn" id="1_vme5d"]
 [ext_resource type="PackedScene" uid="uid://c0nicki1o5tox" path="res://scenes/game/bossfight/components/feather.tscn" id="3_ltypo"]
 [ext_resource type="PackedScene" uid="uid://qv7886gfd6lc" path="res://scenes/game/bossfight/components/face_clicker.tscn" id="4_diejx"]
+[ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="5_603lb"]
 [ext_resource type="PackedScene" uid="uid://44u818wjeuva" path="res://scenes/game/bossfight/components/girl_face.tscn" id="6_r651i"]
 
 [node name="Bossfight" type="Control"]
@@ -37,7 +38,8 @@ scale = Vector2(0.45, 0.45)
 position = Vector2(576, 528)
 
 [node name="Feather" parent="." instance=ExtResource("3_ltypo")]
-position = Vector2(176, 513)
+material = ExtResource("5_603lb")
+position = Vector2(152, 513)
 metadata/_edit_horizontal_guides_ = [-121.0, 112.0]
 metadata/_edit_use_anchors_ = true
 
