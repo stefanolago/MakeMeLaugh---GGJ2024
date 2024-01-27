@@ -1,3 +1,8 @@
+if :
+	Tutorial?
+	- Yes
+	- No
+		[signal arg="show_tutorial_false"]
 wolf (base): Hello Me.
 wolf (base): You know who I am.
 wolf (base): We are old friends at this point.

@@ -1,5 +1,14 @@
 extends Control
 
+enum State {
+
+	ASK_TUTORIAL,
+	TUTORIAL_EYES_COVERED,
+	TUTORIAL_EARS_COVERED,
+	TUTORIAL_ARMS_UP,
+	NORMAL
+}
+
 
 @onready var feather_scene: FeatherScene = $Feather
 @onready var typing_scene: Node2D = $JokeTyping
@@ -88,7 +97,7 @@ func _on_boss_face_boss_status_changed(status:String) -> void:
 			feather_scene.visible = false
 			face_clicker_scene.visible = false
 			girl_face.visible = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+			#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			boss_bullet_timer.start(0.1)
 		"DAMAGE":
 			movement_limit.visible = false
@@ -142,13 +151,21 @@ func _on_girl_face_player_dead() -> void:
 
 
 func DialogicSignal(argument:String) -> void:
+	if argument == "show_tutorial_false":
+		GameStats.show_tutorial = false
+
+	# start of boss fight after the initial dialogue if 
+	# tutorial is not set, else start tutorial
 	if argument == "bossfight_intro_end":
-		($BossFace as Boss).new_defence_mode()
-		show_player_ui()
+		if not GameStats.show_tutorial:
+			start_boss_fight()
+
+	# start of phase 2		
 	if argument == "second_phase_end":
 		GameStats.second_phase = true
-		($BossFace as Boss).new_defence_mode()
-		show_player_ui()
+		start_boss_fight()
 
 
-
+func start_boss_fight() -> void:
+	boss_portrait_scene.new_defence_mode()
+	show_player_ui()

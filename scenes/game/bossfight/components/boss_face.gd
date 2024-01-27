@@ -83,7 +83,6 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 				($wolf_hit as AudioStreamPlayer).play()
 
 
-
 func _ready() -> void:
 	Dialogic.signal_event.connect(DialogicSignal)
 	attack_timer.wait_time = GameStats.boss_attack_timer
@@ -103,6 +102,8 @@ func boss_attacked(type: AttackType) -> void:
 	if boss_status == BossStatus.DAMAGE:
 		print ("already taking damage")
 		pass
+
+	
 	match type:
 		AttackType.JOKE:
 			if boss_status == BossStatus.EYES_COVERED:
@@ -135,6 +136,54 @@ func boss_attacked(type: AttackType) -> void:
 				tween.tween_method(set_shader_value, 20.0, 1.0, 0.5)
 
 
+func check_new_defence_mode(new_mode: BossStatus) -> void:
+	if new_mode == previous_defence_mode:
+		roll_new_defence_mode()
+		pass
+	else:
+		boss_status = new_mode
+		previous_defence_mode = new_mode
+
+
+func _damage_finished() -> void:
+	GameStats.boss_health = GameStats.boss_health - 1
+	if GameStats.boss_health == GameStats.second_phase_start_health:
+		boss_second_phase.emit()
+	elif GameStats.boss_health <= 0:
+		boss_dead.emit()
+	else:
+		new_defence_mode()
+
+
+func DialogicSignal(argument:String) -> void:
+	if argument == "attack_blocked_end":
+		block_damage()
+
+
+func _attack_finished() -> void:
+	new_defence_mode()
+
+
+func _on_defence_mode_timer_timeout() -> void:
+	new_defence_mode()
+
+
+func _on_attack_timer_timeout() -> void:
+	boss_status = BossStatus.ATTACK
+
+
+func get_next_bullet_data() -> Dictionary:
+	var dic_to_return: Dictionary = {"position": bullet_marker.global_position, "letter": currently_processed_attack_word.erase(0, 1)}
+	if currently_processed_attack_word.length() == 0:
+		currently_processed_attack_word = possible_attack_words.pick_random()
+		return dic_to_return
+
+	dic_to_return["letter"] = currently_processed_attack_word[0]
+	currently_processed_attack_word = currently_processed_attack_word.erase(0, 1)
+
+	return dic_to_return
+
+
 func set_shader_value(value: float) -> void:
 	active_material.set_shader_parameter("Strength", value)
 
@@ -155,53 +204,3 @@ func new_defence_mode() -> void:
 func roll_new_defence_mode() -> void:
 	var new_mode: BossStatus = defence_modes[randi() % defence_modes.size()]
 	check_new_defence_mode(new_mode)
-
-
-func check_new_defence_mode(new_mode: BossStatus) -> void:
-	if new_mode == previous_defence_mode:
-		roll_new_defence_mode()
-		pass
-	else:
-		boss_status = new_mode
-		previous_defence_mode = new_mode
-
-
-func _attack_finished() -> void:
-	new_defence_mode()
-
-
-func _damage_finished() -> void:
-	GameStats.boss_health = GameStats.boss_health - 1
-	if GameStats.boss_health == GameStats.second_phase_start_health:
-		boss_second_phase.emit()
-	elif GameStats.boss_health <= 0:
-		boss_dead.emit()
-	else:
-		new_defence_mode()
-
-
-func _on_defence_mode_timer_timeout() -> void:
-	new_defence_mode()
-
-
-func _on_attack_timer_timeout() -> void:
-	boss_status = BossStatus.ATTACK
-
-
-func DialogicSignal(argument:String) -> void:
-	if argument == "attack_blocked_end":
-		block_damage()
-
-
-func get_next_bullet_data() -> Dictionary:
-	var dic_to_return: Dictionary = {"position": bullet_marker.global_position, "letter": currently_processed_attack_word.erase(0, 1)}
-	if currently_processed_attack_word.length() == 0:
-		currently_processed_attack_word = possible_attack_words.pick_random()
-		return dic_to_return
-
-	dic_to_return["letter"] = currently_processed_attack_word[0]
-	currently_processed_attack_word = currently_processed_attack_word.erase(0, 1)
-	
-	
-
-	return dic_to_return

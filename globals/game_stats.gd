@@ -8,7 +8,7 @@ var player_health: int = 5
 var invincibility_time: float = 1
 var block_move_time: float = 0.5
 
-
 ### DO NOT TOUCH ###
 var second_phase:bool = false
+var show_tutorial: bool = true
 ###

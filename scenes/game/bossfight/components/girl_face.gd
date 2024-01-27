@@ -26,13 +26,24 @@ func _ready() -> void:
 	invincible_timer.wait_time = GameStats.invincibility_time
 	block_move_timer.wait_time = GameStats.block_move_time
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if visible and can_move:
+		print("GLOBAL MOUSE POSITION: ")
+		print(get_global_mouse_position())
+		print("MIN MARKER")
+		print(min_position.global_position)
+		print("MAX MARKER")
+		print(max_position.global_position)
 		var clamped_mouse_pos: Vector2 = get_global_mouse_position()
 		clamped_mouse_pos.x = clampf(clamped_mouse_pos.x, min_position.global_position.x, max_position.global_position.x)
 		clamped_mouse_pos.y = clampf(clamped_mouse_pos.y, min_position.global_position.y, max_position.global_position.y)
 		global_position = clamped_mouse_pos
+		print("CLAMPED MOUSE POS: ")
+		print(clamped_mouse_pos)
+		print("GLOBAL POSITION AFTER CLAMPING: ")
+		print(global_position)
 
 		Input.warp_mouse(clamped_mouse_pos)
 
