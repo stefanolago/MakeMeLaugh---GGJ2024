@@ -86,6 +86,8 @@ texture = ExtResource("5_5lm7n")
 
 [node name="feather" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_bae7l")
+volume_db = -10.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="FeatherActive" to="." method="_on_feather_active_area_entered"]
 [connection signal="area_exited" from="FeatherActive" to="." method="_on_feather_active_area_exited"]
