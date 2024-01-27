@@ -8,10 +8,10 @@
 radius = 68.469
 
 [node name="GirlFace" type="Node2D"]
-material = ExtResource("1_irtyx")
 script = ExtResource("1_xdtvh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("1_irtyx")
 position = Vector2(0, 11)
 scale = Vector2(0.72, 0.72)
 texture = ExtResource("2_ssltm")
