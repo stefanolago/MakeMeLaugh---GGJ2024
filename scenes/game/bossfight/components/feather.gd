@@ -13,6 +13,7 @@ signal tickled()
 signal finished_tickling()
 
 @onready var feather_area: Area2D = $FeatherActive
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 var shake_meter: int = 0:
@@ -31,10 +32,15 @@ var feather_state: FeatherState = FeatherState.NORMAL:
 			FeatherState.NORMAL:
 				($feather as AudioStreamPlayer).playing = false
 				($feather as AudioStreamPlayer).stream_paused = true
+				animation_player.play("RESET")
 			FeatherState.IN_HAND:
 				if feather_state == FeatherState.NORMAL:
 					($feather as AudioStreamPlayer).playing = true
 					($feather as AudioStreamPlayer).stream_paused = true
+					if not animation_player.is_playing():
+						animation_player.play("feather_tickling")
+			FeatherState.IN_HAND_AND_TICKLING:
+				print("YO")
 		feather_state = value
 
 var minimum_frames_to_register_shake: float = 200.0

@@ -156,7 +156,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(2, 4, 7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.588235), Color(1, 1, 1, 0.588235)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -266,7 +266,6 @@ libraries = {
 }
 
 [node name="Girl" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.588235, 0.588235, 0.588235, 1)
 position = Vector2(576, 395)
 scale = Vector2(1.7897, 1.7897)
 sprite_frames = ExtResource("3_6afuo")
@@ -318,3 +317,7 @@ energy = 4.2
 shadow_enabled = true
 texture = ExtResource("5_65y62")
 texture_scale = 2.37
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.3
+blend_mode = 1

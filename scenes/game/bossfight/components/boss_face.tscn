@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://brptrqp46bq11"]
+[gd_scene load_steps=30 format=3 uid="uid://brptrqp46bq11"]
 
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/boss_face.gd" id="1_msnto"]
 [ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="2_4qcnx"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cax5d2pgxysne" path="res://assets/art/Lupo/orecchie-abbassate.png" id="5_lr5lh"]
 [ext_resource type="AudioStream" uid="uid://dagk4j34cy26f" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-001.wav" id="10_3n64y"]
 [ext_resource type="AudioStream" uid="uid://qbn3nnoyrblc" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-001.wav" id="10_4oyww"]
+[ext_resource type="Texture2D" uid="uid://b4hc1yvb7ba4r" path="res://assets/art/Lupo/lupo-ghigno.png" id="10_5oxhh"]
 [ext_resource type="AudioStream" uid="uid://cxcxwciem4gxe" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-002.wav" id="11_10nkk"]
 [ext_resource type="AudioStream" uid="uid://buhalv7r347en" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-002.wav" id="11_x8pta"]
 [ext_resource type="AudioStream" uid="uid://j2u2ijaa74m2" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-003.wav" id="12_1kagt"]
@@ -76,6 +77,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"smile",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_5oxhh")
+}],
+"loop": true,
+"name": &"tickled",
 "speed": 5.0
 }]
 
@@ -287,9 +296,8 @@ color = Color(0.329412, 0.329412, 0.329412, 1)
 [node name="Boss" type="AnimatedSprite2D" parent="Node2D"]
 material = ExtResource("2_4qcnx")
 sprite_frames = SubResource("SpriteFrames_5x7p8")
-animation = &"arms_up"
+animation = &"tickled"
 autoplay = "default"
-frame_progress = 0.978413
 
 [node name="Marker2D" type="Marker2D" parent="Node2D/Boss"]
 position = Vector2(-2, 113)
