@@ -1,0 +1,372 @@
+[gd_scene load_steps=35 format=3 uid="uid://brptrqp46bq11"]
+
+[ext_resource type="Script" path="res://scenes/game/bossfight/components/boss_face.gd" id="1_msnto"]
+[ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="2_4qcnx"]
+[ext_resource type="Texture2D" uid="uid://dg88ns2w5pg0v" path="res://assets/art/Bambina/Idle.png" id="2_kotg8"]
+[ext_resource type="Texture2D" uid="uid://dee5intl7fld7" path="res://assets/art/Lupo/lupo-che-ride.png" id="2_kqh3j"]
+[ext_resource type="Texture2D" uid="uid://dhquvkrgg0ul4" path="res://assets/art/Lupo/lupo.png" id="2_r7x3r"]
+[ext_resource type="Texture2D" uid="uid://b277ri4cs74g4" path="res://assets/art/Lupo/non-voglio-sentire.png" id="4_1ba65"]
+[ext_resource type="Texture2D" uid="uid://ddmmqhq850qjr" path="res://assets/art/Lupo/Testa-lupo.png" id="4_pm61g"]
+[ext_resource type="Texture2D" uid="uid://4ni2fub51v0v" path="res://assets/art/Lupo/lupo-occhi-chiusi.png" id="5_d3rpw"]
+[ext_resource type="Texture2D" uid="uid://cax5d2pgxysne" path="res://assets/art/Lupo/orecchie-abbassate.png" id="5_lr5lh"]
+[ext_resource type="AudioStream" uid="uid://dagk4j34cy26f" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-001.wav" id="10_3n64y"]
+[ext_resource type="AudioStream" uid="uid://qbn3nnoyrblc" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-001.wav" id="10_4oyww"]
+[ext_resource type="Texture2D" uid="uid://b4hc1yvb7ba4r" path="res://assets/art/Lupo/lupo-ghigno.png" id="10_5oxhh"]
+[ext_resource type="AudioStream" uid="uid://cxcxwciem4gxe" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-002.wav" id="11_10nkk"]
+[ext_resource type="AudioStream" uid="uid://bjkjd7yxaonyh" path="res://assets/audio/sfx/LupoSogghigna/HeheLupo-001.wav" id="11_j0nw1"]
+[ext_resource type="Texture2D" uid="uid://df0dj0b01wq60" path="res://assets/art/Nervetto.png" id="11_o31gj"]
+[ext_resource type="AudioStream" uid="uid://buhalv7r347en" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-002.wav" id="11_x8pta"]
+[ext_resource type="AudioStream" uid="uid://j2u2ijaa74m2" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-003.wav" id="12_1kagt"]
+[ext_resource type="AudioStream" uid="uid://caabpcguahq16" path="res://assets/audio/sfx/LupoSogghigna/HeheLupo-002.wav" id="12_ftcqt"]
+[ext_resource type="AudioStream" uid="uid://cxi6r0noex6d1" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-003.wav" id="12_ramax"]
+[ext_resource type="AudioStream" uid="uid://ch7jth0eaja63" path="res://assets/audio/sfx/SwooshLupo/SwooshLupo-004.wav" id="13_k70qe"]
+[ext_resource type="AudioStream" uid="uid://bn6fax3vs8lt6" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-004.wav" id="13_oglb5"]
+[ext_resource type="AudioStream" uid="uid://dncv25y7ikl8g" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-005.wav" id="14_ym3lc"]
+[ext_resource type="AudioStream" uid="uid://k20x2mdyao7c" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-006.wav" id="18_7dlfb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jw73"]
+size = Vector2(517, 720)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5x7p8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1ba65")
+}],
+"loop": true,
+"name": &"arms_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pm61g")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r7x3r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 20.0,
+"texture": ExtResource("5_lr5lh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_r7x3r")
+}],
+"loop": true,
+"name": &"ears_covered",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 20.0,
+"texture": ExtResource("5_d3rpw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_r7x3r")
+}],
+"loop": true,
+"name": &"eyes_covered",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kqh3j")
+}],
+"loop": true,
+"name": &"smile",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_5oxhh")
+}],
+"loop": true,
+"name": &"tickled",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_58j5a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackPb:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u8jlh"]
+resource_name = "attack_charged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackPb:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0.541176, 0.478431, 1), Color(1, 0, 0, 1), Color(1, 0.541176, 0.478431, 1), Color(1, 0, 0, 1), Color(1, 0.541176, 0.478431, 1), Color(1, 0, 0, 1), Color(1, 0.541176, 0.478431, 1), Color(1, 0, 0, 1), Color(1, 0.541176, 0.478431, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4lvku"]
+resource_name = "attacking"
+length = 10.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_attack_finished"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 4, 6, 8, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-800, -100), Vector2(800, -300), Vector2(-800, -300), Vector2(800, -100), Vector2(-800, -100), Vector2(800, -300), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("wolf_woosh:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 4, 6, 8, 9.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_0xg20"]
+resource_name = "attacking_phase2"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-600, -200), Vector2(0, -400), Vector2(600, -200), Vector2(-100, 0), Vector2(-800, -200), Vector2(0, -400), Vector2(800, -200), Vector2(-100, 0), Vector2(-800, -200), Vector2(0, -400), Vector2(800, -200), Vector2(-100, 0), Vector2(-800, -200), Vector2(0, -400), Vector2(800, -200), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_attack_finished"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("wolf_woosh:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_p7ov1"]
+resource_name = "damage"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_damage_finished"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ra8oq"]
+_data = {
+"RESET": SubResource("Animation_58j5a"),
+"attack_charged": SubResource("Animation_u8jlh"),
+"attacking": SubResource("Animation_4lvku"),
+"attacking_phase2": SubResource("Animation_0xg20"),
+"damage": SubResource("Animation_p7ov1")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_garh4"]
+streams_count = 2
+stream_0/stream = ExtResource("11_j0nw1")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("12_ftcqt")
+stream_1/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_m1asg"]
+streams_count = 6
+stream_0/stream = ExtResource("10_3n64y")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("11_x8pta")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("12_1kagt")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("13_oglb5")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("14_ym3lc")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("18_7dlfb")
+stream_5/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w1elo"]
+streams_count = 4
+stream_0/stream = ExtResource("10_4oyww")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("11_10nkk")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("12_ramax")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("13_k70qe")
+stream_3/weight = 1.0
+
+[node name="BossFace" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_msnto")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6.5, -4)
+shape = SubResource("RectangleShape2D_7jw73")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0.509804)
+position = Vector2(-4, -107)
+amount = 20
+texture = ExtResource("2_kotg8")
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, -10)
+spread = 0.0
+gravity = Vector2(0, -100)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angle_min = 180.0
+angle_max = 180.0
+scale_amount_min = 0.3
+scale_amount_max = 0.3
+color = Color(0.329412, 0.329412, 0.329412, 1)
+
+[node name="Boss" type="AnimatedSprite2D" parent="Node2D"]
+material = ExtResource("2_4qcnx")
+sprite_frames = SubResource("SpriteFrames_5x7p8")
+autoplay = "default"
+
+[node name="Marker2D" type="Marker2D" parent="Node2D/Boss"]
+position = Vector2(-2, 113)
+
+[node name="nervetto" type="TextureRect" parent="Node2D"]
+visible = false
+offset_left = 103.0
+offset_top = -421.0
+offset_right = 203.0
+offset_bottom = -321.0
+texture = ExtResource("11_o31gj")
+
+[node name="AttackPb" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -234.0
+offset_top = 471.0
+offset_right = 234.0
+offset_bottom = 477.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+max_value = 4.0
+step = 0.05
+value = 4.0
+show_percentage = false
+
+[node name="DefenceModeTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ra8oq")
+}
+
+[node name="wolf_hit" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_garh4")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="wolf_attack" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_m1asg")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="wolf_woosh" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_w1elo")
+volume_db = -11.721
+bus = &"SFX"
+
+[connection signal="timeout" from="DefenceModeTimer" to="." method="_on_defence_mode_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

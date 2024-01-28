@@ -1,0 +1,472 @@
+[gd_scene load_steps=18 format=3 uid="uid://bvtx0cilely5c"]
+
+[ext_resource type="Script" path="res://scenes/game/cutscenes/intro.gd" id="1_ookg7"]
+[ext_resource type="Texture2D" uid="uid://btpi6uajepcr4" path="res://assets/art/Stanza/Room.png" id="2_kjo4n"]
+[ext_resource type="SpriteFrames" uid="uid://cbo5mqkybf3bq" path="res://scenes/game/cutscenes/girl_default.tres" id="3_6afuo"]
+[ext_resource type="SpriteFrames" uid="uid://jdf2qbit8c1a" path="res://scenes/game/cutscenes/girl_bed_sleep.tres" id="4_8rao2"]
+[ext_resource type="AudioStream" uid="uid://brcugsob45dxw" path="res://assets/audio/sfx/CutsceneIntro/ClickLuceFin.wav" id="4_ru83s"]
+[ext_resource type="Texture2D" uid="uid://dgk38f7avwe4w" path="res://assets/art/Lupo/Pixel-lupo.png" id="4_w1jqb"]
+[ext_resource type="Texture2D" uid="uid://c8tf22np2amql" path="res://assets/art/lights/circle.png" id="5_65y62"]
+[ext_resource type="AudioStream" uid="uid://bm1xln52pofhc" path="res://assets/audio/sfx/CutsceneIntro/Thunder.wav" id="5_f3g4e"]
+[ext_resource type="SpriteFrames" uid="uid://cw237uwjimjf5" path="res://scenes/game/cutscenes/girl_bed_awake.tres" id="5_wg4j0"]
+[ext_resource type="AudioStream" uid="uid://b8wmnd6v3g480" path="res://assets/audio/sfx/CutsceneIntro/AmbienceIntro.wav" id="9_4ntg6"]
+[ext_resource type="Texture2D" uid="uid://eu88ioop2lsv" path="res://assets/art/lights/cone_light.png" id="9_hpajw"]
+
+[sub_resource type="Animation" id="Animation_h4uwt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 30)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("fade:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Room:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Girl:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 395)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LampLight:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Girl:sprite_frames")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_6afuo")]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DirectionalLight2D:energy")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.3]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Control/LightningBolt:enabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Wolf:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ledxy"]
+resource_name = "intro_cinematic"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(3, 3), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 100), Vector2(0, 100), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 4.59085, 6.25644, 11.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"start_dialogic"
+}, {
+"args": [],
+"method": &"continue_dialogic"
+}, {
+"args": [],
+"method": &"continue_dialogic"
+}, {
+"args": [],
+"method": &"load_next_level"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Room:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2, 4, 7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("fade:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Girl:position")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3.64207, 5.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(576, 395), Vector2(576, 395), Vector2(880, 222.625)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LampLight:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(6.29578, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("cinematic_sfx")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_ru83s")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_f3g4e")
+}],
+"times": PackedFloat32Array(7, 9.2)
+}
+tracks/7/use_blend = true
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Girl:sprite_frames")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 5.2, 7.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_6afuo"), ExtResource("5_wg4j0"), ExtResource("4_8rao2")]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("DirectionalLight2D:energy")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(6.3, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.3, 0.5]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("DirectionalLight2D:energy")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(4.6, 5.2, 5.9),
+"transitions": PackedFloat32Array(1, 3.4822, 0.125),
+"update": 0,
+"values": [0.3, 2.2, 0.3]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Control/LightningBolt:enabled")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 9.6, 9.7, 9.8, 10, 10.1, 10.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Wolf:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 9.8, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("ambiance_sfx:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(2.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("ambiance_sfx:volume_db")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(2.1, 4.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, -15.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jtyml"]
+_data = {
+"RESET": SubResource("Animation_h4uwt"),
+"intro_cinematic": SubResource("Animation_ledxy")
+}
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1hgo4"]
+polygon = PackedVector2Array(-49, 46, -48, -7, -51, -26, -42, -46, -32, -34, -36.0339, -15, 2, -15, 17, -51, 39, -49, 33, -8, 48, 45)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jw1gd"]
+cull_mode = 1
+polygon = PackedVector2Array(-52, 88, -52, -14, 50, -14, 50, 88, 115, -101, -105, -100)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n1dtr"]
+polygon = PackedVector2Array(-79, -10, -106, -100, 115, -102, 82, -5, 50, 88, 50, -14, -52, -14, -52, 88)
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ookg7")
+metadata/_edit_horizontal_guides_ = [323.0]
+metadata/_edit_vertical_guides_ = [576.0]
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Room" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_kjo4n")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jtyml")
+}
+
+[node name="Girl" type="AnimatedSprite2D" parent="."]
+position = Vector2(576, 395)
+scale = Vector2(1.7897, 1.7897)
+sprite_frames = ExtResource("3_6afuo")
+autoplay = "default"
+
+[node name="Wolf" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.45098)
+position = Vector2(454, 409)
+texture = ExtResource("4_w1jqb")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Wolf"]
+visible = false
+occluder = SubResource("OccluderPolygon2D_1hgo4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 323)
+offset = Vector2(0, 30)
+zoom = Vector2(3, 3)
+
+[node name="LampLight" type="PointLight2D" parent="."]
+position = Vector2(1003, 148)
+scale = Vector2(0.36, 0.4)
+energy = 1.54
+texture = ExtResource("5_65y62")
+texture_scale = 1.41
+metadata/_edit_lock_ = true
+
+[node name="fade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="cinematic_sfx" type="AudioStreamPlayer" parent="."]
+volume_db = -12.263
+bus = &"SFX"
+
+[node name="ambiance_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_4ntg6")
+volume_db = -15.0
+autoplay = true
+bus = &"SFX"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(456, 44)
+occluder = SubResource("OccluderPolygon2D_jw1gd")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="LightOccluder2D"]
+occluder = SubResource("OccluderPolygon2D_n1dtr")
+
+[node name="Control" type="Control" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LightningBolt" type="PointLight2D" parent="Control"]
+position = Vector2(514, 365)
+rotation = 1.5708
+scale = Vector2(0.882267, 0.754574)
+enabled = false
+energy = 1.02
+shadow_enabled = true
+texture = ExtResource("9_hpajw")
+offset = Vector2(4, 82.8235)
+texture_scale = 4.0
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.3
+blend_mode = 1

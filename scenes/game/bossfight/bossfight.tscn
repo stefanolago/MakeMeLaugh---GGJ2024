@@ -1,0 +1,131 @@
+[gd_scene load_steps=12 format=3 uid="uid://cjhj5oq6bo6mq"]
+
+[ext_resource type="PackedScene" uid="uid://bcfs7nljoccss" path="res://scenes/game/bossfight/components/joke_typing.tscn" id="1_fu3yb"]
+[ext_resource type="Script" path="res://scenes/game/bossfight/bossfight.gd" id="1_h1yt4"]
+[ext_resource type="PackedScene" uid="uid://brptrqp46bq11" path="res://scenes/game/bossfight/components/boss_face.tscn" id="1_vme5d"]
+[ext_resource type="PackedScene" uid="uid://c0nicki1o5tox" path="res://scenes/game/bossfight/components/feather.tscn" id="3_ltypo"]
+[ext_resource type="PackedScene" uid="uid://qv7886gfd6lc" path="res://scenes/game/bossfight/components/face_clicker.tscn" id="4_diejx"]
+[ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="5_603lb"]
+[ext_resource type="PackedScene" uid="uid://44u818wjeuva" path="res://scenes/game/bossfight/components/girl_face.tscn" id="6_r651i"]
+[ext_resource type="AudioStream" uid="uid://sm7oh0jsdh3p" path="res://assets/audio/sfx/Bullet.wav" id="8_o7enk"]
+[ext_resource type="AudioStream" uid="uid://csakrbqto1j1b" path="res://assets/audio/music/Drone_LupoStart.wav" id="9_l3t3g"]
+[ext_resource type="AudioStream" uid="uid://cpas24vqnvjik" path="res://assets/audio/music/First_phase_Boss.wav" id="10_ib206"]
+[ext_resource type="AudioStream" uid="uid://vxekxe0pcdle" path="res://assets/audio/music/boss_part_2_.wav" id="10_kd0yi"]
+
+[node name="Bossfight" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_h1yt4")
+metadata/_edit_horizontal_guides_ = [555.0]
+metadata/_edit_vertical_guides_ = [576.0]
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="BossFace" parent="." instance=ExtResource("1_vme5d")]
+position = Vector2(576, 222)
+scale = Vector2(0.45, 0.45)
+
+[node name="JokeTyping" parent="." instance=ExtResource("1_fu3yb")]
+process_mode = 3
+position = Vector2(576, 528)
+
+[node name="Feather" parent="." instance=ExtResource("3_ltypo")]
+material = ExtResource("5_603lb")
+position = Vector2(152, 513)
+metadata/_edit_horizontal_guides_ = [-121.0, 112.0]
+metadata/_edit_use_anchors_ = true
+
+[node name="FaceClicker" parent="." instance=ExtResource("4_diejx")]
+position = Vector2(973, 517)
+metadata/_edit_use_anchors_ = true
+
+[node name="boss_bullet_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="MinMarker" type="Marker2D" parent="."]
+position = Vector2(276, 312)
+
+[node name="MaxMarker" type="Marker2D" parent="."]
+position = Vector2(876, 555)
+
+[node name="movement_limit" type="Node2D" parent="."]
+visible = false
+
+[node name="limit_1" type="VScrollBar" parent="movement_limit"]
+offset_left = 212.0
+offset_top = 312.0
+offset_right = 455.0
+offset_bottom = 320.0
+rotation = 1.57079
+
+[node name="limit_2" type="VScrollBar" parent="movement_limit"]
+offset_left = 940.0
+offset_top = 312.0
+offset_right = 1183.0
+offset_bottom = 320.0
+rotation = 1.57079
+
+[node name="GirlFace" parent="." node_paths=PackedStringArray("min_position", "max_position") instance=ExtResource("6_r651i")]
+visible = false
+position = Vector2(568, 447)
+scale = Vector2(0.5, 0.5)
+min_position = NodePath("../MinMarker")
+max_position = NodePath("../MaxMarker")
+
+[node name="debug_end" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1048.0
+offset_top = 612.0
+offset_right = 1148.0
+offset_bottom = 649.0
+text = "END"
+
+[node name="bullet_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_o7enk")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="music_drone" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("9_l3t3g")
+volume_db = -15.0
+bus = &"Music"
+
+[node name="music_1" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_ib206")
+volume_db = -6.721
+bus = &"Music"
+
+[node name="music_2" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_kd0yi")
+volume_db = -7.0
+bus = &"Music"
+
+[connection signal="boss_blocked_damage" from="BossFace" to="." method="_on_boss_face_boss_blocked_damage"]
+[connection signal="boss_dead" from="BossFace" to="." method="_on_boss_face_boss_dead"]
+[connection signal="boss_second_phase" from="BossFace" to="." method="_on_boss_face_boss_second_phase"]
+[connection signal="boss_status_changed" from="BossFace" to="." method="_on_boss_face_boss_status_changed"]
+[connection signal="inserted_right_word" from="JokeTyping" to="." method="_on_joke_typing_inserted_right_word"]
+[connection signal="inserted_wrong_word" from="JokeTyping" to="." method="_on_joke_typing_inserted_wrong_word"]
+[connection signal="finished_tickling" from="Feather" to="." method="_on_feather_finished_tickling"]
+[connection signal="tickled" from="Feather" to="." method="_on_feather_tickled"]
+[connection signal="face_status_changed" from="FaceClicker" to="." method="_on_face_clicker_face_status_changed"]
+[connection signal="timeout" from="boss_bullet_timer" to="." method="_on_boss_bullet_timer_timeout"]
+[connection signal="player_dead" from="GirlFace" to="." method="_on_girl_face_player_dead"]
+[connection signal="pressed" from="debug_end" to="." method="_on_debug_end_pressed"]

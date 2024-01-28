@@ -69,10 +69,39 @@ anchor_bottom = 0.8
 visible = false
 layout_mode = 1
 
+<<<<<<< Updated upstream
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("3_mxssh")
 volume_db = -40.3
 autoplay = true
+=======
+[node name="Tile" type="Label" parent="."]
+offset_left = 218.0
+offset_top = 182.0
+offset_right = 340.0
+offset_bottom = 198.0
+theme_override_font_sizes/font_size = 94
+text = "make ME laugh"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.113725)
+position = Vector2(580, 497)
+texture = ExtResource("6_301i2")
+metadata/_edit_lock_ = true
+
+[node name="Confirm_sfx" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_tx0tu")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_asd4m")
+volume_db = -7.15
+>>>>>>> Stashed changes
 bus = &"Music"
 
 [connection signal="pressed" from="Control/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
