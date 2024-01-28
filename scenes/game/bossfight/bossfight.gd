@@ -118,18 +118,11 @@ func _on_joke_typing_inserted_wrong_word() -> void:
 func _on_boss_face_boss_status_changed(status: Boss.BossStatus) -> void:
 	match status:
 		Boss.BossStatus.EARS_COVERED_TUTORIAL:
-			#print("TUTORIAL EARS")
-			#boss_face.boss_status = Boss.BossStatus.EYES_COVERED_TUTORIAL
 			Dialogic.start("ears_covered_tutorial")
 		Boss.BossStatus.EYES_COVERED_TUTORIAL:
-			#print("TUTORIAL EYES")
-			#boss_face.boss_status = Boss.BossStatus.ARMS_UP_TUTORIAL
 			Dialogic.start("eyes_covered_tutorial")
 		Boss.BossStatus.ARMS_UP_TUTORIAL:
-			#print("TUTORIAL ARMS")
 			Dialogic.start("arms_up_tutorial")
-			#boss_face.new_defence_mode()
-			#show_player_ui()
 		Boss.BossStatus.ATTACK:
 			movement_limit.visible = true
 			typing_scene.visible = false
@@ -215,16 +208,15 @@ func DialogicSignal(argument:String) -> void:
 		"ears_covered_tutorial":
 			print("EARS COVERED")
 			face_clicker_scene.visible = true
-			boss_face.boss_status = Boss.BossStatus.EYES_COVERED_TUTORIAL
+			#boss_face.boss_status = Boss.BossStatus.EYES_COVERED_TUTORIAL
 		"eyes_covered_tutorial":
 			print("EYES COVERED")
 			typing_scene.visible = true
-			boss_face.boss_status = Boss.BossStatus.ARMS_UP_TUTORIAL
-			
+			#boss_face.boss_status = Boss.BossStatus.ARMS_UP_TUTORIAL
 		"arms_up_tutorial":
 			print("ARMS UP")
 			feather_scene.visible = true
-			boss_face.new_defence_mode()
+			#boss_face.new_defence_mode()
 
 
 func start_boss_fight() -> void:

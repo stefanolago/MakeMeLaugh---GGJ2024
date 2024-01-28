@@ -120,6 +120,8 @@ func boss_attacked(type: AttackType) -> void:
 		AttackType.JOKE:
 			if boss_status == BossStatus.EYES_COVERED:
 				take_damage()
+			elif boss_status == BossStatus.EYES_COVERED_TUTORIAL:
+				boss_status = BossStatus.ARMS_UP_TUTORIAL
 			else:
 				boss_blocked_damage.emit()
 				attack_timer.stop()

@@ -40,16 +40,24 @@ var face_status: FaceStatus = FaceStatus.IDLE:
 var face_clicks: int = 0:
 	set(value):
 		face_clicks = clamp(value, 0, 10)
+		var tween: Tween = get_tree().create_tween()
+		var new_scale: float = 1
 		if face_clicks >= 10:
 			face_status = FaceStatus.FULL_GRIMACE
+			new_scale = 1.4
 		elif face_clicks >= 7:
 			face_status = FaceStatus.GRIMACE_2
+			new_scale = 1.3
 		elif face_clicks >= 4:
 			face_status = FaceStatus.GRIMACE_1
+			new_scale = 1.2
 		elif face_clicks >= 1:
 			face_status = FaceStatus.GRIMACE_0
+			new_scale = 1.1
 		else:
 			face_status = FaceStatus.IDLE
+		
+		tween.tween_property(self, "scale", Vector2(new_scale, new_scale), 0.2)
 
 
 func attack_anim_finished() -> void:
