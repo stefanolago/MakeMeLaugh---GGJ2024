@@ -37,7 +37,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
 	body.queue_free()
-	if state != State.INVINCIBLE:
+	if state != State.INVINCIBLE and visible:
 		GameStats.player_health -= 1
 		state = State.INVINCIBLE
 		can_move = false
