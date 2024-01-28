@@ -9,7 +9,7 @@ var player_health: int
 var invincibility_time: float
 var block_move_time: float
 var second_phase:bool
-var second_phase_bullet_vel: int = 300
+var second_phase_bullet_vel: int
 
 var show_tutorial: bool = true
 
@@ -20,10 +20,10 @@ func _ready() -> void:
 func reset() -> void:
 	print ("restarting")
 	boss_attack_timer = 10
-	boss_attack_timer_phase2 = 7
+	boss_attack_timer_phase2 = 6
 	boss_defence_switch_timer = 20
-	boss_health = 2
-	second_phase_start_health = 1
+	boss_health = 10
+	second_phase_start_health = 5
 	player_health = 5
 	invincibility_time = 1.0
 	block_move_time = 0.5

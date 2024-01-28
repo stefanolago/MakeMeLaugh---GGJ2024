@@ -87,6 +87,7 @@ min_position = NodePath("../MinMarker")
 max_position = NodePath("../MaxMarker")
 
 [node name="debug_end" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1048.0
 offset_top = 612.0

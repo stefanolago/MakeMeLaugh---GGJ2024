@@ -41,7 +41,7 @@ var feather_state: FeatherState = FeatherState.NORMAL:
 						animation_player.play("feather_tickling")
 		feather_state = value
 
-var minimum_frames_to_register_shake: float = 200.0
+var minimum_frames_to_register_shake: float = 5.0
 @export var total_shake_meter_to_reach: int = 200
 
 
