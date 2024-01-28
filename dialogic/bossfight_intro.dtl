@@ -1,8 +1,8 @@
-if :
-	Tutorial?
-	- Yes
-	- No
-		[signal arg="show_tutorial_false"]
+Tutorial?
+- Yes
+	[signal arg="show_tutorial_true"]
+- No
+	[signal arg="show_tutorial_false"]
 wolf (base): Hello, Me.
 wolf (base): I was waiting for you.
 wolf (base): ...

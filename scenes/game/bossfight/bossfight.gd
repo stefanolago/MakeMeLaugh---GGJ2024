@@ -196,6 +196,8 @@ func DialogicSignal(argument:String) -> void:
 	match argument:
 		"show_tutorial_false":
 			GameStats.show_tutorial = false
+		"show_tutorial_true":
+			GameStats.show_tutorial = true
 		"bossfight_intro_end":
 			if not GameStats.show_tutorial:
 				start_boss_fight()

@@ -89,7 +89,7 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 				attack_pb.visible = false
 				attack_timer.stop()
 				animation_player.play("damage")
-				($wolf_hit as AudioStreamPlayer).play()
+				#($wolf_hit as AudioStreamPlayer).play()
 
 
 func _ready() -> void:

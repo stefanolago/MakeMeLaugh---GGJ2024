@@ -51,7 +51,9 @@ directories/dtl_directory={
 }
 layout/style_list=[]
 layout/default_style="Default"
-variables={}
+variables={
+"show_tutorial": true
+}
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
 text/text_reveal_skip_delay=0.1
