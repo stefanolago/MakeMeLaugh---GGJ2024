@@ -51,8 +51,10 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 				boss_sprite.play("ears_covered")
 				print("TUTORIAL EARS")
 			BossStatus.EYES_COVERED_TUTORIAL:
+				boss_sprite.play("eyes_covered")
 				print("TUTORIAL EYES")
 			BossStatus.ARMS_UP_TUTORIAL:
+				boss_sprite.play("arms_up")
 				print("TUTORIAL ARMS")
 			BossStatus.EARS_COVERED:
 				boss_sprite.play("ears_covered")
@@ -117,6 +119,16 @@ func boss_attacked(type: AttackType) -> void:
 		print ("already taking damage")
 		pass
 	match type:
+		AttackType.FULL_GRIMACE:
+			if boss_status == BossStatus.EARS_COVERED:
+				take_damage()
+			elif boss_status == BossStatus.EARS_COVERED_TUTORIAL:
+				boss_status = BossStatus.EYES_COVERED_TUTORIAL
+			else:
+				boss_blocked_damage.emit()
+				attack_timer.stop()
+				attack_pb.visible = false
+				Dialogic.start("smorfia_ineffective")
 		AttackType.JOKE:
 			if boss_status == BossStatus.EYES_COVERED:
 				take_damage()
@@ -127,17 +139,11 @@ func boss_attacked(type: AttackType) -> void:
 				attack_timer.stop()
 				attack_pb.visible = false
 				Dialogic.start("joke_ineffective")
-		AttackType.FULL_GRIMACE:
-			if boss_status == BossStatus.EARS_COVERED:
-				take_damage()
-			else:
-				boss_blocked_damage.emit()
-				attack_timer.stop()
-				attack_pb.visible = false
-				Dialogic.start("smorfia_ineffective")
 		AttackType.TICKLE:
 			if boss_status == BossStatus.ARMS_UP:
-				take_damage()
+				take_damage()		
+			elif boss_status == BossStatus.ARMS_UP_TUTORIAL:
+				roll_new_defence_mode()
 			else:
 				boss_blocked_damage.emit()
 				attack_timer.stop()
