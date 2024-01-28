@@ -27,3 +27,9 @@ func _input(event: InputEvent) -> void:
 		game_is_pause = !game_is_pause
 
 
+func _on_quit_button_pressed():
+	get_tree().quit()
+
+
+func _on_quit_button_mouse_entered():
+	($hover as AudioStreamPlayer).play()

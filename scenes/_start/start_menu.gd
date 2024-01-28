@@ -26,7 +26,7 @@ func fade_music_in() -> void:
 func fade_music_out() -> void:
 	print ("fading out")
 	var music_tween: Tween = get_tree().create_tween()
-	music_tween.tween_property(music, "volume_db", -80, 1)
+	music_tween.tween_property(music, "volume_db", -80, 0.5)
 	music_tween.tween_callback(music.stop)
 
 
