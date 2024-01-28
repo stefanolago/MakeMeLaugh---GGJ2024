@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bxlfyph8igh8b" path="res://scenes/_options_menu/options_menu.tscn" id="1_q0fgv"]
 [ext_resource type="PackedScene" uid="uid://bvtx0cilely5c" path="res://scenes/game/cutscenes/intro.tscn" id="2_hsxlj"]
 [ext_resource type="PackedScene" uid="uid://dkhsruehu1ue6" path="res://scenes/_credits/credits.tscn" id="3_drggk"]
-
 [ext_resource type="AudioStream" uid="uid://b32ddpvwwgaa1" path="res://assets/audio/sfx/UI Menù/Confirm.wav" id="3_tx0tu"]
 [ext_resource type="Texture2D" uid="uid://dhquvkrgg0ul4" path="res://assets/art/Lupo/lupo.png" id="6_301i2"]
 [ext_resource type="AudioStream" uid="uid://eiyouj6n1hbl" path="res://assets/audio/music/Main_mENU.wav" id="7_asd4m"]
