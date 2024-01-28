@@ -11,12 +11,16 @@ signal inserted_wrong_word()
 
 
 var jokes: Array[String] = [
-	"Bamboozle",
-	"Discombabulate",
-	"Gobbledygook",
-	"Bunghole",
-	"Skidaddle",
-	"Dingus"
+	"bamboozle",
+	"discombobulate",
+	"gobbledygook",
+	"bunghole",
+	"skidaddle",
+	"dingus",
+	"chucklehead",
+	"flabbergasted",
+	"goobergoober",
+	"noodlehead"
 	]
 var current_joke : String = ""
 
