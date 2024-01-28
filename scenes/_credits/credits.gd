@@ -23,5 +23,5 @@ func _on_back_button_pressed() -> void:
 		credits_back_button.emit()
 
 
-func _on_back_button_mouse_entered():
+func _on_back_button_mouse_entered() -> void:
 	($hover_sfx as AudioStreamPlayer).play()
