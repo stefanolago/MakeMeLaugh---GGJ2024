@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvnbhlx7v7sko"]
+[gd_scene load_steps=5 format=3 uid="uid://bvnbhlx7v7sko"]
 
 [ext_resource type="Script" path="res://scenes/_game_over/game_over.gd" id="1_clryn"]
 [ext_resource type="Texture2D" uid="uid://dhquvkrgg0ul4" path="res://assets/art/Lupo/lupo.png" id="1_v14qn"]
+[ext_resource type="AudioStream" uid="uid://b7w27so2p8i4l" path="res://assets/audio/music/gAME_oVER.wav" id="3_warmd"]
+[ext_resource type="AudioStream" uid="uid://bdvp3wplhfhe6" path="res://assets/audio/sfx/UI Menù/HoverFitta.wav" id="4_s6mxf"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -62,4 +64,15 @@ grow_vertical = 2
 text = " < Back 
 "
 
+[node name="game_over_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_warmd")
+volume_db = -5.0
+bus = &"Music"
+
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_s6mxf")
+volume_db = -7.0
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
