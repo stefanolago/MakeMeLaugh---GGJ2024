@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjhj5oq6bo6mq"]
+
+[ext_resource type="PackedScene" uid="uid://bcfs7nljoccss" path="res://scenes/game/bossfight/components/joke_typing.tscn" id="1_fu3yb"]
+[ext_resource type="Script" path="res://scenes/game/bossfight/bossfight.gd" id="1_h1yt4"]
+[ext_resource type="PackedScene" uid="uid://brptrqp46bq11" path="res://scenes/game/bossfight/components/boss_face.tscn" id="1_vme5d"]
+[ext_resource type="PackedScene" uid="uid://c0nicki1o5tox" path="res://scenes/game/bossfight/components/feather.tscn" id="3_ltypo"]
+[ext_resource type="PackedScene" uid="uid://qv7886gfd6lc" path="res://scenes/game/bossfight/components/face_clicker.tscn" id="4_diejx"]
+
+[node name="Bossfight" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h1yt4")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BossFace" parent="." instance=ExtResource("1_vme5d")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.0
+offset_top = -298.0
+offset_right = 264.0
+offset_bottom = -80.0
+
+[node name="boss_fire" type="Marker2D" parent="BossFace"]
+position = Vector2(262, 218)
+
+[node name="JokeTyping" parent="." instance=ExtResource("1_fu3yb")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.725309
+anchor_right = 0.7
+anchor_bottom = 0.878086
+metadata/_edit_use_anchors_ = true
+
+[node name="Feather" parent="." instance=ExtResource("3_ltypo")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0989583
+anchor_top = 0.648148
+anchor_right = 0.201389
+anchor_bottom = 0.890432
+metadata/_edit_use_anchors_ = true
+
+[node name="FaceClicker" parent="." instance=ExtResource("4_diejx")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.775174
+anchor_top = 0.584877
+anchor_right = 0.94184
+anchor_bottom = 0.912037
+metadata/_edit_use_anchors_ = true
+
+[node name="boss_bullet_timer" type="Timer" parent="."]
+
+[node name="debug_attack" type="Button" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 583.0
+offset_right = 61.0
+offset_bottom = 607.0
+scale = Vector2(2.78858, 2.55166)
+text = "ATTACK"
+
+[connection signal="boss_status_changed" from="BossFace" to="." method="_on_boss_face_boss_status_changed"]
+[connection signal="inserted_right_word" from="JokeTyping" to="." method="_on_joke_typing_inserted_right_word"]
+[connection signal="inserted_wrong_word" from="JokeTyping" to="." method="_on_joke_typing_inserted_wrong_word"]
+[connection signal="finished_tickling" from="Feather" to="." method="_on_feather_finished_tickling"]
+[connection signal="tickled" from="Feather" to="." method="_on_feather_tickled"]
+[connection signal="face_status_changed" from="FaceClicker" to="." method="_on_face_clicker_face_status_changed"]
+[connection signal="timeout" from="boss_bullet_timer" to="." method="_on_boss_bullet_timer_timeout"]
+[connection signal="pressed" from="debug_attack" to="BossFace" method="_on_debug_attack_pressed"]

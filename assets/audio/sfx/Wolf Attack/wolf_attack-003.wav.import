@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d3pd26cytwwe5"
+path="res://.godot/imported/wolf_attack-003.wav-8138dab1714b8a08b96040f7f809d51b.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Wolf Attack/wolf_attack-003.wav"
+dest_files=["res://.godot/imported/wolf_attack-003.wav-8138dab1714b8a08b96040f7f809d51b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

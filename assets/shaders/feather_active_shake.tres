@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dkk75svsc8xne"]
+
+[ext_resource type="Shader" path="res://assets/shaders/feather_active_shake.gdshader" id="1_0oma7"]
+
+[resource]
+shader = ExtResource("1_0oma7")
+shader_parameter/Strength = 0.81
+shader_parameter/RandomOffset = 1.0

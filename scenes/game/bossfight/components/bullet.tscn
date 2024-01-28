@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://o4hc5s1i6713"]
+
+[ext_resource type="Script" path="res://scenes/game/bossfight/components/bullet.gd" id="1_w6a0r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wu6iv"]
+radius = 12.0
+
+[sub_resource type="Animation" id="Animation_21mla"]
+resource_name = "falling"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Group:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 800)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5fwyn"]
+_data = {
+"falling": SubResource("Animation_21mla")
+}
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_w6a0r")
+
+[node name="Group" type="Node2D" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Group"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Label" type="Label" parent="Group/RigidBody2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -45.0
+offset_right = 2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Group/RigidBody2D"]
+shape = SubResource("CircleShape2D_wu6iv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5fwyn")
+}
+autoplay = "falling"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

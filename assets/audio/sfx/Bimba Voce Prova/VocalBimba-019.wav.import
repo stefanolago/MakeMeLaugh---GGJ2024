@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dk867rc77glh7"
+path="res://.godot/imported/VocalBimba-019.wav-ed31251a0eb097c097456ba76cc54fc5.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/Bimba Voce Prova/VocalBimba-019.wav"
+dest_files=["res://.godot/imported/VocalBimba-019.wav-ed31251a0eb097c097456ba76cc54fc5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

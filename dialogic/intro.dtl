@@ -1,0 +1,14 @@
+girl (base): It's 3\:00 am.
+girl (base): I wish I could sleep.
+girl (base): But my head feels heavy.
+[clear time="1.0"]
+[signal arg="progress_animation"]
+girl (base): It's very late...
+girl (base): I'm starting to feel my eyes closing.
+[clear time="1.0"]
+[signal arg="progress_animation"]
+girl (base): ...
+girl (base): ...
+girl (base): Something doesn't feel right...
+[clear time="1.0"]
+[signal arg="progress_animation"]
