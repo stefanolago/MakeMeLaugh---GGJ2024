@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjhj5oq6bo6mq"]
+
+[ext_resource type="PackedScene" uid="uid://bcfs7nljoccss" path="res://scenes/game/bossfight/components/joke_typing.tscn" id="1_fu3yb"]
+[ext_resource type="Script" path="res://scenes/game/bossfight/bossfight.gd" id="1_h1yt4"]
+[ext_resource type="PackedScene" uid="uid://brptrqp46bq11" path="res://scenes/game/bossfight/components/boss_face.tscn" id="1_vme5d"]
+[ext_resource type="PackedScene" uid="uid://c0nicki1o5tox" path="res://scenes/game/bossfight/components/feather.tscn" id="3_ltypo"]
+[ext_resource type="PackedScene" uid="uid://qv7886gfd6lc" path="res://scenes/game/bossfight/components/face_clicker.tscn" id="4_diejx"]
+
+[node name="Bossfight" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_h1yt4")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="BossFace" parent="." instance=ExtResource("1_vme5d")]
+position = Vector2(564, 222)
+scale = Vector2(0.45, 0.45)
+
+[node name="boss_fire" type="Marker2D" parent="BossFace"]
+position = Vector2(570, 183)
+
+[node name="JokeTyping" parent="." instance=ExtResource("1_fu3yb")]
+position = Vector2(564, 528)
+
+[node name="Feather" parent="." instance=ExtResource("3_ltypo")]
+position = Vector2(152, 513)
+metadata/_edit_horizontal_guides_ = [-121.0, 112.0]
+metadata/_edit_use_anchors_ = true
+
+[node name="FaceClicker" parent="." instance=ExtResource("4_diejx")]
+position = Vector2(975, 517)
+metadata/_edit_use_anchors_ = true
+
+[node name="boss_bullet_timer" type="Timer" parent="."]
+
+[node name="debug_end" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1048.0
+offset_top = 612.0
+offset_right = 1148.0
+offset_bottom = 649.0
+text = "END"
+
+[connection signal="boss_blocked_damage" from="BossFace" to="." method="_on_boss_face_boss_blocked_damage"]
+[connection signal="boss_dead" from="BossFace" to="." method="_on_boss_face_boss_dead"]
+[connection signal="boss_second_phase" from="BossFace" to="." method="_on_boss_face_boss_second_phase"]
+[connection signal="boss_status_changed" from="BossFace" to="." method="_on_boss_face_boss_status_changed"]
+[connection signal="inserted_right_word" from="JokeTyping" to="." method="_on_joke_typing_inserted_right_word"]
+[connection signal="inserted_wrong_word" from="JokeTyping" to="." method="_on_joke_typing_inserted_wrong_word"]
+[connection signal="finished_tickling" from="Feather" to="." method="_on_feather_finished_tickling"]
+[connection signal="tickled" from="Feather" to="." method="_on_feather_tickled"]
+[connection signal="face_status_changed" from="FaceClicker" to="." method="_on_face_clicker_face_status_changed"]
+[connection signal="timeout" from="boss_bullet_timer" to="." method="_on_boss_bullet_timer_timeout"]
+[connection signal="pressed" from="debug_end" to="." method="_on_debug_end_pressed"]

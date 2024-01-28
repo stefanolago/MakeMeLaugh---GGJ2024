@@ -1,6 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkhsruehu1ue6"]
+[gd_scene load_steps=10 format=3 uid="uid://dkhsruehu1ue6"]
 
 [ext_resource type="Script" path="res://scenes/_credits/credits.gd" id="1_v0gdx"]
+[ext_resource type="AudioStream" uid="uid://yy4e4eabnmx8" path="res://assets/audio/sfx/UI Menù/Back.wav" id="2_qfmh7"]
+[ext_resource type="Texture2D" uid="uid://5r4f786nhrhc" path="res://assets/art/Lupo/Pixel-doggo/Walk-1.png" id="3_5shbk"]
+[ext_resource type="Texture2D" uid="uid://brmy0o24vljn3" path="res://assets/art/Lupo/Pixel-doggo/Walk-2.png" id="4_t4ybp"]
+[ext_resource type="Texture2D" uid="uid://dh2f8pqi621rg" path="res://assets/art/Lupo/Pixel-doggo/Walk-3.png" id="5_xryl0"]
+[ext_resource type="AudioStream" uid="uid://bdvp3wplhfhe6" path="res://assets/audio/sfx/UI Menù/HoverFitta.wav" id="6_jd5ep"]
 
 [sub_resource type="Theme" id="Theme_ba7kw"]
 Label/font_sizes/font_size = 25
@@ -8,6 +13,23 @@ Label/font_sizes/font_size = 25
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tndvc"]
 content_margin_top = 20.0
 content_margin_bottom = 20.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yl2pp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5shbk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t4ybp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xryl0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -17,6 +39,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v0gdx")
+final_credits = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -25,7 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0941176, 0.298039, 0.592157, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="Label2" type="Label" parent="ColorRect"]
 layout_mode = 1
@@ -70,7 +93,8 @@ horizontal_alignment = 1
 
 [node name="Programmer" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "Jafarrolo"
+text = "Jafarrolo
+Libero Masini"
 horizontal_alignment = 1
 
 [node name="SoundMusicLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer"]
@@ -82,7 +106,8 @@ horizontal_alignment = 1
 
 [node name="Musician" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "Andrea Guerriero"
+text = "Andrea Guerriero
+Davide Bunino"
 horizontal_alignment = 1
 
 [node name="WritingLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer"]
@@ -94,7 +119,7 @@ horizontal_alignment = 1
 
 [node name="Writer" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-text = "Montoya"
+text = "Everybody"
 horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="ColorRect"]
@@ -108,4 +133,27 @@ grow_vertical = 0
 text = " < Back 
 "
 
+[node name="back_button" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qfmh7")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="hover_sfx" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("6_jd5ep")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="doggo_1" type="AnimatedSprite2D" parent="."]
+position = Vector2(230, 148)
+sprite_frames = SubResource("SpriteFrames_yl2pp")
+frame_progress = 0.171571
+
+[node name="doggo_2" type="AnimatedSprite2D" parent="."]
+position = Vector2(917, 148)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_yl2pp")
+frame_progress = 0.780373
+
+[connection signal="mouse_entered" from="ColorRect/BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="ColorRect/BackButton" to="." method="_on_back_button_pressed"]
