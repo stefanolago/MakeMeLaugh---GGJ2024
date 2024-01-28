@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bxlfyph8igh8b" path="res://scenes/_options_menu/options_menu.tscn" id="1_q0fgv"]
 [ext_resource type="PackedScene" uid="uid://borkwi8sak2ay" path="res://scenes/game/levels/Level1.tscn" id="2_mlawk"]
 [ext_resource type="PackedScene" uid="uid://dkhsruehu1ue6" path="res://scenes/_credits/credits.tscn" id="3_drggk"]
-[ext_resource type="AudioStream" uid="uid://bxvstvsary0fk" path="res://assets/audio/music/cat music.wav" id="3_mxssh"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_l8e1a")
@@ -69,12 +68,6 @@ anchor_bottom = 0.8
 visible = false
 layout_mode = 1
 
-<<<<<<< Updated upstream
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
-stream = ExtResource("3_mxssh")
-volume_db = -40.3
-autoplay = true
-=======
 [node name="Tile" type="Label" parent="."]
 offset_left = 218.0
 offset_top = 182.0
@@ -101,7 +94,6 @@ bus = &"SFX"
 process_mode = 3
 stream = ExtResource("7_asd4m")
 volume_db = -7.15
->>>>>>> Stashed changes
 bus = &"Music"
 
 [connection signal="pressed" from="Control/Buttons/PlayButton" to="." method="_on_play_button_pressed"]
