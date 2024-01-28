@@ -11,8 +11,8 @@ enum State {
 
 
 @onready var feather_scene: FeatherScene = $Feather
-@onready var typing_scene: Node2D = $JokeTyping
-@onready var face_clicker_scene: Area2D = $FaceClicker
+@onready var typing_scene: JokeTyping = $JokeTyping
+@onready var face_clicker_scene: FaceClicker = $FaceClicker
 @onready var boss_face: Boss = $BossFace
 @onready var boss_bullet_timer: Timer = $boss_bullet_timer
 @onready var girl_face: GirlFace = $GirlFace
@@ -148,6 +148,13 @@ func _on_boss_face_boss_status_changed(status: Boss.BossStatus) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			face_clicker_scene.visible = true
 			boss_bullet_timer.stop()
+			reset_attacks()
+
+
+func reset_attacks() -> void:
+	feather_scene.reset_to_normal()
+	typing_scene.reset()
+	face_clicker_scene.reset()
 
 
 func _on_boss_bullet_timer_timeout() -> void:
@@ -206,17 +213,11 @@ func DialogicSignal(argument:String) -> void:
 		"fade_out_drone":
 			fade_music_out(audio_stream_drone, 0.5)
 		"ears_covered_tutorial":
-			print("EARS COVERED")
 			face_clicker_scene.visible = true
-			#boss_face.boss_status = Boss.BossStatus.EYES_COVERED_TUTORIAL
 		"eyes_covered_tutorial":
-			print("EYES COVERED")
 			typing_scene.visible = true
-			#boss_face.boss_status = Boss.BossStatus.ARMS_UP_TUTORIAL
 		"arms_up_tutorial":
-			print("ARMS UP")
 			feather_scene.visible = true
-			#boss_face.new_defence_mode()
 
 
 func start_boss_fight() -> void:

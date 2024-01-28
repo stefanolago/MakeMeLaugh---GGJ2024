@@ -1,6 +1,8 @@
 extends Node2D
 
 
+class_name JokeTyping
+
 signal inserted_correct_letter()
 signal inserted_wrong_letter()
 signal inserted_right_word()
@@ -64,3 +66,7 @@ func wrong_joke_anim_played() -> void:
 func right_joke_anim_played() -> void:
 	inserted_right_word.emit()
 	write_joke()
+
+
+func reset() -> void:
+	player_input.text = ""

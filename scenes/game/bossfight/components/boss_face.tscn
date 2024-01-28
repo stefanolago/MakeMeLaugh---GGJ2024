@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://brptrqp46bq11"]
+[gd_scene load_steps=38 format=3 uid="uid://brptrqp46bq11"]
 
 [ext_resource type="Script" path="res://scenes/game/bossfight/components/boss_face.gd" id="1_msnto"]
 [ext_resource type="Material" uid="uid://d0kfepp6405oy" path="res://assets/shaders/shake.tres" id="2_4qcnx"]
@@ -25,7 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://k20x2mdyao7c" path="res://assets/audio/sfx/RoarLupoFin/RoarLupo-006.wav" id="18_7dlfb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jw73"]
-size = Vector2(517, 720)
+size = Vector2(464, 720)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5x7p8"]
 animations = [{
@@ -245,6 +245,44 @@ _data = {
 "damage": SubResource("Animation_p7ov1")
 }
 
+[sub_resource type="Animation" id="Animation_j8db2"]
+resource_name = "floating"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-10, 10), Vector2(-20, 0), Vector2(-10, -10), Vector2(-9.53674e-07, -9.53674e-07), Vector2(10, 10), Vector2(20, 0), Vector2(10, -10), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_alan5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kihhc"]
+_data = {
+"RESET": SubResource("Animation_alan5"),
+"floating": SubResource("Animation_j8db2")
+}
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_garh4"]
 streams_count = 2
 stream_0/stream = ExtResource("11_j0nw1")
@@ -283,7 +321,7 @@ collision_layer = 2
 script = ExtResource("1_msnto")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-6.5, -4)
+position = Vector2(-6, -4)
 shape = SubResource("RectangleShape2D_7jw73")
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -352,6 +390,12 @@ one_shot = true
 libraries = {
 "": SubResource("AnimationLibrary_ra8oq")
 }
+
+[node name="FloatingAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kihhc")
+}
+speed_scale = 0.3
 
 [node name="wolf_hit" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_garh4")

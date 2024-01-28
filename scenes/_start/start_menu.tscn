@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://eiyouj6n1hbl" path="res://assets/audio/music/Main_mENU.wav" id="7_asd4m"]
 [ext_resource type="AudioStream" uid="uid://bdvp3wplhfhe6" path="res://assets/audio/sfx/UI Menù/HoverFitta.wav" id="8_ph07u"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="StartMenu" type="CanvasLayer"]
 script = ExtResource("1_l8e1a")
 start_game_scene = ExtResource("2_hsxlj")
 metadata/_edit_vertical_guides_ = [575.0]

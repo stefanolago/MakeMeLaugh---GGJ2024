@@ -19,8 +19,8 @@ func _ready() -> void:
 
 func reset() -> void:
 	print ("restarting")
-	boss_attack_timer = 10
-	boss_attack_timer_phase2 = 6
+	boss_attack_timer = 8
+	boss_attack_timer_phase2 = 5
 	boss_defence_switch_timer = 20
 	boss_health = 10
 	second_phase_start_health = 5

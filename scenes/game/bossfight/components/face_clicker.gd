@@ -79,3 +79,6 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		click_stream.pitch_scale = click_stream.pitch_scale + 0.3
 		click_stream.play()
 
+
+func reset() -> void:
+	face_clicks = 0

@@ -19,7 +19,7 @@ signal finished_tickling()
 var shake_meter: int = 0:
 	set(value):
 		shake_meter = value
-		if shake_meter % 50 == 0:
+		if shake_meter > 0 and shake_meter % 50 == 0:
 			tickled.emit()
 		if shake_meter > total_shake_meter_to_reach:
 			finished_tickling.emit()

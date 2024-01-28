@@ -8,9 +8,9 @@ signal boss_second_phase()
 signal boss_dead()
 
 enum BossStatus {
-	EARS_COVERED_TUTORIAL,
-	EYES_COVERED_TUTORIAL,
 	ARMS_UP_TUTORIAL,
+	EYES_COVERED_TUTORIAL,
+	EARS_COVERED_TUTORIAL,
 	EARS_COVERED,
 	EYES_COVERED,
 	ARMS_UP,
@@ -47,34 +47,28 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 		boss_status = value
 		boss_status_changed.emit(boss_status)
 		match boss_status:
-			BossStatus.EARS_COVERED_TUTORIAL:
-				boss_sprite.play("ears_covered")
-				print("TUTORIAL EARS")
-			BossStatus.EYES_COVERED_TUTORIAL:
-				boss_sprite.play("eyes_covered")
-				print("TUTORIAL EYES")
 			BossStatus.ARMS_UP_TUTORIAL:
 				boss_sprite.play("arms_up")
-				print("TUTORIAL ARMS")
+			BossStatus.EYES_COVERED_TUTORIAL:
+				boss_sprite.play("eyes_covered")
+			BossStatus.EARS_COVERED_TUTORIAL:
+				boss_sprite.play("ears_covered")
 			BossStatus.EARS_COVERED:
 				boss_sprite.play("ears_covered")
 				
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
-				print ("EARS_COVERED")
 			BossStatus.EYES_COVERED:
 				boss_sprite.play("eyes_covered")
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
-				print ("EYES_COVERED")
 			BossStatus.ARMS_UP:
 				boss_sprite.play("arms_up")
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
-				print ("ARMS_UP")
 			BossStatus.ATTACK:
 				boss_sprite.play("attack")
 				attack_pb.visible = false
@@ -91,7 +85,6 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 			BossStatus.DIALOGUE:
 				boss_sprite.play("defaut")
 			BossStatus.DAMAGE:
-				print ("BOSS TAKES DAMAGE")
 				boss_sprite.play("smile")
 				attack_pb.visible = false
 				attack_timer.stop()
@@ -123,7 +116,9 @@ func boss_attacked(type: AttackType) -> void:
 			if boss_status == BossStatus.EARS_COVERED:
 				take_damage()
 			elif boss_status == BossStatus.EARS_COVERED_TUTORIAL:
-				boss_status = BossStatus.EYES_COVERED_TUTORIAL
+				roll_new_defence_mode()
+			elif is_boss_status_in_tutorial():
+				pass
 			else:
 				boss_blocked_damage.emit()
 				attack_timer.stop()
@@ -133,7 +128,9 @@ func boss_attacked(type: AttackType) -> void:
 			if boss_status == BossStatus.EYES_COVERED:
 				take_damage()
 			elif boss_status == BossStatus.EYES_COVERED_TUTORIAL:
-				boss_status = BossStatus.ARMS_UP_TUTORIAL
+				boss_status = BossStatus.EARS_COVERED_TUTORIAL
+			elif is_boss_status_in_tutorial():
+				pass
 			else:
 				boss_blocked_damage.emit()
 				attack_timer.stop()
@@ -143,17 +140,25 @@ func boss_attacked(type: AttackType) -> void:
 			if boss_status == BossStatus.ARMS_UP:
 				take_damage()		
 			elif boss_status == BossStatus.ARMS_UP_TUTORIAL:
-				roll_new_defence_mode()
+				boss_status = BossStatus.EYES_COVERED_TUTORIAL
+			elif is_boss_status_in_tutorial():
+				pass
 			else:
 				boss_blocked_damage.emit()
 				attack_timer.stop()
 				attack_pb.visible = false
 				Dialogic.start("feather_ineffective")
 		AttackType.TICKLE_LIGHT:
-			if boss_status == BossStatus.ARMS_UP:
+			if boss_status == BossStatus.ARMS_UP or boss_status == BossStatus.ARMS_UP_TUTORIAL:
 				set_shader_value(20.0)
 				var tween: Tween = get_tree().create_tween()
 				tween.tween_method(set_shader_value, 20.0, 1.0, 0.5)
+
+
+func is_boss_status_in_tutorial() -> bool:
+	if boss_status == BossStatus.ARMS_UP_TUTORIAL or boss_status == BossStatus.EYES_COVERED_TUTORIAL or boss_status == BossStatus.EARS_COVERED_TUTORIAL:
+		return true
+	return false
 
 
 func set_shader_value(value: float) -> void:
@@ -231,4 +236,4 @@ func get_next_bullet_data() -> Dictionary:
 
 
 func start_tutorial() -> void:
-	boss_status = BossStatus.EARS_COVERED_TUTORIAL
+	boss_status = BossStatus.ARMS_UP_TUTORIAL
