@@ -7,6 +7,7 @@ signal inserted_correct_letter()
 signal inserted_wrong_letter()
 signal inserted_right_word()
 signal inserted_wrong_word()
+signal pre_word_check()
 
 @onready var joke_display: Label = $joke_UI/Joke_display
 @onready var player_input: LineEdit = $joke_UI/player_input
@@ -51,6 +52,7 @@ func _input(event: InputEvent) -> void:
 func check_input() -> void:
 	var is_good: bool = player_input.text.strip_edges() == current_joke
 	if is_good:
+		pre_word_check.emit()
 		($correct_type as AudioStreamPlayer).play()
 		($AnimationPlayer as AnimationPlayer).play("right_joke")
 	else:

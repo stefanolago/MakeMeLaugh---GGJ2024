@@ -56,6 +56,10 @@ func player_attack(attack_type: Boss.AttackType) -> void:
 	($BossFace as Boss).boss_attacked(attack_type)
 
 
+func player_pre_attack() -> void:
+	($BossFace as Boss).boss_timer_pause()
+
+
 func player_fails() -> void:
 	#TO DO se vogliamo
 	pass
@@ -194,6 +198,8 @@ func _on_girl_face_player_dead() -> void:
 
 func DialogicSignal(argument:String) -> void:
 	match argument:
+		"end_tutorial":
+			start_boss_fight()
 		"show_tutorial_false":
 			GameStats.show_tutorial = false
 		"show_tutorial_true":
@@ -225,3 +231,11 @@ func DialogicSignal(argument:String) -> void:
 func start_boss_fight() -> void:
 	boss_face.new_defence_mode()
 	show_player_ui()
+
+
+func _on_joke_typing_pre_word_check() -> void:
+	player_pre_attack()
+
+
+func _on_face_clicker_pre_face_check() -> void:
+	player_pre_attack()

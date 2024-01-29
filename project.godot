@@ -34,13 +34,27 @@ gdscript/warnings/unsafe_call_argument=1
 [dialogic]
 
 directories/dch_directory={
+"dialogic/girl": "res://MakeMELaugh/source/dialogic/girl.dch",
+"dialogic/wolf": "res://MakeMELaugh/source/dialogic/wolf.dch",
 "girl": "res://dialogic/girl.dch",
 "wolf": "res://dialogic/wolf.dch"
 }
 directories/dtl_directory={
 "arms_up_tutorial": "res://dialogic/arms_up_tutorial.dtl",
 "bossfight_intro": "res://dialogic/bossfight_intro.dtl",
+"dialogic/arms_up_tutorial": "res://MakeMELaugh/source/dialogic/arms_up_tutorial.dtl",
+"dialogic/bossfight_intro": "res://MakeMELaugh/source/dialogic/bossfight_intro.dtl",
+"dialogic/ears_covered_tutorial": "res://MakeMELaugh/source/dialogic/ears_covered_tutorial.dtl",
+"dialogic/end_tutorial": "res://MakeMELaugh/source/dialogic/end_tutorial.dtl",
+"dialogic/ending": "res://MakeMELaugh/source/dialogic/ending.dtl",
+"dialogic/eyes_covered_tutorial": "res://MakeMELaugh/source/dialogic/eyes_covered_tutorial.dtl",
+"dialogic/feather_ineffective": "res://MakeMELaugh/source/dialogic/feather_ineffective.dtl",
+"dialogic/intro": "res://MakeMELaugh/source/dialogic/intro.dtl",
+"dialogic/joke_ineffective": "res://MakeMELaugh/source/dialogic/joke_ineffective.dtl",
+"dialogic/second_phase": "res://MakeMELaugh/source/dialogic/second_phase.dtl",
+"dialogic/smorfia_ineffective": "res://MakeMELaugh/source/dialogic/smorfia_ineffective.dtl",
 "ears_covered_tutorial": "res://dialogic/ears_covered_tutorial.dtl",
+"end_tutorial": "res://dialogic/end_tutorial.dtl",
 "ending": "res://dialogic/ending.dtl",
 "eyes_covered_tutorial": "res://dialogic/eyes_covered_tutorial.dtl",
 "feather_ineffective": "res://dialogic/feather_ineffective.dtl",
@@ -149,7 +163,6 @@ dialogic_default_action={
 pause={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":80,"key_label":0,"unicode":112,"echo":false,"script":null)
 ]
 }
 

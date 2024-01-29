@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjhj5oq6bo6mq"]
+[gd_scene load_steps=14 format=3 uid="uid://cjhj5oq6bo6mq"]
 
 [ext_resource type="PackedScene" uid="uid://bcfs7nljoccss" path="res://scenes/game/bossfight/components/joke_typing.tscn" id="1_fu3yb"]
 [ext_resource type="Script" path="res://scenes/game/bossfight/bossfight.gd" id="1_h1yt4"]
@@ -11,6 +11,10 @@
 [ext_resource type="AudioStream" uid="uid://csakrbqto1j1b" path="res://assets/audio/music/Drone_LupoStart.wav" id="9_l3t3g"]
 [ext_resource type="AudioStream" uid="uid://cpas24vqnvjik" path="res://assets/audio/music/First_phase_Boss.wav" id="10_ib206"]
 [ext_resource type="AudioStream" uid="uid://vxekxe0pcdle" path="res://assets/audio/music/boss_part_2_.wav" id="10_kd0yi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_msxo4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nw5ya"]
 
 [node name="Bossfight" type="Control"]
 layout_mode = 3
@@ -71,6 +75,7 @@ offset_top = 312.0
 offset_right = 455.0
 offset_bottom = 320.0
 rotation = 1.57079
+theme_override_styles/scroll_focus = SubResource("StyleBoxEmpty_msxo4")
 
 [node name="limit_2" type="VScrollBar" parent="movement_limit"]
 offset_left = 940.0
@@ -78,6 +83,7 @@ offset_top = 312.0
 offset_right = 1183.0
 offset_bottom = 320.0
 rotation = 1.57079
+theme_override_styles/scroll_focus = SubResource("StyleBoxEmpty_nw5ya")
 
 [node name="GirlFace" parent="." node_paths=PackedStringArray("min_position", "max_position") instance=ExtResource("6_r651i")]
 visible = false
@@ -124,9 +130,11 @@ bus = &"Music"
 [connection signal="boss_status_changed" from="BossFace" to="." method="_on_boss_face_boss_status_changed"]
 [connection signal="inserted_right_word" from="JokeTyping" to="." method="_on_joke_typing_inserted_right_word"]
 [connection signal="inserted_wrong_word" from="JokeTyping" to="." method="_on_joke_typing_inserted_wrong_word"]
+[connection signal="pre_word_check" from="JokeTyping" to="." method="_on_joke_typing_pre_word_check"]
 [connection signal="finished_tickling" from="Feather" to="." method="_on_feather_finished_tickling"]
 [connection signal="tickled" from="Feather" to="." method="_on_feather_tickled"]
 [connection signal="face_status_changed" from="FaceClicker" to="." method="_on_face_clicker_face_status_changed"]
+[connection signal="pre_face_check" from="FaceClicker" to="." method="_on_face_clicker_pre_face_check"]
 [connection signal="timeout" from="boss_bullet_timer" to="." method="_on_boss_bullet_timer_timeout"]
 [connection signal="player_dead" from="GirlFace" to="." method="_on_girl_face_player_dead"]
 [connection signal="pressed" from="debug_end" to="." method="_on_debug_end_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dj37fah1rg4x2"]
+[gd_scene load_steps=6 format=3 uid="uid://dj37fah1rg4x2"]
 
 [ext_resource type="Script" path="res://globals/pause_game.gd" id="1_igi6t"]
 [ext_resource type="PackedScene" uid="uid://otacf7gyxcpp" path="res://scenes/_options_menu/audio/audio_options.tscn" id="2_0frg0"]
+[ext_resource type="PackedScene" uid="uid://b0l8f2a2moux7" path="res://scenes/_options_menu/graphics/graphic_options.tscn" id="2_nwpua"]
 [ext_resource type="AudioStream" uid="uid://bdvp3wplhfhe6" path="res://assets/audio/sfx/UI Menù/HoverFitta.wav" id="3_28s7f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muirh"]
@@ -26,6 +27,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_igi6t")
 
+[node name="Graphic" parent="OptionsMenu" instance=ExtResource("2_nwpua")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+offset_top = 24.0
+
 [node name="TabContainer" type="TabContainer" parent="OptionsMenu"]
 layout_mode = 1
 anchors_preset = 15
@@ -41,6 +48,7 @@ layout_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="QuitButton" type="Button" parent="OptionsMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

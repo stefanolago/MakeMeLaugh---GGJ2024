@@ -12,6 +12,7 @@ enum FaceStatus {
 }
 
 signal face_status_changed(status: FaceStatus)
+signal pre_face_check()
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
@@ -32,6 +33,7 @@ var face_status: FaceStatus = FaceStatus.IDLE:
 				FaceStatus.GRIMACE_2:
 					animated_sprite.play("grimace_2")
 				FaceStatus.FULL_GRIMACE:
+					pre_face_check.emit()
 					($LoseFaceTimer as Timer).stop()
 					animated_sprite.play("grimace_full")
 					($smorfia as AudioStreamPlayer).play()

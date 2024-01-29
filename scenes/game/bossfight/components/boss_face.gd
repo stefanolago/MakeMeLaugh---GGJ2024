@@ -55,7 +55,6 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 				boss_sprite.play("ears_covered")
 			BossStatus.EARS_COVERED:
 				boss_sprite.play("ears_covered")
-				
 				attack_pb.visible = true
 				attack_timer.start()
 				attack_pb.value = 0
@@ -103,8 +102,12 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	attack_pb.value = attack_pb.max_value - attack_timer.time_left
-	if attack_pb.value >= 8.0 and not animation_player.is_playing():
+	if attack_pb.value >= 7.0 and not animation_player.is_playing():
 		animation_player.play("attack_charged")
+
+
+func boss_timer_pause() -> void:
+	attack_timer.stop()
 
 
 func boss_attacked(type: AttackType) -> void:
@@ -116,14 +119,16 @@ func boss_attacked(type: AttackType) -> void:
 			if boss_status == BossStatus.EARS_COVERED:
 				take_damage()
 			elif boss_status == BossStatus.EARS_COVERED_TUTORIAL:
-				roll_new_defence_mode()
+				#roll_new_defence_mode()
+				Dialogic.start("end_tutorial")
 			elif is_boss_status_in_tutorial():
 				pass
 			else:
 				boss_blocked_damage.emit()
 				attack_timer.stop()
 				attack_pb.visible = false
-				Dialogic.start("smorfia_ineffective")
+				if boss_status != BossStatus.ATTACK:
+					Dialogic.start("smorfia_ineffective")
 		AttackType.JOKE:
 			if boss_status == BossStatus.EYES_COVERED:
 				take_damage()
@@ -135,7 +140,8 @@ func boss_attacked(type: AttackType) -> void:
 				boss_blocked_damage.emit()
 				attack_timer.stop()
 				attack_pb.visible = false
-				Dialogic.start("joke_ineffective")
+				if boss_status != BossStatus.ATTACK:
+					Dialogic.start("joke_ineffective")
 		AttackType.TICKLE:
 			if boss_status == BossStatus.ARMS_UP:
 				take_damage()		
@@ -147,7 +153,8 @@ func boss_attacked(type: AttackType) -> void:
 				boss_blocked_damage.emit()
 				attack_timer.stop()
 				attack_pb.visible = false
-				Dialogic.start("feather_ineffective")
+				if boss_status != BossStatus.ATTACK:
+					Dialogic.start("feather_ineffective")
 		AttackType.TICKLE_LIGHT:
 			if boss_status == BossStatus.ARMS_UP or boss_status == BossStatus.ARMS_UP_TUTORIAL:
 				set_shader_value(20.0)
