@@ -1,5 +1,7 @@
 extends Node
 
+signal start_second_phase()
+
 var boss_attack_timer: int
 var boss_attack_timer_phase2: int
 var boss_defence_switch_timer: int
@@ -8,7 +10,13 @@ var second_phase_start_health: int
 var player_health: int
 var invincibility_time: float
 var block_move_time: float
-var second_phase:bool
+var second_phase: bool:
+	set(value):
+		second_phase = value
+		start_second_phase.emit()
+
+
+
 var second_phase_bullet_vel: int
 
 var show_tutorial: bool = true

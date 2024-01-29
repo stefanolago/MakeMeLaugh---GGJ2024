@@ -73,8 +73,7 @@ var boss_status: BossStatus = BossStatus.DIALOGUE:
 				attack_pb.visible = false
 				($wolf_attack as AudioStreamPlayer).play()
 				if GameStats.second_phase:
-					attack_timer.wait_time = GameStats.boss_attack_timer_phase2
-					attack_pb.max_value = GameStats.boss_attack_timer_phase2
+					change_attack_time_to_second_phase()
 					animation_player.play("attacking_phase2")
 				else:
 					attack_timer.wait_time = GameStats.boss_attack_timer
@@ -98,12 +97,19 @@ func _ready() -> void:
 	attack_pb.value = 0
 	attack_pb.visible = false
 	defence_mode_timer.wait_time = GameStats.boss_defence_switch_timer
+	GameStats.start_second_phase.connect(change_attack_time_to_second_phase)
 
 
 func _process(_delta: float) -> void:
 	attack_pb.value = attack_pb.max_value - attack_timer.time_left
 	if attack_pb.value >= 7.0 and not animation_player.is_playing():
 		animation_player.play("attack_charged")
+
+
+func change_attack_time_to_second_phase() -> void:
+	attack_timer.wait_time = GameStats.boss_attack_timer_phase2
+	attack_pb.max_value = GameStats.boss_attack_timer_phase2
+
 
 
 func boss_timer_pause() -> void:
